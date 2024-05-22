@@ -1,0 +1,109 @@
+.header {
+  width: 100dvw;
+  height: 80px;
+
+  @include device.mobile {
+    height: 60px;
+  }
+}
+
+.container {
+  max-width: 1480px;
+  height: inherit;
+  margin: 0 auto;
+  padding: 0 40px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @include device.mobile {
+    padding: 0 20px;
+  }
+}
+
+.menuIcon {
+  display: none;
+  @include device.mobile {
+    display: block;
+  }
+}
+
+.logo {
+  width: 138.25px;
+  height: 25.2px;
+  flex-shrink: 0;
+
+  @include device.mobile {
+    width: 111px;
+    height: 20px;
+  }
+}
+
+.memberContainer {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+  @include device.mobile {
+    gap: 10px;
+  }
+}
+
+.authButton {
+  @include fonts.base-regular-14;
+  color: colors.$gray200;
+  cursor: pointer;
+
+  @include device.mobile {
+    @include fonts.base-regular-12;
+    color: colors.$gray200;
+  }
+}
+
+.point {
+  @include fonts.base-bold-14;
+  color: colors.$gray200;
+
+  @include device.mobile {
+    display: none;
+  }
+}
+
+.userName {
+  @include fonts.main-title-18;
+  color: colors.$gray200;
+
+  @include device.mobile {
+    display: none;
+  }
+}
+
+.line {
+  width: 1px;
+  height: 14px;
+  border-right: 1px solid colors.$gray400;
+
+  @include device.mobile {
+    display: none;
+  }
+}
+
+.logoutButton {
+  @include fonts.base-regular-14;
+  color: colors.$gray400;
+  cursor: pointer;
+
+  @include device.mobile {
+    display: none;
+  }
+}
+
+.commonHeaderTitle {
+  @include fonts.main-title-20;
+  color: colors.$white;
+}
+
+.backButton {
+  cursor: pointer;
+}

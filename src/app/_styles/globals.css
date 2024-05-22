@@ -61,3 +61,12 @@ a {
   text-decoration: none;
   color: inherit;
 }
+
+button {
+  background-color: transparent;
+  border: none;
+}
+
+li {
+  list-style: none;
+}

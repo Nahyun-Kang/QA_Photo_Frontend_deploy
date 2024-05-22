@@ -7,6 +7,14 @@ const nextConfig = {
     prependData:
       "@use '@/app/_styles/_fonts.scss'; @use '@/app/_styles/_colors.scss'; @use '@/app/_styles/_device.scss';",
   },
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.svg$/,
+      use: ['@svgr/webpack'],
+    })
+
+    return config
+  },
 }
 
 module.exports = nextConfig

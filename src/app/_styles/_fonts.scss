@@ -1,6 +1,6 @@
 $black-font: #2b2b2b;
 
-@mixin main-title1 {
+@mixin main-title-62 {
   font-family: 'BaskinRobbins';
   font-size: 6.2rem;
   font-weight: 600;
@@ -8,7 +8,7 @@ $black-font: #2b2b2b;
   color: $black-font;
 }
 
-@mixin main-title2 {
+@mixin main-title-48 {
   font-family: 'BaskinRobbins';
   font-size: 4.8rem;
   font-weight: 600;
@@ -16,7 +16,7 @@ $black-font: #2b2b2b;
   color: $black-font;
 }
 
-@mixin main-title3 {
+@mixin main-title-46 {
   font-family: 'BaskinRobbins';
   font-size: 4.6rem;
   font-weight: 600;
@@ -24,7 +24,7 @@ $black-font: #2b2b2b;
   color: $black-font;
 }
 
-@mixin main-title4 {
+@mixin main-title-40 {
   font-family: 'BaskinRobbins';
   font-size: 4rem;
   font-weight: 600;
@@ -32,7 +32,7 @@ $black-font: #2b2b2b;
   color: $black-font;
 }
 
-@mixin main-title5 {
+@mixin main-title-24 {
   font-family: 'BaskinRobbins';
   font-size: 2.4rem;
   font-weight: 600;
@@ -40,7 +40,15 @@ $black-font: #2b2b2b;
   color: $black-font;
 }
 
-@mixin main-title6 {
+@mixin main-title-20 {
+  font-family: 'BaskinRobbins';
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: -3%;
+  color: $black-font;
+}
+
+@mixin main-title-18 {
   font-family: 'BaskinRobbins';
   font-size: 1.8rem;
   font-weight: 600;
