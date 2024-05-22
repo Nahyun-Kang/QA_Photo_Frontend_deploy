@@ -5,7 +5,7 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
     prependData:
-      "@use '@/app/_styles/_fonts.scss'; @use '@/app/_styles/_colors.scss';",
+      "@use '@/app/_styles/_fonts.scss'; @use '@/app/_styles/_colors.scss'; @use '@/app/_styles/_device.scss';",
   },
 }
 
