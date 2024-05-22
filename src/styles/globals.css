@@ -1,8 +1,41 @@
-:root {
-  --font-family: sans-serif;
+@font-face {
+  font-family: 'NotoSansKR';
+  font-weight: 400;
+  src: url('../../public/fonts/NotoSansKR-Light.woff2') format('woff2');
+}
+@font-face {
+  font-family: 'NotoSansKR';
+  font-weight: 500;
+  src: url('../../public/fonts/NotoSansKR-Regular.woff2') format('woff2');
+}
 
-  --main-blue: rgb(85, 72, 255);
-  --main-white: #ffffff;
+@font-face {
+  font-family: 'NotoSansKR';
+  font-weight: 600;
+  src: url('../../public/fonts/NotoSansKR-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'BaskinRobbins';
+  font-weight: 600;
+  src: url('../../public/fonts/BaskinRobbins-Bold.woff2') format('woff2');
+}
+
+:root {
+  --font-family: 'NotoSansKR', 'BaskinRobbins', sans-serif;
+
+  --black: #0f0f0f;
+  --gray500: #161616;
+  --gray400: #5a5a5a;
+  --gray300: #a4a4a4;
+  --gray200: #dddddd;
+  --gray100: #eeeeee;
+  --white: #ffffff;
+  --red: #ff483d;
+  --blue: #29c9f9;
+  --purple: #a77eff;
+  --pink: #ff2a6a;
+  --main: #efff04;
 
   --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.25);
 }

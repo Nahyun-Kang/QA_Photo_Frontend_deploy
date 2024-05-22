@@ -1,0 +1,220 @@
+$black-font: #2b2b2b;
+
+@mixin main-title1 {
+  font-family: 'BaskinRobbins';
+  font-size: 6.2rem;
+  font-weight: 600;
+  letter-spacing: -3%;
+  color: $black-font;
+}
+
+@mixin main-title2 {
+  font-family: 'BaskinRobbins';
+  font-size: 4.8rem;
+  font-weight: 600;
+  letter-spacing: -3%;
+  color: $black-font;
+}
+
+@mixin main-title3 {
+  font-family: 'BaskinRobbins';
+  font-size: 4.6rem;
+  font-weight: 600;
+  letter-spacing: -3%;
+  color: $black-font;
+}
+
+@mixin main-title4 {
+  font-family: 'BaskinRobbins';
+  font-size: 4rem;
+  font-weight: 600;
+  letter-spacing: -3%;
+  color: $black-font;
+}
+
+@mixin main-title5 {
+  font-family: 'BaskinRobbins';
+  font-size: 2.4rem;
+  font-weight: 600;
+  letter-spacing: -3%;
+  color: $black-font;
+}
+
+@mixin main-title6 {
+  font-family: 'BaskinRobbins';
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: -3%;
+  color: $black-font;
+}
+
+@mixin base-bold-40 {
+  font-family: 'NotoSansKR';
+  font-size: 4rem;
+  font-weight: 600;
+  letter-spacing: 0%;
+  color: $black-font;
+}
+
+@mixin base-bold-32 {
+  font-family: 'NotoSansKR';
+  font-size: 3.2rem;
+  font-weight: 600;
+  letter-spacing: 0%;
+  color: $black-font;
+}
+
+@mixin base-bold-28 {
+  font-family: 'NotoSansKR';
+  font-size: 2.8rem;
+  font-weight: 600;
+  letter-spacing: 0%;
+  color: $black-font;
+}
+
+@mixin base-bold-24 {
+  font-family: 'NotoSansKR';
+  font-size: 2.4rem;
+  font-weight: 600;
+  letter-spacing: 0%;
+  color: $black-font;
+}
+
+@mixin base-bold-22 {
+  font-family: 'NotoSansKR';
+  font-size: 2.2rem;
+  font-weight: 600;
+  letter-spacing: 0%;
+  color: $black-font;
+}
+
+@mixin base-bold-20 {
+  font-family: 'NotoSansKR';
+  font-size: 2rem;
+  font-weight: 600;
+  letter-spacing: 0%;
+  color: $black-font;
+}
+
+@mixin base-bold-18 {
+  font-family: 'NotoSansKR';
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: 0%;
+  color: $black-font;
+}
+
+@mixin base-bold-16 {
+  font-family: 'NotoSansKR';
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: 0%;
+  color: $black-font;
+}
+
+@mixin base-bold-14 {
+  font-family: 'NotoSansKR';
+  font-size: 1.4rem;
+  font-weight: 600;
+  letter-spacing: 0%;
+  color: $black-font;
+}
+
+@mixin base-bold-12 {
+  font-family: 'NotoSansKR';
+  font-size: 1.2rem;
+  font-weight: 600;
+  letter-spacing: 0%;
+  color: $black-font;
+}
+
+@mixin base-regular-24 {
+  font-family: 'NotoSansKR';
+  font-size: 2.4rem;
+  font-weight: 500;
+  letter-spacing: 0%;
+  color: $black-font;
+}
+
+@mixin base-regular-20 {
+  font-family: 'NotoSansKR';
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: 0%;
+  color: $black-font;
+}
+@mixin base-regular-18 {
+  font-family: 'NotoSansKR';
+  font-size: 1.8rem;
+  font-weight: 500;
+  letter-spacing: 0%;
+  color: $black-font;
+}
+@mixin base-regular-16 {
+  font-family: 'NotoSansKR';
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: 0%;
+  color: $black-font;
+}
+@mixin base-regular-14 {
+  font-family: 'NotoSansKR';
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0%;
+  color: $black-font;
+}
+@mixin base-regular-12 {
+  font-family: 'NotoSansKR';
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 0%;
+  color: $black-font;
+}
+@mixin base-regular-10 {
+  font-family: 'NotoSansKR';
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0%;
+  color: $black-font;
+}
+
+@mixin base-light-18 {
+  font-family: 'NotoSansKR';
+  font-size: 1.8rem;
+  font-weight: 500;
+  letter-spacing: 0%;
+  color: $black-font;
+}
+
+@mixin base-light-16 {
+  font-family: 'NotoSansKR';
+  font-size: 1.6rem;
+  font-weight: 500;
+  letter-spacing: 0%;
+  color: $black-font;
+}
+
+@mixin base-light-14 {
+  font-family: 'NotoSansKR';
+  font-size: 1.4rem;
+  font-weight: 500;
+  letter-spacing: 0%;
+  color: $black-font;
+}
+
+@mixin base-light-12 {
+  font-family: 'NotoSansKR';
+  font-size: 1.2rem;
+  font-weight: 500;
+  letter-spacing: 0%;
+  color: $black-font;
+}
+
+@mixin base-light-10 {
+  font-family: 'NotoSansKR';
+  font-size: 1rem;
+  font-weight: 500;
+  letter-spacing: 0%;
+  color: $black-font;
+}
