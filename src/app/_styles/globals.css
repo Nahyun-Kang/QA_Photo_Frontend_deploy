@@ -1,24 +1,24 @@
 @font-face {
   font-family: 'NotoSansKR';
   font-weight: 400;
-  src: url('../../public/fonts/NotoSansKR-Light.woff2') format('woff2');
+  src: url('../../../public/fonts/NotoSansKR-Light.woff2') format('woff2');
 }
 @font-face {
   font-family: 'NotoSansKR';
   font-weight: 500;
-  src: url('../../public/fonts/NotoSansKR-Regular.woff2') format('woff2');
+  src: url('../../../public/fonts/NotoSansKR-Regular.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'NotoSansKR';
   font-weight: 600;
-  src: url('../../public/fonts/NotoSansKR-Bold.woff2') format('woff2');
+  src: url('../../../public/fonts/NotoSansKR-Bold.woff2') format('woff2');
 }
 
 @font-face {
   font-family: 'BaskinRobbins';
   font-weight: 600;
-  src: url('../../public/fonts/BaskinRobbins-Bold.woff2') format('woff2');
+  src: url('../../../public/fonts/BaskinRobbins-Bold.woff2') format('woff2');
 }
 
 :root {

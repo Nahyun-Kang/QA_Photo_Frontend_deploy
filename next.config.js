@@ -4,7 +4,8 @@ const nextConfig = {
   reactStrictMode: true,
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
-    prependData: "@use 'fonts'; @use 'colors';",
+    prependData:
+      "@use '@/app/_styles/_fonts.scss'; @use '@/app/_styles/_colors.scss';",
   },
 }
 
