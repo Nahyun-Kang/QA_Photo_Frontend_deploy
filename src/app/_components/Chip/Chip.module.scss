@@ -11,6 +11,11 @@
 
   @include device.mobile {
     padding: 4px 8px;
+    @include fonts.base-regular-14;
+  }
+
+  @include device.mobile {
+    padding: 4px 8px;
     @include fonts.base-regular-12;
   }
 }
