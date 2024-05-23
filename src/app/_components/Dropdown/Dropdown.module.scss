@@ -1,0 +1,64 @@
+.container {
+  position: relative;
+  width: 100%;
+}
+
+.listItem {
+  @include fonts.base-regular-16;
+  color: colors.$white;
+  padding: 15px 20px;
+
+  cursor: pointer;
+
+  @include device.tablet {
+    @include fonts.base-regular-14;
+    color: colors.$white;
+  }
+
+  @include device.mobile {
+    @include fonts.base-regular-12;
+    color: colors.$white;
+  }
+
+  &:hover {
+    background-color: colors.$gray500;
+  }
+}
+
+.dropdownBox {
+  width: inherit;
+  background-color: colors.$black;
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+
+  position: absolute;
+  top: 40px;
+
+  border: 1px solid colors.$white;
+
+  @include device.tablet {
+    top: 35px;
+  }
+
+  @include device.mobile {
+    top: 40px;
+  }
+}
+
+.trigger {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  cursor: pointer;
+}
+
+.attribute {
+  @include fonts.base-bold-16;
+  color: colors.$white;
+
+  @include device.tablet {
+    @include fonts.base-bold-14;
+    color: colors.$white;
+  }
+}
