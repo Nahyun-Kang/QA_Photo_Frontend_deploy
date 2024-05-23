@@ -3,6 +3,7 @@ import CommonButton from '@/app/_components/Button'
 import Header from '@/app/_components/Header'
 import CommonHeader from './_components/Header/CommonHeader'
 import Chip from './_components/Chip'
+import Grade from './_components/Grade'
 
 export default function Home() {
   const universal = 'test'
@@ -16,6 +17,7 @@ export default function Home() {
         {'흠냐'}
       </CommonButton>
       <Chip>내용</Chip>
+      <Grade type="detail" />
     </main>
   )
 }

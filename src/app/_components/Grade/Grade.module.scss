@@ -1,0 +1,33 @@
+.grade {
+  &.card {
+    @include fonts.base-light-16;
+
+    @include device.mobile {
+      @include fonts.base-light-14;
+    }
+  }
+
+  &.detail {
+    @include fonts.base-bold-24;
+
+    @include device.mobile {
+      @include fonts.base-bold-18;
+    }
+  }
+
+  &.COMMON {
+    color: colors.$main;
+  }
+
+  &.RARE {
+    color: colors.$blue;
+  }
+
+  &.SUPERRARE {
+    color: colors.$purple;
+  }
+
+  &.LEGENDARY {
+    color: colors.$red;
+  }
+}
