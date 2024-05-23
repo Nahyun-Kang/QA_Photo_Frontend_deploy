@@ -1,0 +1,86 @@
+.container {
+  position: relative;
+  width: 100%
+}
+
+.button {
+  width: inherit;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 13px 20px;
+
+  border: 1px solid colors.$white;
+  cursor: pointer;
+
+  @include device.tablet {
+    width: inherit;
+    height: 45px;
+    padding: 10px 15px;
+  }
+
+  @include device.mobile {
+    width: inherit;
+    height: 35px;
+    padding: 10px 15px;
+  }
+}
+
+.title {
+  @include fonts.base-regular-16;
+  color: colors.$white;
+
+  @include device.tablet {
+    @include fonts.base-regular-14;
+    color: colors.$white;
+  }
+
+  @include device.mobile {
+    @include fonts.base-regular-12;
+    color: colors.$white;
+  }
+}
+
+
+.dropdownBox {
+  width: inherit;
+  background-color: colors.$black;
+  display: flex;
+  flex-direction: column;
+
+  position:absolute;
+  top: 60px;
+
+  border: 1px solid colors.$white;
+
+  @include device.tablet {
+    top: 50px;
+  }
+
+  @include device.mobile {
+    top: 40px;
+  }
+}
+
+.listItem {
+  @include fonts.base-regular-16;
+  color: colors.$white;
+  padding: 15px 20px;
+
+  cursor: pointer;
+
+  @include device.tablet {
+    @include fonts.base-regular-14;
+    color: colors.$white;
+  }
+
+  @include device.mobile {
+    @include fonts.base-regular-12;
+    color: colors.$white;
+  }
+
+  &:hover {
+    background-color: colors.$gray500;
+  }
+}

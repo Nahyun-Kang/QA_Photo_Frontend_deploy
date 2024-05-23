@@ -5,7 +5,7 @@ import CommonHeader from './_components/Header/CommonHeader'
 import Chip from './_components/Chip'
 import Grade from './_components/Grade'
 import GradeChip from './_components/GradeChip'
-import SelectComponent from './_components/Select'
+import SelectComponent from './_components/Dropdown'
 
 export default function Home() {
   const universal = ['COMMON', 'RARE', 'SUPERRARE', 'LEGENDARY']
@@ -22,7 +22,7 @@ export default function Home() {
       <Chip>내용</Chip>
       <Grade type="detail" />
       <GradeChip count={20} grade={'LEGENDARY'} />
-      <SelectComponent list={universal} title={'낮은 정렬순'} />
+      <SelectComponent list={universal} message={'등급을 선택해주세요'} />
     </main>
   )
 }
