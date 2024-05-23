@@ -4,6 +4,7 @@ import Header from '@/app/_components/Header'
 import CommonHeader from './_components/Header/CommonHeader'
 import Chip from './_components/Chip'
 import Grade from './_components/Grade'
+import GradeChip from './_components/GradeChip'
 
 export default function Home() {
   const universal = 'test'
@@ -18,6 +19,7 @@ export default function Home() {
       </CommonButton>
       <Chip>내용</Chip>
       <Grade type="detail" />
+      <GradeChip count={20} grade={'LEGENDARY'} />
     </main>
   )
 }

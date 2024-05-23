@@ -1,0 +1,38 @@
+.container {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+
+  padding: 8px 20px;
+
+  background-color: colors.$black;
+  @include fonts.base-light-16;
+
+  &.COMMON {
+    border: 1px solid colors.$main;
+    color: colors.$main;
+  }
+  &.RARE {
+    border: 1px solid colors.$blue;
+    color: colors.$blue;
+  }
+  &.SUPERRARE {
+    border: 1px solid colors.$purple;
+    color: colors.$purple;
+  }
+  &.LEGENDARY {
+    border: 1px solid colors.$red;
+    color: colors.$red;
+  }
+
+  @include device.tablet {
+    padding: 6px 10px;
+    @include fonts.base-light-14;
+  }
+
+  @include device.mobile {
+    padding: 6px 10px;
+    @include fonts.base-light-12;
+  }
+}
