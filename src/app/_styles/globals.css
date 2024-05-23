@@ -49,12 +49,10 @@
 
 html {
   font-size: 62.5%;
-  background-color: var(--black);
 }
 
 body {
-  font-family: var(--font-family);
-  background-color: var(--background-gray);
+  background-color: var(--black);
 }
 
 a {

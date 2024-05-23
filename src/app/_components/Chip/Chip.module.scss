@@ -1,0 +1,28 @@
+.container {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 10px;
+
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 2px;
+
+  @include fonts.base-regular-16;
+
+  @include device.mobile {
+    padding: 4px 8px;
+    @include fonts.base-regular-12;
+  }
+}
+
+.text {
+  line-height: normal;
+
+  &.default {
+    color: colors.$white;
+  }
+
+  &.yellow {
+    color: colors.$main;
+  }
+}

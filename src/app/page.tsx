@@ -2,6 +2,7 @@ import styles from './page.module.scss'
 import CommonButton from '@/app/_components/Button'
 import Header from '@/app/_components/Header'
 import CommonHeader from './_components/Header/CommonHeader'
+import Chip from './_components/Chip'
 
 export default function Home() {
   const universal = 'test'
@@ -14,6 +15,7 @@ export default function Home() {
       <CommonButton type="secondary" thickness="thin">
         {'흠냐'}
       </CommonButton>
+      <Chip>내용</Chip>
     </main>
   )
 }
