@@ -5,7 +5,6 @@ $black-font: #2b2b2b;
   font-size: 6.2rem;
   font-weight: 600;
   letter-spacing: -3%;
-  color: $black-font;
 }
 
 @mixin main-title-48 {
@@ -13,7 +12,6 @@ $black-font: #2b2b2b;
   font-size: 4.8rem;
   font-weight: 600;
   letter-spacing: -3%;
-  color: $black-font;
 }
 
 @mixin main-title-46 {
@@ -21,7 +19,6 @@ $black-font: #2b2b2b;
   font-size: 4.6rem;
   font-weight: 600;
   letter-spacing: -3%;
-  color: $black-font;
 }
 
 @mixin main-title-40 {
@@ -29,7 +26,6 @@ $black-font: #2b2b2b;
   font-size: 4rem;
   font-weight: 600;
   letter-spacing: -3%;
-  color: $black-font;
 }
 
 @mixin main-title-24 {
@@ -37,7 +33,6 @@ $black-font: #2b2b2b;
   font-size: 2.4rem;
   font-weight: 600;
   letter-spacing: -3%;
-  color: $black-font;
 }
 
 @mixin main-title-20 {
@@ -45,7 +40,6 @@ $black-font: #2b2b2b;
   font-size: 2rem;
   font-weight: 600;
   letter-spacing: -3%;
-  color: $black-font;
 }
 
 @mixin main-title-18 {
@@ -53,7 +47,6 @@ $black-font: #2b2b2b;
   font-size: 1.8rem;
   font-weight: 600;
   letter-spacing: -3%;
-  color: $black-font;
 }
 
 @mixin base-bold-40 {
@@ -61,7 +54,6 @@ $black-font: #2b2b2b;
   font-size: 4rem;
   font-weight: 600;
   letter-spacing: 0%;
-  color: $black-font;
 }
 
 @mixin base-bold-32 {
@@ -69,7 +61,6 @@ $black-font: #2b2b2b;
   font-size: 3.2rem;
   font-weight: 600;
   letter-spacing: 0%;
-  color: $black-font;
 }
 
 @mixin base-bold-28 {
@@ -77,7 +68,6 @@ $black-font: #2b2b2b;
   font-size: 2.8rem;
   font-weight: 600;
   letter-spacing: 0%;
-  color: $black-font;
 }
 
 @mixin base-bold-24 {
@@ -85,7 +75,6 @@ $black-font: #2b2b2b;
   font-size: 2.4rem;
   font-weight: 600;
   letter-spacing: 0%;
-  color: $black-font;
 }
 
 @mixin base-bold-22 {
@@ -93,7 +82,6 @@ $black-font: #2b2b2b;
   font-size: 2.2rem;
   font-weight: 600;
   letter-spacing: 0%;
-  color: $black-font;
 }
 
 @mixin base-bold-20 {
@@ -101,7 +89,6 @@ $black-font: #2b2b2b;
   font-size: 2rem;
   font-weight: 600;
   letter-spacing: 0%;
-  color: $black-font;
 }
 
 @mixin base-bold-18 {
@@ -109,7 +96,6 @@ $black-font: #2b2b2b;
   font-size: 1.8rem;
   font-weight: 600;
   letter-spacing: 0%;
-  color: $black-font;
 }
 
 @mixin base-bold-16 {
@@ -117,7 +103,6 @@ $black-font: #2b2b2b;
   font-size: 1.6rem;
   font-weight: 600;
   letter-spacing: 0%;
-  color: $black-font;
 }
 
 @mixin base-bold-14 {
@@ -125,7 +110,6 @@ $black-font: #2b2b2b;
   font-size: 1.4rem;
   font-weight: 600;
   letter-spacing: 0%;
-  color: $black-font;
 }
 
 @mixin base-bold-12 {
@@ -133,7 +117,6 @@ $black-font: #2b2b2b;
   font-size: 1.2rem;
   font-weight: 600;
   letter-spacing: 0%;
-  color: $black-font;
 }
 
 @mixin base-regular-24 {
@@ -141,7 +124,6 @@ $black-font: #2b2b2b;
   font-size: 2.4rem;
   font-weight: 500;
   letter-spacing: 0%;
-  color: $black-font;
 }
 
 @mixin base-regular-20 {
@@ -149,42 +131,36 @@ $black-font: #2b2b2b;
   font-size: 2rem;
   font-weight: 500;
   letter-spacing: 0%;
-  color: $black-font;
 }
 @mixin base-regular-18 {
   font-family: 'NotoSansKR';
   font-size: 1.8rem;
   font-weight: 500;
   letter-spacing: 0%;
-  color: $black-font;
 }
 @mixin base-regular-16 {
   font-family: 'NotoSansKR';
   font-size: 1.6rem;
   font-weight: 500;
   letter-spacing: 0%;
-  color: $black-font;
 }
 @mixin base-regular-14 {
   font-family: 'NotoSansKR';
   font-size: 1.4rem;
   font-weight: 500;
   letter-spacing: 0%;
-  color: $black-font;
 }
 @mixin base-regular-12 {
   font-family: 'NotoSansKR';
   font-size: 1.2rem;
   font-weight: 500;
   letter-spacing: 0%;
-  color: $black-font;
 }
 @mixin base-regular-10 {
   font-family: 'NotoSansKR';
   font-size: 1rem;
   font-weight: 500;
   letter-spacing: 0%;
-  color: $black-font;
 }
 
 @mixin base-light-18 {
@@ -192,7 +168,6 @@ $black-font: #2b2b2b;
   font-size: 1.8rem;
   font-weight: 400;
   letter-spacing: 0%;
-  color: $black-font;
 }
 
 @mixin base-light-16 {
@@ -200,7 +175,6 @@ $black-font: #2b2b2b;
   font-size: 1.6rem;
   font-weight: 400;
   letter-spacing: 0%;
-  color: $black-font;
 }
 
 @mixin base-light-14 {
@@ -208,7 +182,6 @@ $black-font: #2b2b2b;
   font-size: 1.4rem;
   font-weight: 400;
   letter-spacing: 0%;
-  color: $black-font;
 }
 
 @mixin base-light-12 {
@@ -216,7 +189,6 @@ $black-font: #2b2b2b;
   font-size: 1.2rem;
   font-weight: 400;
   letter-spacing: 0%;
-  color: $black-font;
 }
 
 @mixin base-light-10 {
@@ -224,5 +196,4 @@ $black-font: #2b2b2b;
   font-size: 1rem;
   font-weight: 400;
   letter-spacing: 0%;
-  color: $black-font;
 }

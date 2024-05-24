@@ -7,6 +7,7 @@ import Grade from './_components/Grade'
 import GradeChip from './_components/GradeChip'
 import SelectComponent from './_components/Select/Select'
 import Dropdown from './_components/Dropdown'
+import Pagination from './_components/pagination'
 
 export default function Home() {
   const universal = ['COMMON', 'RARE', 'SUPERRARE', 'LEGENDARY']
@@ -25,6 +26,7 @@ export default function Home() {
       <GradeChip count={20} grade={'LEGENDARY'} />
       <SelectComponent list={universal} message={'등급을 선택해주세요'} />
       <Dropdown list={universal} attribute={'등급'} />
+      <Pagination count={2000} />
     </main>
   )
 }
