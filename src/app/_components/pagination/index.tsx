@@ -81,10 +81,23 @@ export default function Pagination({ count }: PaginationProps) {
     setTotalPageCount(total_page)
   }
 
+  const updateCardCount = () => {
+    setCardPerView(window.innerWidth < 1024 ? 16 : 15)
+  }
+
   useEffect(() => {
     handleTotalPageCount(count)
     handleInitialCurrentList()
-  }, [totalPageCount])
+  }, [totalPageCount, cardPerView])
+
+  useEffect(() => {
+    updateCardCount()
+    window.addEventListener('resize', updateCardCount)
+
+    return () => {
+      window.removeEventListener('resize', updateCardCount)
+    }
+  }, [])
 
   return (
     <div className={styles.container}>
@@ -94,6 +107,7 @@ export default function Pagination({ count }: PaginationProps) {
       <NumberList
         list={currentList}
         currentPage={currentPage}
+        totalPageCount={totalPageCount}
         onClick={handlePageCLick}
       />
       <button>
@@ -106,20 +120,27 @@ export default function Pagination({ count }: PaginationProps) {
 interface NumberListProps {
   list: number[]
   currentPage: number
+  totalPageCount: number
   onClick: (el: number) => void
 }
 
-function NumberList({ list, currentPage, onClick }: NumberListProps) {
+function NumberList({
+  list,
+  currentPage,
+  onClick,
+  totalPageCount,
+}: NumberListProps) {
   const listSliceSize = 3
   const limit = 7
 
   return (
     <>
-      {list.length < limit ? (
+      {list.length < limit || list.includes(totalPageCount) ? (
         <ul className={styles.listContainer}>
           {list.map((el) => {
             return (
               <li
+                key={el}
                 className={`${styles.listItem} ${el === currentPage && styles.currentPage}`}
                 onClick={() => onClick(el)}
               >
@@ -133,6 +154,7 @@ function NumberList({ list, currentPage, onClick }: NumberListProps) {
           {list.slice(0, listSliceSize).map((el) => {
             return (
               <li
+                key={el}
                 className={`${styles.listItem} ${el === currentPage && styles.currentPage}`}
                 onClick={() => onClick(el)}
               >
@@ -144,6 +166,7 @@ function NumberList({ list, currentPage, onClick }: NumberListProps) {
           {list.slice(list.length - listSliceSize, list.length).map((el) => {
             return (
               <li
+                key={el}
                 className={`${styles.listItem} ${el === currentPage && styles.currentPage}`}
                 onClick={() => onClick(el)}
               >
