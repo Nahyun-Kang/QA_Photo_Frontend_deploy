@@ -16,6 +16,11 @@
     @include device.mobile {
       @include fonts.base-bold-12;
     }
+
+    &.disabled {
+      background-color: colors.$gray400;
+      color: colors.$gray300;
+    }
   }
 
   &.secondary {
@@ -34,6 +39,21 @@
   }
 
   &.thin {
+    @include fonts.base-bold-18;
+    color: colors.$black;
     padding: 17px 0;
+
+    @include device.tablet {
+      @include fonts.base-bold-16;
+    }
+
+    @include device.mobile {
+      @include fonts.base-bold-16;
+    }
+  }
+
+  &.mini {
+    padding: 17px 0;
+    @include fonts.base-bold-12;
   }
 }

@@ -8,6 +8,7 @@ import GradeChip from './_components/GradeChip'
 import SelectComponent from './_components/Select/Select'
 import Dropdown from './_components/Dropdown'
 import Pagination from './_components/pagination'
+import Title from './_components/Title'
 
 export default function Home() {
   const universal = ['COMMON', 'RARE', 'SUPERRARE', 'LEGENDARY']
@@ -27,6 +28,14 @@ export default function Home() {
       <SelectComponent list={universal} message={'등급을 선택해주세요'} />
       <Dropdown list={universal} attribute={'등급'} />
       <Pagination count={2000} />
+      <Title>
+        <div className={styles.title}>제목</div>
+        <div className={styles.buttonWrapper}>
+          <CommonButton thickness="thin" disabled={false}>
+            포토카드 교환하기
+          </CommonButton>
+        </div>
+      </Title>
     </main>
   )
 }

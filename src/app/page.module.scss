@@ -1,3 +1,19 @@
 .text {
   @include fonts.main-title-40;
 }
+
+.buttonWrapper {
+  width: 520px;
+
+  @include device.tablet {
+    width: 440px;
+  }
+
+  @include device.mobile {
+    width: 345px;
+  }
+}
+
+.title {
+  @include fonts.main-title-40;
+}
