@@ -1,0 +1,54 @@
+.form {
+  width: 320px;
+  height: 50px;
+
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  padding: 13px 20px;
+
+  border: 1px solid colors.$gray200;
+  background-color: colors.$black;
+  border-radius: 2px;
+
+  @include device.tablet {
+    display: inline-flex;
+    width: 320px;
+    height: 45px;
+    width: 100%;
+    padding: 11px 20px;
+  }
+
+  &:focus-within {
+    background-color: colors.$gray500; // 원하는 색상으로 변경
+  }
+}
+
+.input {
+  flex-grow: 1;
+  background-color: colors.$black;
+  border: none;
+  outline: none;
+
+  @include fonts.base-regular-16;
+  color: colors.$white;
+
+  &::placeholder {
+    @include fonts.base-light-16;
+  }
+
+  &:focus {
+    background-color: colors.$gray500;
+  }
+
+  @include device.tablet {
+    @include fonts.base-regular-14;
+    &::placeholder {
+      @include fonts.base-light-14;
+    }
+  }
+}
+
+.icon {
+  flex-basis: 1;
+}

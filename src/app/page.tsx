@@ -9,6 +9,7 @@ import SelectComponent from './_components/Select/Select'
 import Dropdown from './_components/Dropdown'
 import Pagination from './_components/pagination'
 import Title from './_components/Title'
+import SearchInput from './_components/SearchInput'
 
 export default function Home() {
   const universal = ['COMMON', 'RARE', 'SUPERRARE', 'LEGENDARY']
@@ -36,6 +37,7 @@ export default function Home() {
           </CommonButton>
         </div>
       </Title>
+      <SearchInput />
     </main>
   )
 }
