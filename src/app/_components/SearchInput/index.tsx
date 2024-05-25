@@ -20,7 +20,7 @@ export default function SearchInput() {
         placeholder={'검색'}
         {...register('keyword')}
       />
-      <SearchIcon className={styles.icon} />
+      <SearchIcon className={styles.icon} onClick={onSubmit} />
     </form>
   )
 }
