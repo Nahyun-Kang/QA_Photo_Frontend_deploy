@@ -1,5 +1,4 @@
 'use client'
-import ReactDOM from 'react-dom'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import styles from './SearchInput.module.scss'
 
@@ -20,7 +19,11 @@ export default function SearchInput() {
         placeholder={'검색'}
         {...register('keyword')}
       />
-      <SearchIcon className={styles.icon} onClick={onSubmit} />
+      <SearchIcon
+        className={styles.icon}
+        onClick={onSubmit}
+        placeholder={'이메일을 입력해주세요'}
+      />
     </form>
   )
 }

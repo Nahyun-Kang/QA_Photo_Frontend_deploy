@@ -1,0 +1,25 @@
+.container {
+  width: 520px;
+  height: auto;
+
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  @include device.tablet {
+    width: 440px;
+  }
+
+  @include device.mobile {
+    width: 100dvw;
+    padding: 0 10px;
+  }
+}
+
+.buttonContainer {
+  margin-top: 10px;
+}
+
+.button {
+  cursor: pointer;
+}

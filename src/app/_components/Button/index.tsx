@@ -3,7 +3,8 @@ import styles from './button.module.scss'
 
 interface ButtonProps {
   children: ReactNode
-  type?: 'primary' | 'secondary'
+  type?: 'button' | 'submit' | 'reset'
+  buttonStyle?: 'primary' | 'secondary'
   thickness?: 'thick' | 'thin' | 'mini'
   disabled?: boolean
   onClick?: () => void
@@ -11,7 +12,8 @@ interface ButtonProps {
 
 export default function CommonButton({
   children,
-  type = 'primary',
+  type,
+  buttonStyle = 'primary',
   thickness = 'thick',
   disabled = false,
   onClick,
@@ -19,8 +21,9 @@ export default function CommonButton({
   return (
     <button
       disabled={disabled}
-      className={`${styles.button} ${styles[type]} ${styles[thickness]} ${disabled && styles.disabled}`}
+      className={`${styles.button} ${styles[buttonStyle]} ${styles[thickness]} ${disabled && styles.disabled}`}
       onClick={onClick}
+      type={type}
     >
       {children}
     </button>

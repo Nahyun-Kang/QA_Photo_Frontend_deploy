@@ -1,3 +1,9 @@
+import LoginForm from './_components/LoginForm'
+
 export default function Login() {
-  return <>로그인페이지</>
+  return (
+    <>
+      <LoginForm />
+    </>
+  )
 }

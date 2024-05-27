@@ -1,0 +1,152 @@
+.inputContainer {
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.label {
+  display: flex;
+  justify-content: flex-start;
+
+  @include fonts.base-regular-18;
+  color: colors.$white;
+}
+
+.containerWithErrorMessage {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.containerWithButton {
+  display: flex;
+  gap: 10px;
+}
+
+.inputWrapper {
+  width: 100%;
+  height: 60px;
+  padding: 18px 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  background-color: colors.$black;
+  border: 1px solid colors.$gray200;
+  border-radius: 2px;
+
+  &.error {
+    border: 1px solid colors.$red;
+  }
+
+  @include device.tablet {
+    height: 55px;
+  }
+
+  &:focus-within {
+    background-color: colors.$gray500; // 원하는 색상으로 변경
+  }
+}
+
+.input {
+  flex-grow: 1;
+  color: colors.$white;
+  @include fonts.base-regular-16;
+
+  &::placeholder {
+    @include fonts.base-light-16;
+    color: colors.$gray200;
+
+    @include device.tablet {
+      @include fonts.base-light-14;
+    }
+
+    @include device.mobile {
+      @include fonts.base-light-14;
+    }
+  }
+}
+
+.errorText {
+  color: colors.$red;
+  @include fonts.base-light-16;
+
+  @include device.tablet {
+    @include fonts.base-light-14;
+  }
+}
+
+.fileSelectButton {
+  width: 120px;
+  height: 60px;
+  padding: 18px 28px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid colors.$main;
+  background-color: colors.$black;
+  color: colors.$main;
+
+  @include fonts.base-regular-16;
+
+  @include device.tablet {
+    height: 55px;
+    @include fonts.base-regular-14;
+  }
+  @include device.mobile {
+    width: 105px;
+    height: 50px;
+    @include fonts.base-regular-14;
+  }
+}
+
+.textarea {
+  width: 100%;
+  height: 180px;
+
+  padding: 18px 20px;
+
+  background-color: colors.$black;
+  border: 1px solid colors.$gray200;
+  border-radius: 2px;
+
+  @include fonts.base-regular-16;
+  color: colors.$white;
+
+  @include device.tablet {
+    @include fonts.base-regular-14;
+  }
+
+  &:focus {
+    background-color: colors.$gray500;
+  }
+
+  @include device.tablet {
+    padding: 12px 20px;
+    height: 140px;
+    overflow-y: hidden;
+    @include fonts.base-regular-14;
+  }
+
+  &::placeholder {
+    @include fonts.base-light-16;
+    color: colors.$gray200;
+
+    @include device.tablet {
+      @include fonts.base-light-14;
+    }
+
+    @include device.mobile {
+      @include fonts.base-light-14;
+    }
+  }
+}
+
+.eyeButton {
+  cursor: pointer;
+}

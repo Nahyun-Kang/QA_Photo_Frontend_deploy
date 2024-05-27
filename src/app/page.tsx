@@ -10,6 +10,8 @@ import Dropdown from './_components/Dropdown'
 import Pagination from './_components/pagination'
 import Title from './_components/Title'
 import SearchInput from './_components/SearchInput'
+import Input, { InputWrapper } from './_components/Input/InputComponents'
+import ReactHookFormProvider from './_components/Input/ReactHookFormProvider'
 
 export default function Home() {
   const universal = ['COMMON', 'RARE', 'SUPERRARE', 'LEGENDARY']
@@ -20,7 +22,7 @@ export default function Home() {
       <CommonHeader>아이</CommonHeader>
       테스트
       <p className={styles.text}>테스트다용</p>
-      <CommonButton type="secondary" thickness="thin">
+      <CommonButton buttonStyle="secondary" thickness="thin">
         {'흠냐'}
       </CommonButton>
       <Chip>내용</Chip>
