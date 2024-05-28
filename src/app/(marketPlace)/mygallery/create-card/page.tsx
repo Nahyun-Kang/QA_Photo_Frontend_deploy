@@ -1,3 +1,17 @@
+import Title from '@/app/_components/Title'
+import CreateCardForm from './_components/CreateCardForm'
+
+import styles from './createCard.module.scss'
+
 export default function CreateCardPage() {
-  return <>카드생성페이지</>
+  return (
+    <main>
+      <div className={styles.titleWrapper}>
+        <Title>
+          <h2 className={styles.title}>포토카드 생성</h2>
+        </Title>
+      </div>
+      <CreateCardForm />
+    </main>
+  )
 }

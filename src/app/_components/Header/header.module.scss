@@ -12,11 +12,15 @@
   max-width: 1480px;
   height: inherit;
   margin: 0 auto;
-  padding: 0 40px;
+  padding: 0 0px;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
+
+  @include device.tablet {
+    padding: 0 40px;
+  }
 
   @include device.mobile {
     padding: 0 20px;

@@ -1,0 +1,21 @@
+.titleWrapper {
+  max-width: 1480px;
+  margin: 60px auto 80px;
+
+  @include device.tablet {
+    padding: 0 20px;
+  }
+
+  @include device.mobile {
+    display: none;
+  }
+}
+
+.title {
+  @include fonts.main-title-62;
+  color: colors.$white;
+
+  @include device.tablet {
+    @include fonts.main-title-48;
+  }
+}
