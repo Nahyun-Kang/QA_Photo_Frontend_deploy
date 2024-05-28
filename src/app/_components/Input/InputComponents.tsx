@@ -1,6 +1,6 @@
 'use client'
-import { ChangeEventHandler, FocusEventHandler, ReactNode } from 'react'
-import { FieldValues, useFormContext } from 'react-hook-form'
+import { ChangeEventHandler, FocusEventHandler, ReactNode, useRef } from 'react'
+import { FieldValues } from 'react-hook-form'
 
 import styles from './InputComponents.module.scss'
 import Invisible from '/public/icons/invisible.svg'
@@ -16,7 +16,7 @@ function InputField({ children }: IInputField) {
 
 interface ILable {
   children: ReactNode
-  htmlFor: string
+  htmlFor?: string
 }
 
 function Label({ children, htmlFor }: ILable) {
@@ -57,13 +57,13 @@ export function InputWrapper({ hasError, children }: IInputWrapper) {
 }
 
 interface IInput {
-  // value: string
   placeholder?: string
   hasError?: boolean
   type?: string
   field?: FieldValues
   onChange: ChangeEventHandler<HTMLInputElement>
   onBlur: FocusEventHandler<HTMLInputElement>
+  id?: string
 }
 
 function InputComponent({
@@ -72,6 +72,7 @@ function InputComponent({
   type,
   onChange,
   onBlur,
+  id,
 }: IInput) {
   return (
     <input
@@ -80,6 +81,7 @@ function InputComponent({
       className={`${styles.input} ${hasError && styles.error}`}
       onChange={onChange}
       onBlur={onBlur}
+      id={id}
     />
   )
 }
@@ -94,10 +96,51 @@ function ErrorText({ children }: IErrorText) {
 
 interface IButton {
   children: ReactNode
+  htmlFor?: string
+  placeholder?: string
+  onChange: ChangeEventHandler<HTMLInputElement>
+  onBlur: FocusEventHandler<HTMLInputElement>
+  value: string
 }
 
-function FileSelectButton({ children }: IButton) {
-  return <button>{children}</button>
+function FileInput({
+  children,
+  placeholder,
+  onChange,
+  onBlur,
+  value,
+}: IButton) {
+  const ref = useRef<HTMLInputElement | null>(null)
+
+  return (
+    <>
+      <div className={styles.fileInputWrapper}>
+        <span className={styles.title}>
+          {value === null ? placeholder : value}
+        </span>
+        <input
+          className={`${styles.input}`}
+          id="file"
+          type="file"
+          placeholder={placeholder}
+          onChange={onChange}
+          onBlur={onBlur}
+          ref={ref}
+        />
+      </div>
+      <label htmlFor="file">
+        <button
+          type="button"
+          className={styles.fileSelectButton}
+          onClick={() => {
+            ref.current?.click()
+          }}
+        >
+          {children}
+        </button>
+      </label>
+    </>
+  )
 }
 
 interface ITextArea {
@@ -141,7 +184,7 @@ const Input = Object.assign(InputComponent, {
   containerWithButton: InputContainerWithButton,
   wrapper: InputWrapper,
   errorMessage: ErrorText,
-  button: FileSelectButton,
+  fileInput: FileInput,
   textarea: TextArea,
   eye: Eye,
 })

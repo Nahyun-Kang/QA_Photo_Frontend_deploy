@@ -1,5 +1,4 @@
 'use client'
-import { useState } from 'react'
 import { useForm, Controller, FieldValues, useWatch } from 'react-hook-form'
 import { ErrorMessage } from '@hookform/error-message'
 
@@ -146,26 +145,26 @@ export default function CreateCardForm() {
         </Input.containerWithMessage>
       </Input.field>
       <Input.field>
-        <Input.label htmlFor="file">사진 업로드</Input.label>
-        <Input.containerWithMessage>
-          <Input.wrapper>
-            <Controller
-              control={control}
-              name="file"
-              render={({ field: { onChange, onBlur, value } }) => (
-                <Input
-                  placeholder={PLACEHOLDER.file}
-                  type="file"
-                  onChange={onChange}
-                  onBlur={onBlur}
-                />
-              )}
-            />
-          </Input.wrapper>
-        </Input.containerWithMessage>
+        <Input.label>사진 업로드</Input.label>
+        <Input.containerWithButton>
+          <Controller
+            control={control}
+            name="file"
+            render={({ field: { onChange, onBlur, value } }) => (
+              <Input.fileInput
+                placeholder={PLACEHOLDER.file}
+                onChange={onChange}
+                onBlur={onBlur}
+                value={value}
+              >
+                파일 선택
+              </Input.fileInput>
+            )}
+          />
+        </Input.containerWithButton>
       </Input.field>
       <Input.field>
-        <Input.label htmlFor="file">포토카드 설명</Input.label>
+        <Input.label htmlFor="description">포토카드 설명</Input.label>
         <Input.containerWithMessage>
           <Controller
             control={control}

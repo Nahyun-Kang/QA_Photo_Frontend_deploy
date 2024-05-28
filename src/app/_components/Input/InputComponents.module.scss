@@ -79,6 +79,67 @@
   }
 }
 
+.fileInputWrapper {
+  width: 100%;
+  height: 60px;
+  padding: 18px 20px;
+
+  display: flex;
+  align-items: center;
+  gap: 20px;
+
+  overflow: hidden;
+  background-color: colors.$black;
+  border: 1px solid colors.$gray200;
+  border-radius: 2px;
+
+  &.error {
+    border: 1px solid colors.$red;
+  }
+
+  @include device.tablet {
+    height: 55px;
+  }
+
+  &:focus-within {
+    background-color: colors.$gray500; // 원하는 색상으로 변경
+  }
+}
+
+.title {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+
+  @include fonts.base-regular-16;
+  color: colors.$white;
+
+  @include device.tablet {
+    @include fonts.base-regular-14;
+    color: colors.$white;
+  }
+
+  @include device.mobile {
+    @include fonts.base-regular-12;
+    color: colors.$white;
+  }
+
+  &.placeholder {
+    color: colors.$gray200;
+    @include fonts.base-light-16;
+
+    @include device.tablet {
+      @include fonts.base-light-14;
+    }
+
+    @include device.mobile {
+      @include fonts.base-light-12;
+    }
+  }
+}
+
 .fileSelectButton {
   width: 120px;
   height: 60px;
@@ -88,9 +149,15 @@
   align-items: center;
   justify-content: center;
 
+  cursor: pointer;
+
   border: 1px solid colors.$main;
   background-color: colors.$black;
   color: colors.$main;
+
+  &:hover {
+    background-color: #eeff0420;
+  }
 
   @include fonts.base-regular-16;
 
