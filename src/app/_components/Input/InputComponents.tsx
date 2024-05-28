@@ -102,12 +102,20 @@ function FileSelectButton({ children }: IButton) {
 
 interface ITextArea {
   placeholder: string
+  type: string
+  onChange: ChangeEventHandler<HTMLTextAreaElement>
+  onBlur: FocusEventHandler<HTMLTextAreaElement>
 }
 
-function TextArea({ placeholder }: ITextArea) {
+function TextArea({ placeholder, type = 'text', onChange, onBlur }: ITextArea) {
   return (
     <>
-      <textarea placeholder={placeholder} className={styles.textarea} />
+      <textarea
+        placeholder={placeholder}
+        className={styles.textarea}
+        onChange={onChange}
+        onBlur={onBlur}
+      />
     </>
   )
 }

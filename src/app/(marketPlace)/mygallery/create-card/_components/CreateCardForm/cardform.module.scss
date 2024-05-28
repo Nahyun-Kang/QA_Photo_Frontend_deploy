@@ -1,0 +1,23 @@
+.form {
+  width: 520px;
+  display: flex;
+  margin: 0 auto;
+  flex-direction: column;
+  gap: 60px;
+
+  margin-top: 80px;
+
+  @include device.tablet {
+    width: 440px;
+  }
+
+  @include device.mobile {
+    width: 100%;
+    padding: 0 15px;
+    margin-top: 20px;
+  }
+}
+
+.buttonContainer {
+  margin-top: 60px;
+}

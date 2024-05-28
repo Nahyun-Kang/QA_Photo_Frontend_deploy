@@ -1,5 +1,6 @@
 import Title from '@/app/_components/Title'
 import CreateCardForm from './_components/CreateCardForm'
+import ReactHookFormProvider from '@/app/_components/Input/ReactHookFormProvider'
 
 import styles from './createCard.module.scss'
 

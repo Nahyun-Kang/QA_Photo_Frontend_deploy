@@ -91,3 +91,12 @@ textarea {
   outline: none;
   background-color: transparent;
 }
+
+input[type='file'] {
+  position: absolute;
+  width: 0;
+  height: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+}

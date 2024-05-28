@@ -27,7 +27,6 @@ export default function Home() {
       <Chip>내용</Chip>
       <Grade type="detail" />
       <GradeChip count={20} grade={'LEGENDARY'} />
-      <SelectComponent list={universal} message={'등급을 선택해주세요'} />
       <Dropdown list={universal} attribute={'등급'} />
       <Pagination count={2000} />
       <Title>
@@ -42,10 +41,10 @@ export default function Home() {
       <Link href={'/mygallery/create-card'}>
         <CommonButton>포토카드생성 페이지</CommonButton>
       </Link>
-      <Link href={'/mygallery/create-card'}>
+      <Link href={'/login'}>
         <CommonButton>로그인 페이지</CommonButton>
       </Link>
-      <Link href={'/mygallery/create-card'}>
+      <Link href={'/signup'}>
         <CommonButton>회원가입 페이지</CommonButton>
       </Link>
     </main>

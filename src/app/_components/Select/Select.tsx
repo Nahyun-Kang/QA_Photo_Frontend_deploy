@@ -1,55 +1,71 @@
 'use client'
 import { useState, useRef, useEffect, ReactNode } from 'react'
+import { useFormContext } from 'react-hook-form'
 import styles from './Select.module.scss'
 
 import Down from '/public/icons/down.svg'
 import Up from '/public/icons/up.svg'
 
 interface SelectProps {
-  list: string[];
-  message: string
+  list: string[]
+  placeholder: string
+  value: string
+  onClick: (item: string) => void
+  defaultValue: string
 }
 
 export default function SelectComponent({
+  placeholder,
   list,
-  message,
+  value,
+  onClick,
 }: SelectProps) {
   const [isOpened, setIsOpened] = useState(false)
-  const [selectedItem, setSelectedItem] = useState<string>('')
-  const ref = useRef<HTMLDivElement>(null);
-  
-  const handleTriggerClick =() => {
+
+  const ref = useRef<HTMLDivElement>(null)
+
+  const handleTriggerClick = () => {
     setIsOpened((state) => !state)
   }
 
-  const handleSelectItem = (item: string) => {
-    setSelectedItem(item)
+  const handleOptionClick = (item: string) => {
+    onClick(item)
     setIsOpened(false)
   }
 
-  const handleOutsideClick = (e : Event) => {
-    if (ref.current && !(e.target instanceof Node && ref.current.contains(e.target))){
-      setIsOpened(false);
+  const handleOutsideClick = (e: Event) => {
+    if (
+      ref.current &&
+      !(e.target instanceof Node && ref.current.contains(e.target))
+    ) {
+      setIsOpened(false)
     }
-  } 
-
+  }
 
   useEffect(() => {
-    document.addEventListener('mousedown', handleOutsideClick);
+    document.addEventListener('mousedown', handleOutsideClick)
 
     return () => {
-      document.removeEventListener('mousedown', handleOutsideClick);
-    };
-  }, []);
+      document.removeEventListener('mousedown', handleOutsideClick)
+    }
+  }, [])
 
   return (
     <div className={styles.container} ref={ref}>
-      <Trigger isOpened={isOpened} onClick={handleTriggerClick}>{selectedItem !== '' ?  selectedItem : message}</Trigger>
-      {isOpened && <ul className={styles.dropdownBox}>
-        {list?.map((item, idx) => (
-          <SelectItem key={idx.toString()} item={item} onClick={handleSelectItem}/>
-        ))}
-      </ul>}
+      <Trigger isOpened={isOpened} onClick={handleTriggerClick} value={value}>
+        {value !== '' ? value : placeholder}
+      </Trigger>
+      {isOpened && (
+        <ul className={styles.dropdownBox}>
+          {list?.map((item, idx) => (
+            <SelectItem
+              key={idx.toString()}
+              item={item}
+              onClick={handleOptionClick}
+            />
+          ))}
+        </ul>
+      )}
     </div>
   )
 }
@@ -57,11 +73,11 @@ export default function SelectComponent({
 interface TriggerProps {
   children: ReactNode
   isOpened: boolean
-  onClick: () => void;
+  onClick: () => void
+  value: string
 }
 
-function Trigger({ children, isOpened, onClick }: TriggerProps) {
-
+function Trigger({ children, isOpened, onClick, value }: TriggerProps) {
   const handleArrowNodeReturn = () => {
     const node = isOpened ? <Up /> : <Down />
     return node
@@ -69,17 +85,23 @@ function Trigger({ children, isOpened, onClick }: TriggerProps) {
 
   return (
     <button className={styles.button} onClick={onClick}>
-      <span className={styles.title}>{children}</span>
+      <span className={`${styles.title} ${value === '' && styles.placeholder}`}>
+        {children}
+      </span>
       {handleArrowNodeReturn()}
     </button>
   )
 }
 
 interface SelectItemProps {
-  item: string;
-  onClick: (item: string) => void;
+  item: string
+  onClick: (item: string) => void
 }
 
-function SelectItem({item, onClick} : SelectItemProps) {
-  return <li className={styles.listItem} onClick={() => onClick(item)}>{item}</li>
+function SelectItem({ item, onClick }: SelectItemProps) {
+  return (
+    <li className={styles.listItem} onClick={() => onClick(item)}>
+      {item}
+    </li>
+  )
 }
