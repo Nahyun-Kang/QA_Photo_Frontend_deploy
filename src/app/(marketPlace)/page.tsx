@@ -1,17 +1,17 @@
+import Link from 'next/link'
+
 import styles from './page.module.scss'
 import CommonButton from '@/app/_components/Button'
 import Header from '@/app/_components/Header'
-import CommonHeader from './_components/Header/CommonHeader'
-import Chip from './_components/Chip'
-import Grade from './_components/Grade'
-import GradeChip from './_components/GradeChip'
-import SelectComponent from './_components/Select/Select'
-import Dropdown from './_components/Dropdown'
-import Pagination from './_components/pagination'
-import Title from './_components/Title'
-import SearchInput from './_components/SearchInput'
-import Input, { InputWrapper } from './_components/Input/InputComponents'
-import ReactHookFormProvider from './_components/Input/ReactHookFormProvider'
+import CommonHeader from '@/app/_components/Header'
+import Chip from '@/app/_components/Chip'
+import Grade from '@/app/_components/Grade'
+import GradeChip from '@/app/_components/GradeChip'
+import SelectComponent from '@/app/_components/Select/Select'
+import Dropdown from '@/app/_components/Dropdown'
+import Pagination from '@/app/_components/pagination'
+import Title from '@/app/_components/Title'
+import SearchInput from '@/app/_components/SearchInput'
 
 export default function Home() {
   const universal = ['COMMON', 'RARE', 'SUPERRARE', 'LEGENDARY']
@@ -19,7 +19,6 @@ export default function Home() {
   return (
     <main>
       <Header />
-      <CommonHeader>아이</CommonHeader>
       테스트
       <p className={styles.text}>테스트다용</p>
       <CommonButton buttonStyle="secondary" thickness="thin">
@@ -40,6 +39,15 @@ export default function Home() {
         </div>
       </Title>
       <SearchInput />
+      <Link href={'/mygallery/create-card'}>
+        <CommonButton>포토카드생성 페이지</CommonButton>
+      </Link>
+      <Link href={'/mygallery/create-card'}>
+        <CommonButton>로그인 페이지</CommonButton>
+      </Link>
+      <Link href={'/mygallery/create-card'}>
+        <CommonButton>회원가입 페이지</CommonButton>
+      </Link>
     </main>
   )
 }

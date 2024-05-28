@@ -1,6 +1,7 @@
 .header {
   width: 100dvw;
   height: 80px;
+  background-color: colors.$black;
 
   @include device.mobile {
     height: 60px;
