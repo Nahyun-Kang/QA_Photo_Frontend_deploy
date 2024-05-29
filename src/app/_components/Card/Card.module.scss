@@ -250,9 +250,26 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 30px;
+
+  @include device.mobile {
+    display: none;
+  }
 }
 
 .logofavicon {
   width: 100px;
   height: 18px;
+}
+
+.buttonContainer {
+  width: inherit;
+  display: flex;
+  gap: 20px;
+
+  margin-top: 20px;
+
+  @include device.mobile {
+    gap: 5px;
+  }
 }

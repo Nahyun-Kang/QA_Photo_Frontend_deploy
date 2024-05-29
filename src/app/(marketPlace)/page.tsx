@@ -13,6 +13,10 @@ import Pagination from '@/app/_components/pagination'
 import Title from '@/app/_components/Title'
 import SearchInput from '@/app/_components/SearchInput'
 import Card from '../_components/Card/CardComponents'
+import OriginalCard from '../_components/Card/OriginalCard'
+import MyCard from '../_components/Card/MyCard'
+import CardForSale from '../_components/Card/CardForSale'
+import ExchangeCard from '../_components/Card/ExchangeCard'
 
 export default function Home() {
   const universal = ['COMMON', 'RARE', 'SUPERRARE', 'LEGENDARY']
@@ -71,6 +75,52 @@ export default function Home() {
           <Card.Logo />
         </Card.QuantityContainer>
       </Card>
+      <OriginalCard
+        imageUrl={'/images/image1.png'}
+        genre={'풍경'}
+        grade={'legendary'}
+        id={1}
+        userId={4}
+        price={5}
+        name={'우리집 앞마당'}
+        nickName="프로여행러"
+        remainingQuantity={4}
+        totalQuantity={6}
+      />
+      <MyCard
+        imageUrl={'/images/image1.png'}
+        genre={'풍경'}
+        grade={'legendary'}
+        id={1}
+        userId={4}
+        price={5}
+        name={'우리집 앞마당'}
+        nickName="프로여행러"
+        remainingQuantity={4}
+      />
+      <CardForSale
+        imageUrl={'/images/image1.png'}
+        genre={'풍경'}
+        grade={'legendary'}
+        id={1}
+        userId={4}
+        price={5}
+        name={'우리집 앞마당'}
+        nickName="프로여행러"
+        registeredQuantity={4}
+        method="sale"
+      />
+      <ExchangeCard
+        imageUrl={'/images/image1.png'}
+        genre={'풍경'}
+        grade={'legendary'}
+        id={1}
+        userId={4}
+        price={5}
+        name={'우리집 앞마당'}
+        nickName="프로여행러"
+        description={'sdfssdfsdfsdfsdfsdfsfsdsdsfsffdf'}
+      />
     </main>
   )
 }
