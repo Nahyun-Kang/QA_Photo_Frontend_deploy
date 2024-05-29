@@ -63,6 +63,13 @@ export default function Home() {
           maker="프로여행러"
           point={4}
         />
+        <Card.QuantityContainer>
+          <Card.Quantity quantity={3} />
+          <Card.Remain remain={3} totalQuantity={5} />
+          <Card.Price price={4} />
+          <Card.Description description="sdfsfsfsdfs" />
+          <Card.Logo />
+        </Card.QuantityContainer>
       </Card>
     </main>
   )

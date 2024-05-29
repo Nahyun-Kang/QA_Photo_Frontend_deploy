@@ -6,6 +6,7 @@ import Grade from '@/app/_components/Grade'
 
 import styles from './Card.module.scss'
 import SoldOut from '/public/images/soldout.svg'
+import LogoFavicon from '/public/icons/photo_logo_favicon.svg'
 
 function CardContainer({ children }: { children: ReactNode }) {
   return <div className={styles.cardContainer}>{children}</div>
@@ -27,8 +28,8 @@ function CardImage({
   return (
     <div className={`${styles.imageContainer} ${styles.soldOut}`}>
       {isSoldOut && (
-        <div className={styles.soldOutIcon}>
-          <SoldOut />
+        <div className={styles.soldOutIconWrapper}>
+          <SoldOut className={styles.soldOutIcon} />
         </div>
       )}
       {hasChip && (
@@ -130,9 +131,78 @@ function ExchangeInformation({
   )
 }
 
+function QuantityContainer({ children }: { children: ReactNode }) {
+  return <div className={styles.quantityInformationContainer}>{children}</div>
+}
+
+interface IPrice {
+  price: number
+}
+
+function Price({ price }: IPrice) {
+  return (
+    <div className={styles.quantityContainer}>
+      <span className={styles.quantityTitle}>가격</span>
+      <span className={styles.quantityContent}>{`${price} P`}</span>
+    </div>
+  )
+}
+
+interface IRemain {
+  totalQuantity: number
+  remain: number
+}
+
+function Remain({ totalQuantity, remain }: IRemain) {
+  return (
+    <div className={styles.quantityContainer}>
+      <span className={styles.quantityTitle}>잔여</span>
+      <div className={styles.remainContainer}>
+        <span className={styles.quantityContent}>{`${remain}`}</span>
+        <span className={styles.totalQuantity}>{`/ ${totalQuantity}`}</span>
+      </div>
+    </div>
+  )
+}
+
+interface IQuantity {
+  quantity: number
+}
+
+function Quantity({ quantity }: IQuantity) {
+  return (
+    <div className={styles.quantityContainer}>
+      <span className={styles.quantityTitle}>수량</span>
+      <span className={styles.quantityContent}>{quantity}</span>
+    </div>
+  )
+}
+
+interface IDescription {
+  description: string
+}
+
+function Description({ description }: IDescription) {
+  return <p className={styles.description}>{description}</p>
+}
+
+function Logo() {
+  return (
+    <div className={styles.logoContainer}>
+      <LogoFavicon className={styles.logofavicon} />
+    </div>
+  )
+}
+
 const Card = Object.assign(CardContainer, {
   image: CardImage,
   information: CardInformation,
+  QuantityContainer,
+  Quantity,
+  Remain,
+  Price,
+  Description,
+  Logo,
 })
 
 export default Card

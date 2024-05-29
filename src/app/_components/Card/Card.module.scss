@@ -29,7 +29,7 @@
   }
 }
 
-.soldOutIcon {
+.soldOutIconWrapper {
   position: absolute;
   top: 0;
   left: 0;
@@ -41,6 +41,21 @@
   align-items: center;
 
   z-index: 3;
+}
+
+.soldoutIcon {
+  width: 230px;
+  height: 230px;
+
+  @include device.tablet {
+    width: 200px;
+    height: 200px;
+  }
+
+  @include device.mobile {
+    width: 112px;
+    height: 112px;
+  }
 }
 
 .chip {
@@ -165,4 +180,79 @@
   @include device.mobile {
     @include fonts.base-regular-10;
   }
+}
+
+.quantityInformationContainer {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  margin-bottom: 40px;
+
+  @include device.mobile {
+    margin-bottom: 10px;
+  }
+}
+
+.quantityContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.remainContainer {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+@mixin base-quantity-style {
+  @include fonts.base-light-16;
+  color: colors.$gray300;
+
+  @include device.mobile {
+    @include fonts.base-light-10;
+  }
+}
+
+.quantityTitle {
+  @include base-quantity-style;
+}
+
+.totalQuantity {
+  @include base-quantity-style;
+}
+
+.quantityContent {
+  @include fonts.base-regular-18;
+  color: colors.$white;
+
+  @include device.mobile {
+    @include fonts.base-regular-10;
+  }
+}
+
+.description {
+  @include fonts.base-regular-16;
+  color: colors.$white;
+
+  @include device.mobile {
+    @include fonts.base-regular-10;
+  }
+}
+
+.logoContainer {
+  width: 100%;
+  height: auto;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logofavicon {
+  width: 100px;
+  height: 18px;
 }
