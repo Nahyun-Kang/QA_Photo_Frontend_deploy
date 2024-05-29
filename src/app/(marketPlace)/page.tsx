@@ -31,7 +31,7 @@ export default function Home() {
       </CommonButton>
       <Chip>내용</Chip>
       <Grade type="detail" />
-      <GradeChip count={20} grade={'LEGENDARY'} />
+      <GradeChip count={20} grade={'legendary'} />
       <Dropdown list={universal} attribute={'등급'} />
       <Pagination count={2000} />
       <Title>

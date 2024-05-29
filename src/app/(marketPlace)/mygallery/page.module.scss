@@ -1,10 +1,19 @@
-.titleWrapper {
+.main {
   max-width: 1480px;
-  margin: 60px auto 80px;
+  margin: 0 auto;
 
   @include device.tablet {
     padding: 0 20px;
   }
+
+  @include device.mobile {
+    padding: 0 15px;
+  }
+}
+
+.titleWrapper {
+  max-width: 1480px;
+  margin: 60px auto 0;
 
   @include device.mobile {
     display: none;
@@ -29,6 +38,7 @@
 
 .buttonContainer {
   display: flex;
+  width: 440px;
 
   @include device.tablet {
     width: 342px;
@@ -40,10 +50,12 @@
 }
 
 .floatButtonContainer {
+  width: 100%;
   padding: 0 15px;
   position: fixed;
   bottom: 50px;
-  width: 100%;
+  right: 0;
+  left: 0;
   display: none;
 
   @include device.mobile {

@@ -5,23 +5,25 @@
   gap: 5px;
 
   padding: 8px 20px;
+  flex-shrink: 0;
+  flex-basis: 1;
 
   background-color: colors.$black;
   @include fonts.base-light-16;
 
-  &.COMMON {
+  &.common {
     border: 1px solid colors.$main;
     color: colors.$main;
   }
-  &.RARE {
+  &.rare {
     border: 1px solid colors.$blue;
     color: colors.$blue;
   }
-  &.SUPERRARE {
+  &.super_rare {
     border: 1px solid colors.$purple;
     color: colors.$purple;
   }
-  &.LEGENDARY {
+  &.legendary {
     border: 1px solid colors.$red;
     color: colors.$red;
   }
@@ -35,4 +37,16 @@
     padding: 6px 10px;
     @include fonts.base-light-12;
   }
+}
+
+.grade {
+  flex-basis: 1;
+  flex-shrink: 0;
+  text-wrap: nowrap;
+}
+
+.count {
+  flex-basis: 1;
+  flex-shrink: 0;
+  text-wrap: nowrap;
 }

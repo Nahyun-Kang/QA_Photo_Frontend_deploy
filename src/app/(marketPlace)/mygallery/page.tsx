@@ -2,10 +2,13 @@ import Title from '@/app/_components/Title'
 import Button from '@/app/_components/Button'
 
 import styles from './page.module.scss'
+import OwnedCards from './_components/OwnedCards'
+
+import { MOCK_GRADELIST } from './MOCK_DATA'
 
 export default function myGalleryPage() {
   return (
-    <main>
+    <main className={styles.main}>
       <div className={styles.titleWrapper}>
         <Title>
           <div className={styles.titleContainer}>
@@ -16,6 +19,7 @@ export default function myGalleryPage() {
           </div>
         </Title>
       </div>
+      <OwnedCards totalCount={20} gradeList={MOCK_GRADELIST} userName="유디" />
       <div className={styles.floatButtonContainer}>
         <Button thickness="thin">포토카드 생성하기</Button>
       </div>

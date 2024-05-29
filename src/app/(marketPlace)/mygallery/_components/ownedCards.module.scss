@@ -1,0 +1,55 @@
+.wrapper {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  margin-top: 40px;
+
+  @include device.mobile {
+    gap: 15px;
+    margin-top: 20px;
+  }
+}
+
+.wrapper_totalCount {
+  display: flex;
+  gap: 5px;
+}
+
+.title {
+  @include fonts.base-bold-24;
+  color: colors.$white;
+
+  @include device.tablet {
+    @include fonts.base-bold-20;
+  }
+
+  @include device.mobile {
+    @include fonts.base-bold-14;
+  }
+}
+
+.grade_list {
+  display: flex;
+  gap: 20px;
+  overflow-x: scroll;
+  flex-shrink: 0;
+
+  @include device.mobile {
+    gap: 10px;
+  }
+}
+
+.totalCount {
+  @include fonts.base-regular-20;
+  color: colors.$gray300;
+
+  @include device.tablet {
+    @include fonts.base-regular-18;
+  }
+
+  @include device.mobile {
+    @include fonts.base-regular-12;
+  }
+}
