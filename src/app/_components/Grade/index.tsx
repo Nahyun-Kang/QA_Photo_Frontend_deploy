@@ -1,14 +1,15 @@
 import styles from './Grade.module.scss'
+import gradeExtract from '@/app/_util/gradeExtract'
 
 interface GradeProps {
-  grade?: 'COMMON' | 'RARE' | 'SUPERRARE' | 'LEGENDARY'
+  grade?: 'common' | 'rare' | 'super_rare' | 'legendary'
   type?: 'card' | 'detail'
 }
 
-export default function Grade({ grade = 'COMMON', type = 'card' }: GradeProps) {
+export default function Grade({ grade = 'common', type = 'card' }: GradeProps) {
   return (
     <span className={`${styles.grade} ${styles[grade]} ${styles[type]}`}>
-      {grade}
+      {gradeExtract(grade)}
     </span>
   )
 }

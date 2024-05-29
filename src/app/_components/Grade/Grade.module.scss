@@ -15,19 +15,19 @@
     }
   }
 
-  &.COMMON {
+  &.common {
     color: colors.$main;
   }
 
-  &.RARE {
+  &.rare {
     color: colors.$blue;
   }
 
-  &.SUPERRARE {
+  &.super_rare {
     color: colors.$purple;
   }
 
-  &.LEGENDARY {
+  &.legendary {
     color: colors.$red;
   }
 }

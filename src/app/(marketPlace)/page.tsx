@@ -55,6 +55,14 @@ export default function Home() {
           hasChip={true}
           chip="exchange"
         />
+        <Card.information
+          title={'스페인 여행'}
+          genre="풍경"
+          grade="common"
+          type="exchange"
+          maker="프로여행러"
+          point={4}
+        />
       </Card>
     </main>
   )
