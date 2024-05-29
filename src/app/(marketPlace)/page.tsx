@@ -52,6 +52,9 @@ export default function Home() {
       <Link href={'/signup'}>
         <CommonButton>회원가입 페이지</CommonButton>
       </Link>
+      <Link href={'/mygallery'}>
+        <CommonButton>마이갤러리 페이지</CommonButton>
+      </Link>
       <Card>
         <Card.image
           imageUrl={'/images/image1.png'}

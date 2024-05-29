@@ -1,5 +1,5 @@
 import Card from './CardComponents'
-import { MyCardType } from '@/app/_lib/CardType'
+import { MyCardType } from '@/app/_lib/cardType'
 
 export default function MyCard({
   imageUrl,

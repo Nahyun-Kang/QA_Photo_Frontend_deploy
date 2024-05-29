@@ -1,0 +1,52 @@
+.titleWrapper {
+  max-width: 1480px;
+  margin: 60px auto 80px;
+
+  @include device.tablet {
+    padding: 0 20px;
+  }
+
+  @include device.mobile {
+    display: none;
+  }
+}
+
+.title {
+  @include fonts.main-title-62;
+  color: colors.$white;
+
+  @include device.tablet {
+    @include fonts.main-title-48;
+  }
+}
+
+.titleContainer {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttonContainer {
+  display: flex;
+
+  @include device.tablet {
+    width: 342px;
+  }
+
+  @include device.mobile {
+    display: none;
+  }
+}
+
+.floatButtonContainer {
+  padding: 0 15px;
+  position: fixed;
+  bottom: 50px;
+  width: 100%;
+  display: none;
+
+  @include device.mobile {
+    display: block;
+  }
+}

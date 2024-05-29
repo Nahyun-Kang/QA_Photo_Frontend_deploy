@@ -1,7 +1,10 @@
+'use client'
+import { useState, useEffect } from 'react'
+
 import Card from './CardComponents'
 import Button from '@/app/_components/Button'
 
-import { ExchangeCardType } from '@/app/_lib/CardType'
+import { ExchangeCardType } from '@/app/_lib/cardType'
 
 import styles from './Card.module.scss'
 
@@ -15,6 +18,19 @@ export default function ExchangeCard({
   genre,
   description,
 }: ExchangeCardType) {
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 743)
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 743)
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => {
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
   return (
     <Card>
       <Card.image imageUrl={imageUrl} />
@@ -28,9 +44,9 @@ export default function ExchangeCard({
       <Card.Logo />
       <div className={styles.buttonContainer}>
         <Button thickness="mini" buttonStyle="secondary">
-          거절하기
+          {isMobile ? '거절' : '거절하기'}
         </Button>
-        <Button thickness="mini">승인하기</Button>
+        <Button thickness="mini">{isMobile ? '승인' : '승인하기'}</Button>
       </div>
     </Card>
   )
