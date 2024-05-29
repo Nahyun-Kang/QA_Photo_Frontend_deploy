@@ -1,0 +1,53 @@
+.cardContainer {
+  width: 100%;
+  height: auto;
+
+  padding: 40px;
+  background-color: colors.$black;
+  border: 2px solid colors.$gray500;
+  border-radius: 2px;
+
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.imageContainer {
+  width: 100%;
+  height: 270px;
+  position: relative;
+
+  @include device.tablet {
+    height: 226px;
+  }
+
+  @include device.mobile {
+    height: 112px;
+  }
+}
+
+.soldOutIcon {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  z-index: 3;
+}
+
+.chip {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+
+  z-index: 3;
+}
+
+.image {
+  opacity: 0.3;
+}

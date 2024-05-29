@@ -12,6 +12,7 @@ import Dropdown from '@/app/_components/Dropdown'
 import Pagination from '@/app/_components/pagination'
 import Title from '@/app/_components/Title'
 import SearchInput from '@/app/_components/SearchInput'
+import Card from '../_components/Card/CardComponents'
 
 export default function Home() {
   const universal = ['COMMON', 'RARE', 'SUPERRARE', 'LEGENDARY']
@@ -47,6 +48,14 @@ export default function Home() {
       <Link href={'/signup'}>
         <CommonButton>회원가입 페이지</CommonButton>
       </Link>
+      <Card>
+        <Card.image
+          imageUrl={'/images/image1.png'}
+          isSoldOut={true}
+          hasChip={true}
+          chip="exchange"
+        />
+      </Card>
     </main>
   )
 }
