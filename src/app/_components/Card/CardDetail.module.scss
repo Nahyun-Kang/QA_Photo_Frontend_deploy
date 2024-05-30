@@ -1,0 +1,111 @@
+.container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.bar {
+  color: colors.$gray400;
+  @include fonts.base-bold-24;
+
+  @include device.tablet {
+    @include fonts.base-bold-18;
+  }
+}
+
+.informationContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.informationGradeContainer {
+  display: flex;
+  gap: 15px;
+}
+
+.informationGenre {
+  color: colors.$gray300;
+  @include fonts.base-bold-24;
+
+  @include device.tablet {
+    @include fonts.base-bold-18;
+  }
+}
+
+.informationMaker {
+  color: colors.$white;
+  text-decoration: underline;
+  @include fonts.base-bold-24;
+
+  @include device.tablet {
+    @include fonts.base-bold-18;
+  }
+}
+
+.bottomLine {
+  width: 100%;
+  height: 1px;
+
+  border-bottom: 1px solid colors.$gray400;
+  margin: 30px 0;
+}
+
+.description {
+  color: colors.$white;
+  @include fonts.base-regular-18;
+
+  @include device.tablet {
+    @include fonts.base-regular-16;
+  }
+}
+
+.quantityInformationContainer {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  @include device.tablet {
+    gap: 16px;
+  }
+}
+
+.quantityContainer {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.remainContainer {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+@mixin base-quantity-title-style {
+  @include fonts.base-regular-20;
+  color: colors.$gray300;
+
+  @include device.tablet {
+    @include fonts.base-regular-18;
+  }
+}
+
+.quantityTitle {
+  @include base-quantity-title-style;
+}
+
+.totalQuantity {
+  @include base-quantity-title-style;
+}
+
+.quantityContent {
+  @include fonts.base-bold-24;
+  color: colors.$white;
+
+  @include device.mobile {
+    @include fonts.base-regular-20;
+  }
+}

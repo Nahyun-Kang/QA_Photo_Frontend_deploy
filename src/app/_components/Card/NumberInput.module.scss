@@ -1,0 +1,35 @@
+.container {
+  padding: 12px;
+  width: 176px;
+  height: 50px;
+  background-color: colors.$black;
+  border: 1px solid colors.$gray200;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  @include device.tablet {
+    padding: 0 12px;
+    width: 144px;
+    height: 45px;
+  }
+}
+
+.input {
+  text-align: center;
+  width: 4rem;
+  height: auto;
+  flex-shrink: 1;
+
+  color: colors.$white;
+  @include fonts.base-regular-20;
+
+  @include device.tablet {
+    @include fonts.base-regular-18;
+  }
+}
+
+.button {
+  cursor: pointer;
+}

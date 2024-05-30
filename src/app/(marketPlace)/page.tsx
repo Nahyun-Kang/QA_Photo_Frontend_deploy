@@ -17,6 +17,7 @@ import OriginalCard from '../_components/Card/OriginalCard'
 import MyCard from '../_components/Card/MyCard'
 import CardForSale from '../_components/Card/CardForSale'
 import ExchangeCard from '../_components/Card/ExchangeCard'
+import CardDetail from '../_components/Card/CardDetailComponents'
 
 export default function Home() {
   const universal = ['COMMON', 'RARE', 'SUPERRARE', 'LEGENDARY']
@@ -72,7 +73,7 @@ export default function Home() {
         />
         <Card.QuantityContainer>
           <Card.Quantity quantity={3} />
-          <Card.Remain remain={3} totalQuantity={5} />
+          <Card.Remain remainingQuantity={3} totalQuantity={5} />
           <Card.Price price={4} />
           <Card.Description description="sdfsfsfsdfs" />
           <Card.Logo />
@@ -124,6 +125,21 @@ export default function Home() {
         nickName="프로여행러"
         description={'sdfssdfsdfsdfsdfsdfsfsdsdsfsffdf'}
       />
+      <CardDetail>
+        <CardDetail.CardDetailInformation
+          genre="풍경"
+          grade="super_rare"
+          maker="미쓰손"
+        />
+        <CardDetail.BottomLine />
+        <CardDetail.DetailQuantityContainer
+          price={4}
+          remainingQuantity={3}
+          totalQuantity={5}
+        />
+        <CardDetail.NumberInput remainingQuantity={3} id="buy" />
+        <CardDetail.Description description="dfsdfsddfsdfsdssfs" />
+      </CardDetail>
     </main>
   )
 }

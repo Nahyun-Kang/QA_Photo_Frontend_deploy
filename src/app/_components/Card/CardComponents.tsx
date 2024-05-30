@@ -8,6 +8,10 @@ import styles from './Card.module.scss'
 import SoldOut from '/public/images/soldout.svg'
 import LogoFavicon from '/public/icons/photo_logo_favicon.svg'
 
+function CardWrapper({ children }: { children: ReactNode }) {
+  return <div>{children}</div>
+}
+
 function CardContainer({ children }: { children: ReactNode }) {
   return <div className={styles.cardContainer}>{children}</div>
 }
@@ -150,15 +154,15 @@ function Price({ price }: IPrice) {
 
 interface IRemain {
   totalQuantity: number
-  remain: number
+  remainingQuantity: number
 }
 
-function Remain({ totalQuantity, remain }: IRemain) {
+function Remain({ totalQuantity, remainingQuantity }: IRemain) {
   return (
     <div className={styles.quantityContainer}>
       <span className={styles.quantityTitle}>잔여</span>
       <div className={styles.remainContainer}>
-        <span className={styles.quantityContent}>{`${remain}`}</span>
+        <span className={styles.quantityContent}>{`${remainingQuantity}`}</span>
         <span className={styles.totalQuantity}>{`/ ${totalQuantity}`}</span>
       </div>
     </div>
@@ -194,7 +198,8 @@ function Logo() {
   )
 }
 
-const Card = Object.assign(CardContainer, {
+const Card = Object.assign(CardWrapper, {
+  CardContainer,
   image: CardImage,
   information: CardInformation,
   QuantityContainer,

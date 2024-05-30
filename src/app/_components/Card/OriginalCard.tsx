@@ -15,18 +15,23 @@ export default function OriginalCard({
 }: OriginalCardType) {
   return (
     <Card>
-      <Card.image imageUrl={imageUrl} isSoldOut={remainingQuantity === 0} />
-      <Card.information
-        title={name}
-        maker={nickName}
-        grade={grade}
-        genre={genre}
-      />
-      <Card.QuantityContainer>
-        <Card.Price price={price} />
-        <Card.Remain remain={remainingQuantity} totalQuantity={totalQuantity} />
-      </Card.QuantityContainer>
-      <Card.Logo />
+      <Card.CardContainer>
+        <Card.image imageUrl={imageUrl} isSoldOut={remainingQuantity === 0} />
+        <Card.information
+          title={name}
+          maker={nickName}
+          grade={grade}
+          genre={genre}
+        />
+        <Card.QuantityContainer>
+          <Card.Price price={price} />
+          <Card.Remain
+            remainingQuantity={remainingQuantity}
+            totalQuantity={totalQuantity}
+          />
+        </Card.QuantityContainer>
+        <Card.Logo />
+      </Card.CardContainer>
     </Card>
   )
 }
