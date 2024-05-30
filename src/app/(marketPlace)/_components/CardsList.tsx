@@ -13,6 +13,7 @@ import OriginalCard from '@/app/_components/Card/OriginalCard'
 
 import styles from './CardsList.module.scss'
 import Filter from '/public/icons/filter.svg'
+import Pagination from '@/app/_components/pagination'
 
 export default function MarketPlaceCardList() {
   return (
@@ -63,6 +64,9 @@ export default function MarketPlaceCardList() {
           )
         })}
       </ul>
+      <div className={styles.paginationWrapper}>
+        <Pagination count={45} />
+      </div>
     </section>
   )
 }
