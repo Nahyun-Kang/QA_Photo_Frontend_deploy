@@ -21,6 +21,7 @@
 
 .informationGradeContainer {
   display: flex;
+  align-items: center;
   gap: 15px;
 }
 
@@ -106,7 +107,7 @@
   color: colors.$white;
 
   @include device.mobile {
-    @include fonts.base-regular-20;
+    @include fonts.base-bold-20;
   }
 }
 

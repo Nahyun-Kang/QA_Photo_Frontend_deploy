@@ -8,30 +8,27 @@ import Plus from '/public/icons/plus.svg'
 interface INumberInput {
   remainingQuantity: number
   id: string
+  quantity: number
+  handlePlusButtonClick: () => void
+  handleMinusButtonClick: () => void
 }
 
-export default function NumberInput({ remainingQuantity, id }: INumberInput) {
+export default function NumberInput({
+  remainingQuantity,
+  id,
+  quantity,
+  handlePlusButtonClick,
+  handleMinusButtonClick,
+}: INumberInput) {
   const [number, setNumber] = useState<number>(1)
-
-  const handlePlusButtonClick = () => {
-    if (number >= remainingQuantity) {
-      return
-    }
-
-    setNumber(number + 1)
-  }
-
-  const handleMinusButtonClick = () => {
-    if (number <= 1) {
-      return
-    }
-
-    setNumber(number - 1)
-  }
 
   return (
     <div className={styles.container}>
-      <button className={styles.button} onClick={handleMinusButtonClick}>
+      <button
+        className={styles.button}
+        onClick={handleMinusButtonClick}
+        type="button"
+      >
         <Minus />
       </button>
       <input
@@ -39,10 +36,14 @@ export default function NumberInput({ remainingQuantity, id }: INumberInput) {
         type="number"
         min={1}
         max={remainingQuantity}
-        value={number}
+        value={quantity}
         className={styles.input}
       />
-      <button className={styles.button} onClick={handlePlusButtonClick}>
+      <button
+        className={styles.button}
+        onClick={handlePlusButtonClick}
+        type="button"
+      >
         <Plus />
       </button>
     </div>

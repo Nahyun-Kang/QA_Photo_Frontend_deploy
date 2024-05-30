@@ -1,0 +1,20 @@
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.option_label {
+  color: colors.$white;
+  @include fonts.base-regular-20;
+
+  @include device.tablet {
+    @include fonts.base-regular-18;
+  }
+}

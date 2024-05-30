@@ -1,3 +1,5 @@
+export type GradeType = 'common' | 'rare' | 'super_rare' | 'legendary'
+
 export interface CardType {
   id: number
   userId: number
