@@ -62,18 +62,24 @@ function DetailQuantityContainer({
   )
 }
 
-// interface INumberInput {
-//   remainingQuantity: number
-//   id: string
-// }
+interface IPriceInput {
+  id: string
+}
 
-// function NumberInput({ remainingQuantity, id }: INumberInput) {
-//   return (
-//     <div>
-//       <input id={id} type="number" min={1} max={remainingQuantity} />
-//     </div>
-//   )
-// }
+function PriceInput({ id }: IPriceInput) {
+  return (
+    <div className={styles.priceInputContainer}>
+      <input
+        id={id}
+        type="number"
+        min={0}
+        placeholder="숫자만 입력"
+        className={styles.priceInput}
+      />
+      <span className={styles.price}>{'P'}</span>
+    </div>
+  )
+}
 
 interface IDescription {
   description: string
@@ -89,6 +95,7 @@ const CardDetail = Object.assign(CardDetailContainer, {
   DetailQuantityContainer,
   Description,
   NumberInput,
+  PriceInput,
 })
 
 export default CardDetail

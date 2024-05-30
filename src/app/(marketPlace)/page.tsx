@@ -139,6 +139,7 @@ export default function Home() {
         />
         <CardDetail.NumberInput remainingQuantity={3} id="buy" />
         <CardDetail.Description description="dfsdfsddfsdfsdssfs" />
+        <CardDetail.PriceInput id="sale" />
       </CardDetail>
     </main>
   )
