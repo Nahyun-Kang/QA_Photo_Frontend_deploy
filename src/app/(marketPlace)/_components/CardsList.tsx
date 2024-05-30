@@ -56,6 +56,8 @@ export default function MarketPlaceCardList() {
                 genre={el.genre}
                 totalQuantity={el.totalQuantity}
                 remainingQuantity={el.remainingQuantity}
+                createdDate={el.createdDate}
+                updatedDate={el.updatedDate}
               />
             </li>
           )

@@ -1,4 +1,21 @@
-export const CARDS_LIST = [
+import { GradeType } from '../_lib/cardType'
+
+interface CardListType {
+  imageUrl: string
+  nickName: string
+  id: number
+  userId: number
+  name: string
+  price: number
+  grade: GradeType
+  genre: string
+  totalQuantity: number
+  remainingQuantity: number
+  createdDate: string
+  updatedDate: string
+}
+
+export const CARDS_LIST: CardListType[] = [
   {
     imageUrl: '/images/image1.png',
     nickName: 'Nick1',

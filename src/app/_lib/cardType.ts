@@ -10,6 +10,8 @@ export interface CardType {
   description: string
   totalQuantity: number
   remainingQuantity: number
+  createdDate: string
+  updatedDate: string
 }
 
 type InformationDetailType = {
