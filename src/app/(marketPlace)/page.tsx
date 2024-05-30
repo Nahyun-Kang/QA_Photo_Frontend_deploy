@@ -19,6 +19,7 @@ import CardForSale from '../_components/Card/CardForSale'
 import ExchangeCard from '../_components/Card/ExchangeCard'
 import CardDetail from '../_components/Card/CardDetailComponents'
 import CardBuyer from '../_components/Card/CardBuyer'
+import CardSeller from '../_components/Card/CardSeller'
 
 export default function Home() {
   const universal = ['COMMON', 'RARE', 'SUPERRARE', 'LEGENDARY']
@@ -134,6 +135,18 @@ export default function Home() {
         totalQuantity={5}
         maker="프로여행러"
         description={'sdfssdfsdfsdfsdfsdfsfsdsdsfsffdf'}
+      />
+      <CardSeller
+        genre={'풍경'}
+        grade={'legendary'}
+        price={5}
+        remainingQuantity={3}
+        totalQuantity={5}
+        maker="프로여행러"
+        description={'sdfssdfsdfsdfsdfsdfsfsdsdsfsffdf'}
+        expectedContent="sdfsfsf0"
+        expectedGenre="여헹"
+        expectedGrade="super_rare"
       />
     </main>
   )
