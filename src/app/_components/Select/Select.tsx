@@ -12,6 +12,7 @@ interface SelectProps {
   value: string
   onClick: (item: string) => void
   defaultValue: string
+  style?: 'default' | 'filter'
 }
 
 export default function SelectComponent({
@@ -19,6 +20,7 @@ export default function SelectComponent({
   list,
   value,
   onClick,
+  style = 'default',
 }: SelectProps) {
   const [isOpened, setIsOpened] = useState(false)
 
@@ -51,12 +53,19 @@ export default function SelectComponent({
   }, [])
 
   return (
-    <div className={styles.container} ref={ref}>
-      <Trigger isOpened={isOpened} onClick={handleTriggerClick} value={value}>
+    <div className={`${styles.container}`} ref={ref}>
+      <Trigger
+        isOpened={isOpened}
+        onClick={handleTriggerClick}
+        value={value}
+        style={style}
+      >
         {value !== '' ? value : placeholder}
       </Trigger>
       {isOpened && (
-        <ul className={styles.dropdownBox}>
+        <ul
+          className={`${styles.dropdownBox} ${style === 'filter' && styles.filterList}`}
+        >
           {list?.map((item, idx) => (
             <SelectItem
               key={idx.toString()}
@@ -75,17 +84,23 @@ interface TriggerProps {
   isOpened: boolean
   onClick: () => void
   value: string
+  style: 'default' | 'filter'
 }
 
-function Trigger({ children, isOpened, onClick, value }: TriggerProps) {
+function Trigger({ children, isOpened, onClick, value, style }: TriggerProps) {
   const handleArrowNodeReturn = () => {
     const node = isOpened ? <Up /> : <Down />
     return node
   }
 
   return (
-    <button className={styles.button} onClick={onClick}>
-      <span className={`${styles.title} ${value === '' && styles.placeholder}`}>
+    <button
+      className={`${styles.button} ${style === 'filter' && styles.filter}`}
+      onClick={onClick}
+    >
+      <span
+        className={`${styles.title} ${value === '' && styles.placeholder} ${style === 'filter' && styles.filterTitle}`}
+      >
         {children}
       </span>
       {handleArrowNodeReturn()}

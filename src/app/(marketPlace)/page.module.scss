@@ -1,34 +1,65 @@
-.text {
-  @include fonts.main-title-40;
-}
-
-.buttonWrapper {
-  width: 520px;
-
-  @include device.tablet {
-    width: 440px;
-  }
-
-  @include device.mobile {
-    width: 345px;
-  }
-}
-
-.title {
-  @include fonts.main-title-40;
-}
-
 .main {
   position: relative;
 }
 
-.commonHeaderContainer {
-  display: none;
-  position: absolute;
-  top: 0;
-  left: 0;
+.section {
+  max-width: 1480px;
+  margin: 0 auto;
+
+  @include device.tablet {
+    padding: 0 20px;
+  }
+
+  @include device.mobile {
+    padding: 0 15px;
+  }
+}
+
+.titleWrapper {
+  margin: 60px auto 0;
+
+  @include device.mobile {
+    display: none;
+  }
+}
+
+.title {
+  @include fonts.main-title-62;
+  color: colors.$white;
+
+  @include device.tablet {
+    @include fonts.main-title-48;
+  }
+}
+
+.titleContainer {
+  width: 100%;
+
+  display: flex;
+  justify-content: space-between;
+}
+
+.buttonContainer {
+  display: flex;
+  width: 440px;
+
+  @include device.tablet {
+    width: 342px;
+  }
+
+  @include device.mobile {
+    display: none;
+  }
+}
+
+.floatButtonContainer {
+  width: 100%;
+  padding: 0 15px;
+  position: fixed;
+  bottom: 50px;
   right: 0;
-  z-index: 2;
+  left: 0;
+  display: none;
 
   @include device.mobile {
     display: block;

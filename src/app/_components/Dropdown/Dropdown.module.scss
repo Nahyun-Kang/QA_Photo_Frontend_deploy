@@ -1,6 +1,6 @@
 .container {
   position: relative;
-  width: 100%;
+  width: auto;
 }
 
 .listItem {
@@ -26,7 +26,7 @@
 }
 
 .dropdownBox {
-  width: inherit;
+  width: 134px;
   background-color: colors.$black;
   display: flex;
   flex-direction: column;
@@ -56,6 +56,7 @@
 .attribute {
   @include fonts.base-bold-16;
   color: colors.$white;
+  text-wrap: nowrap;
 
   @include device.tablet {
     @include fonts.base-bold-14;

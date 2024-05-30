@@ -1,6 +1,6 @@
 .container {
   position: relative;
-  width: 100%;
+  // width: 100%;
 }
 
 .button {
@@ -24,6 +24,24 @@
     width: inherit;
     height: 55px;
     padding: 10px 15px;
+  }
+
+  &.filter {
+    width: 180px;
+    height: 50px;
+    padding: 13px 20px;
+
+    @include device.tablet {
+      width: 140px;
+      height: 45px;
+      padding: 10px 15px;
+    }
+
+    @include device.mobile {
+      width: 130px;
+      height: 35px;
+      padding: 10px 15px;
+    }
   }
 }
 
@@ -73,6 +91,18 @@
 
   @include device.mobile {
     top: 40px;
+  }
+
+  &.filterList {
+    width: 180px;
+
+    @include device.tablet {
+      width: 140px;
+    }
+
+    @include device.mobile {
+      width: 130px;
+    }
   }
 }
 
