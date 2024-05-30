@@ -125,8 +125,7 @@
 }
 
 .priceInput {
-  flex-grow: 1;
-
+  overflow: hidden;
   color: colors.$white;
   @include fonts.base-regular-16;
 

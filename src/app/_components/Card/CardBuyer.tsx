@@ -68,7 +68,7 @@ export default function CardBuyer({
           </label>
           <CardDetail.NumberInput
             quantity={quantity}
-            remainingQuantity={remainingQuantity}
+            limitQuantity={remainingQuantity}
             id="buyQuantity"
             handlePlusButtonClick={handlePlusButtonClick}
             handleMinusButtonClick={handleMinusButtonClick}

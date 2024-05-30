@@ -6,7 +6,7 @@ import Minus from '/public/icons/minus.svg'
 import Plus from '/public/icons/plus.svg'
 
 interface INumberInput {
-  remainingQuantity: number
+  limitQuantity?: number
   id: string
   quantity: number
   handlePlusButtonClick: () => void
@@ -14,7 +14,7 @@ interface INumberInput {
 }
 
 export default function NumberInput({
-  remainingQuantity,
+  limitQuantity: remainingQuantity,
   id,
   quantity,
   handlePlusButtonClick,

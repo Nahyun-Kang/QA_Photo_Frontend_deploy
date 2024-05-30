@@ -20,6 +20,7 @@ import ExchangeCard from '../_components/Card/ExchangeCard'
 import CardDetail from '../_components/Card/CardDetailComponents'
 import CardBuyer from '../_components/Card/CardBuyer'
 import CardSeller from '../_components/Card/CardSeller'
+import MyCardDetail from '../_components/Card/MyCardDetail'
 
 export default function Home() {
   const universal = ['COMMON', 'RARE', 'SUPERRARE', 'LEGENDARY']
@@ -147,6 +148,12 @@ export default function Home() {
         expectedContent="sdfsfsf0"
         expectedGenre="여헹"
         expectedGrade="super_rare"
+      />
+      <MyCardDetail
+        genre={'풍경'}
+        grade={'rare'}
+        totalQuantity={5}
+        maker="프로여행러"
       />
     </main>
   )
