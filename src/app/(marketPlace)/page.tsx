@@ -13,7 +13,7 @@ export default function Home() {
         <div className={styles.titleWrapper}>
           <Title>
             <div className={styles.titleContainer}>
-              <h2 className={styles.title}>마이갤러리</h2>
+              <h2 className={styles.title}>마켓플레이스</h2>
               <div className={styles.buttonContainer}>
                 <Button thickness="thin">나의 포토카드 판매하기</Button>
               </div>

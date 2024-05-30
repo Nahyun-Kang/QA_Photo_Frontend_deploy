@@ -82,3 +82,20 @@
     display: flex;
   }
 }
+
+.ul {
+  width: 100%;
+  margin-top: 60px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 80px;
+
+  @include device.tablet {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  @include device.mobile {
+    gap: 5px;
+  }
+}

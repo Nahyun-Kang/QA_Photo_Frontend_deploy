@@ -5,7 +5,7 @@ export interface CardType {
   userId: number
   name: string
   price: number
-  grade: 'common' | 'rare' | 'super_rare' | 'legendary'
+  grade: GradeType
   genre: string
   description: string
   totalQuantity: number

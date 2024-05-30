@@ -8,6 +8,8 @@ import {
   ORDER_LIST,
 } from '@/app/_constants/listConstants'
 import SearchInput from '@/app/_components/SearchInput'
+import { CARDS_LIST } from '../CARD_LISTS'
+import OriginalCard from '@/app/_components/Card/OriginalCard'
 
 import styles from './CardsList.module.scss'
 import Filter from '/public/icons/filter.svg'
@@ -39,6 +41,26 @@ export default function MarketPlaceCardList() {
           />
         </div>
       </div>
+      <ul className={styles.ul}>
+        {CARDS_LIST?.map((el, idx) => {
+          return (
+            <li key={idx.toString()}>
+              <OriginalCard
+                imageUrl={el.imageUrl}
+                nickName={el.nickName}
+                id={el.id}
+                userId={el.userId}
+                name={el.name}
+                price={el.price}
+                grade={el.grade}
+                genre={el.genre}
+                totalQuantity={el.totalQuantity}
+                remainingQuantity={el.remainingQuantity}
+              />
+            </li>
+          )
+        })}
+      </ul>
     </section>
   )
 }

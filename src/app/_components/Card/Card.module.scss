@@ -3,13 +3,20 @@
   height: auto;
 
   padding: 40px;
-  background-color: colors.$black;
-  border: 2px solid colors.$gray500;
+  background-color: colors.$gray500;
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 2px;
 
   display: flex;
   flex-direction: column;
-  flex-shrink: 0;
+
+  @include device.tablet {
+    padding: 20px;
+  }
+
+  @include device.mobile {
+    padding: 10px;
+  }
 }
 
 .imageContainer {
@@ -123,15 +130,13 @@
   align-items: center;
   gap: 10px;
 
-  margin-right: 10px;
-
-  flex-shrink: 0;
-  flex-basis: 1;
+  @include device.mobile {
+    gap: 5px;
+  }
 }
 
 .makerContainer {
   text-align: right;
-  flex-grow: 1;
 }
 
 .exchangeMakerContainer {
