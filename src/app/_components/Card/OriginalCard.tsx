@@ -12,6 +12,8 @@ export default function OriginalCard({
   genre,
   totalQuantity,
   remainingQuantity,
+  createdDate,
+  updatedDate,
 }: OriginalCardType) {
   return (
     <Card>

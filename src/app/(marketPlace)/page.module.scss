@@ -23,6 +23,19 @@
   }
 }
 
+.commonHeaderContainer {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 3;
+
+  @include device.mobile {
+    display: block;
+  }
+}
+
 .title {
   @include fonts.main-title-62;
   color: colors.$white;
