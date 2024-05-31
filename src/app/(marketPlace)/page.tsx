@@ -16,13 +16,6 @@ export default function Home() {
 
   return (
     <>
-      <ModalMain>
-        <BasicModal
-          title={'교환 제시 거절'}
-          description={'코놈'}
-          onClick={handleButtonClick}
-        />
-      </ModalMain>
       <main className={styles.main}>
         <div className={styles.section}>
           <div className={styles.titleWrapper}>
