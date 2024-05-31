@@ -1,3 +1,4 @@
+'use client'
 import Link from 'next/link'
 
 import Title from '@/app/_components/Title'
@@ -6,10 +7,22 @@ import Button from '@/app/_components/Button'
 import styles from './page.module.scss'
 import MarketPlaceCardList from './_components/CardsList'
 import ModalMain from '../_components/Modal/Modal'
+import BasicModal from '../_components/Modal/BasicModal'
 
 export default function Home() {
+  const handleButtonClick = () => {
+    console.log('clicked')
+  }
+
   return (
     <>
+      <ModalMain>
+        <BasicModal
+          title={'교환 제시 거절'}
+          description={'코놈'}
+          onClick={handleButtonClick}
+        />
+      </ModalMain>
       <main className={styles.main}>
         <div className={styles.section}>
           <div className={styles.titleWrapper}>

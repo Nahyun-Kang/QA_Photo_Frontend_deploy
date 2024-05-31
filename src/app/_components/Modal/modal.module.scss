@@ -6,6 +6,99 @@
   bottom: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: #000000cc;
   z-index: 9999;
+}
+
+.basicModalWrapper {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.basicModalContainer {
+  position: relative;
+
+  width: 560px;
+  height: 352px;
+  border-radius: 2px;
+  background-color: colors.$gray500;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  @include device.tablet {
+    width: 400px;
+    height: 291px;
+  }
+
+  @include device.mobile {
+    width: 345px;
+    height: 291px;
+  }
+}
+
+.closeButton {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  cursor: pointer;
+
+  @include device.tablet {
+    right: 15px;
+    top: 15px;
+  }
+}
+
+.closeIcon {
+  width: 32px;
+  height: 32px;
+
+  @include device.tablet {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.title {
+  margin-bottom: 40px;
+
+  color: colors.$white;
+  @include fonts.base-bold-20;
+
+  @include device.tablet {
+    margin-bottom: 30px;
+    @include fonts.base-bold-18;
+  }
+}
+
+.description {
+  margin-bottom: 60px;
+
+  color: colors.$gray300;
+  @include fonts.base-regular-16;
+
+  @include device.tablet {
+    margin-bottom: 40px;
+    @include fonts.base-regular-14;
+  }
+}
+
+.buttonWrapper {
+  width: 170px;
+  height: 60px;
+
+  @include device.tablet {
+    width: 140px;
+    height: 55px;
+  }
+
+  @include device.mobile {
+    width: 120px;
+    height: 55px;
+  }
 }
