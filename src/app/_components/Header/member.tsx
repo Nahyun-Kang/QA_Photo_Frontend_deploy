@@ -9,12 +9,12 @@ import styles from './header.module.scss'
 import AlarmIcon from '/public/icons/alarm.svg'
 
 export default function MemberHeader() {
-  const [isOpened, setIsOpened] = useState(false)
+  const [isProfileOpened, setIsProfileOpened] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const ref = useRef<null | HTMLDivElement>(null)
 
   const handleToggleProfile = () => {
-    setIsOpened((state) => !state)
+    setIsProfileOpened((state) => !state)
   }
 
   const handleOutsideClick = (e: Event) => {
@@ -22,7 +22,7 @@ export default function MemberHeader() {
       ref.current &&
       !(e.target instanceof Node && ref.current.contains(e.target))
     ) {
-      setIsOpened(false)
+      setIsProfileOpened(false)
     }
   }
 
@@ -53,7 +53,7 @@ export default function MemberHeader() {
 
   return (
     <>
-      {isOpened && isMobile && (
+      {isProfileOpened && isMobile && (
         <ModalMain>
           <div className={styles.mobileProfileContainer}>
             <Profile nickname="유디" point={1540} />
@@ -72,7 +72,7 @@ export default function MemberHeader() {
           onClick={handleToggleProfile}
         >
           <span>{'유디'}</span>
-          {isOpened && (
+          {isProfileOpened && (
             <div className={styles.profileContainer}>
               <Profile nickname="유디" point={1540} />
             </div>
