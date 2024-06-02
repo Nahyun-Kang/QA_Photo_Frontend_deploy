@@ -7,9 +7,10 @@ import Back from '/public/icons/back.svg'
 
 interface CommonHeaderProps {
   children: ReactNode
+  onClick?: () => void
 }
 
-export default function CommonHeader({ children }: CommonHeaderProps) {
+export default function CommonHeader({ children, onClick }: CommonHeaderProps) {
   const router = useRouter()
 
   const handleBackButtonClick = () => {
@@ -19,7 +20,10 @@ export default function CommonHeader({ children }: CommonHeaderProps) {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <button className={styles.backButton} onClick={handleBackButtonClick}>
+        <button
+          className={styles.backButton}
+          onClick={onClick ? onClick : handleBackButtonClick}
+        >
           <Back />
         </button>
         <div className={styles.commonHeaderTitle}>{children}</div>

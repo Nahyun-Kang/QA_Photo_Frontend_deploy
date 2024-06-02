@@ -8,13 +8,14 @@ import Alarm from '@/app/_components/Alarm'
 
 import styles from './header.module.scss'
 import AlarmIcon from '/public/icons/alarm.svg'
+import MobileAlarmPage from '../Alarm/MobileAlarmPage'
 
 export default function MemberHeader() {
   const [isProfileOpened, setIsProfileOpened] = useState(false)
   const [isAlarmOpened, setIsAlarmOpened] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const ref = useRef<null | HTMLDivElement>(null)
-  const alarmRef = useRef<null | HTMLButtonElement>(null)
+  const alarmRef = useRef<null | HTMLDivElement>(null)
 
   const handleToggleProfile = () => {
     setIsProfileOpened((state) => !state)
@@ -56,7 +57,7 @@ export default function MemberHeader() {
     return () => {
       document.removeEventListener('mousedown', handleAlarmOutsideClick)
     }
-  }, [alarmRef])
+  }, [])
 
   useEffect(() => {
     const handleResize = () => {
@@ -87,12 +88,16 @@ export default function MemberHeader() {
       )}
       <div className={styles.memberContainer}>
         <span className={styles.point}>1,540 P</span>
-        <div className={styles.alarmContainer}>
+        <div className={styles.alarmContainer} ref={alarmRef}>
+          {isAlarmOpened && isMobile && (
+            <ModalMain>
+              <MobileAlarmPage onClick={handleToggleAlarm} />
+            </ModalMain>
+          )}
           <button
             type="button"
             className={styles.alarmButtonContainer}
             onClick={handleToggleAlarm}
-            ref={alarmRef}
           >
             <AlarmIcon />
           </button>

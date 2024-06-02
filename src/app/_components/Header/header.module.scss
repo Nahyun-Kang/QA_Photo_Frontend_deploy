@@ -177,6 +177,10 @@
   right: 0;
   top: 25px;
   z-index: 3;
+
+  @include device.mobile {
+    display: none;
+  }
 }
 
 .alarmButtonContainer {
