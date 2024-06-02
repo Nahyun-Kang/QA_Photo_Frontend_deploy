@@ -3,21 +3,28 @@
 import { useState, useRef, useEffect } from 'react'
 
 import Profile from '@/app/_components/Profile'
-import ModalMain from '../Modal/Modal'
+import ModalMain from '@/app/_components/Modal/Modal'
+import Alarm from '@/app/_components/Alarm'
 
 import styles from './header.module.scss'
 import AlarmIcon from '/public/icons/alarm.svg'
 
 export default function MemberHeader() {
   const [isProfileOpened, setIsProfileOpened] = useState(false)
+  const [isAlarmOpened, setIsAlarmOpened] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const ref = useRef<null | HTMLDivElement>(null)
+  const alarmRef = useRef<null | HTMLButtonElement>(null)
 
   const handleToggleProfile = () => {
     setIsProfileOpened((state) => !state)
   }
 
-  const handleOutsideClick = (e: Event) => {
+  const handleToggleAlarm = () => {
+    setIsAlarmOpened((state) => !state)
+  }
+
+  const handleProfileOutsideClick = (e: Event) => {
     if (
       ref.current &&
       !(e.target instanceof Node && ref.current.contains(e.target))
@@ -26,13 +33,30 @@ export default function MemberHeader() {
     }
   }
 
+  const handleAlarmOutsideClick = (e: Event) => {
+    if (
+      alarmRef.current &&
+      !(e.target instanceof Node && alarmRef.current.contains(e.target))
+    ) {
+      setIsAlarmOpened(false)
+    }
+  }
+
   useEffect(() => {
-    document.addEventListener('mousedown', handleOutsideClick)
+    document.addEventListener('mousedown', handleProfileOutsideClick)
 
     return () => {
-      document.removeEventListener('mousedown', handleOutsideClick)
+      document.removeEventListener('mousedown', handleProfileOutsideClick)
     }
-  }, [])
+  }, [ref])
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleAlarmOutsideClick)
+
+    return () => {
+      document.removeEventListener('mousedown', handleAlarmOutsideClick)
+    }
+  }, [alarmRef])
 
   useEffect(() => {
     const handleResize = () => {
@@ -63,9 +87,21 @@ export default function MemberHeader() {
       )}
       <div className={styles.memberContainer}>
         <span className={styles.point}>1,540 P</span>
-        <button type="button">
-          <AlarmIcon />
-        </button>
+        <div className={styles.alarmContainer}>
+          <button
+            type="button"
+            className={styles.alarmButtonContainer}
+            onClick={handleToggleAlarm}
+            ref={alarmRef}
+          >
+            <AlarmIcon />
+          </button>
+          {isAlarmOpened && (
+            <div className={styles.alarmWrapper}>
+              <Alarm />
+            </div>
+          )}
+        </div>
         <div
           className={styles.userName}
           ref={ref}

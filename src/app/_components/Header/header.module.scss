@@ -164,3 +164,21 @@
 
   cursor: pointer;
 }
+
+.alarmContainer {
+  position: relative;
+}
+
+.alarmWrapper {
+  width: 300px;
+  height: auto;
+
+  position: absolute;
+  right: 0;
+  top: 25px;
+  z-index: 3;
+}
+
+.alarmButtonContainer {
+  cursor: pointer;
+}

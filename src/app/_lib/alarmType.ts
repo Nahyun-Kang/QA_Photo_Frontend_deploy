@@ -2,5 +2,5 @@ export type AlarmType =
   | 'exchangeCompleted'
   | 'exchangeProposed'
   | 'purchaseCompleted'
-  | 'SaleCompleted'
+  | 'saleCompleted'
   | 'outOfStock'

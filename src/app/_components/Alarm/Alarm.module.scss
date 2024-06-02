@@ -1,0 +1,42 @@
+.alarmItemContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.message {
+  color: colors.$white;
+  @include fonts.base-regular-14;
+
+  &.isReadMessage {
+    color: colors.$gray300;
+  }
+}
+
+.timeAgo {
+  color: colors.$gray300;
+  @include fonts.base-regular-12;
+  z-index: 1;
+}
+
+.alarmItemWrapper {
+  width: 100%;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-bottom: 1px solid colors.$gray400;
+
+  cursor: pointer;
+
+  &.isRead {
+    background-color: rgba(255, 255, 255, 0);
+  }
+}
+
+.alarmList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: colors.$gray500;
+  border-radius: 2px;
+}
