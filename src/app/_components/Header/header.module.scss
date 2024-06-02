@@ -78,8 +78,12 @@
 }
 
 .userName {
+  position: relative;
+
   @include fonts.main-title-18;
   color: colors.$gray200;
+
+  cursor: pointer;
 
   @include device.mobile {
     display: none;
@@ -112,5 +116,51 @@
 }
 
 .backButton {
+  cursor: pointer;
+}
+
+.profileContainer {
+  display: block;
+
+  width: 260px;
+  height: 198px;
+  background-color: colors.$gray500;
+  border-radius: 2px;
+  right: 0;
+  top: 25px;
+
+  position: absolute;
+  z-index: 3;
+
+  @include device.mobile {
+    display: none;
+  }
+}
+
+.mobileProfileContainer {
+  width: 260px;
+  padding: 40px 0;
+
+  display: none;
+
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background-color: colors.$gray500;
+  box-shadow: 0px 0px 20px 0px rgba(0, 0, 0, 0.2);
+
+  @include device.mobile {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.logout {
+  padding: 0 20px;
+  color: colors.$gray400;
+  @include fonts.base-regular-14;
+
   cursor: pointer;
 }

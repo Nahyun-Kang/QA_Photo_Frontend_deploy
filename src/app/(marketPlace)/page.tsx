@@ -17,7 +17,6 @@ export default function Home() {
 
   return (
     <>
-      <Profile nickname="유디" point={1540} />
       <main className={styles.main}>
         <div className={styles.section}>
           <div className={styles.titleWrapper}>
