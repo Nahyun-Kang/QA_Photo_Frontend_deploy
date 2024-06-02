@@ -8,6 +8,7 @@ import styles from './page.module.scss'
 import MarketPlaceCardList from './_components/CardsList'
 import ModalMain from '../_components/Modal/Modal'
 import BasicModal from '../_components/Modal/BasicModal'
+import Profile from '../_components/Profile'
 
 export default function Home() {
   const handleButtonClick = () => {
@@ -16,6 +17,7 @@ export default function Home() {
 
   return (
     <>
+      <Profile nickname="유디" point={1540} />
       <main className={styles.main}>
         <div className={styles.section}>
           <div className={styles.titleWrapper}>
