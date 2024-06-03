@@ -3,7 +3,10 @@ import { useState, useEffect } from 'react'
 
 import Card from './CardComponents'
 import Button from '@/app/_components/Button'
+import ModalMain from '../Modal/Modal'
+import BasicModal from '../Modal/BasicModal'
 
+import gradeExtract from '@/app/_util/gradeExtract'
 import { ExchangeCardType } from '@/app/_lib/cardType'
 
 import styles from './Card.module.scss'
@@ -39,32 +42,58 @@ export default function ExchangeCard({
   }, [])
 
   return (
-    <Card>
-      <Card.CardContainer>
-        <Card.image imageUrl={imageUrl} />
-        <Card.information
-          title={name}
-          maker={nickName}
-          grade={grade}
-          genre={genre}
-          type="exchange"
-        />
-        <Card.Description description={description} />
-        {type === 'seller' ? (
-          <div className={styles.buttonContainer}>
-            <Button thickness="mini" buttonStyle="secondary">
-              {isMobile ? '거절' : '거절하기'}
-            </Button>
-            <Button thickness="mini">{isMobile ? '승인' : '승인하기'}</Button>
-          </div>
-        ) : (
-          <div className={styles.buttonContainer}>
-            <Button thickness="thin" buttonStyle="secondary">
-              취소하기
-            </Button>
-          </div>
-        )}
-      </Card.CardContainer>
-    </Card>
+    <>
+      {/* {
+        <ModalMain>
+          <BasicModal
+            title="교환 제시 거절"
+            description={
+              <>{`[${gradeExtract(grade)} | ${name}] 카드와의 교환을 거절하시겠습니까?`}</>
+            }
+            onClick={() => console.log()}
+            buttonName="거절하기"
+          />
+        </ModalMain>
+      }
+      {
+        <ModalMain>
+          <BasicModal
+            title="포토카드 구매"
+            description={
+              <>{`[${gradeExtract(grade)} | ${name}] 카드와의 교환을 승인하시겠습니까?`}</>
+            }
+            onClick={() => console.log()}
+            buttonName="승인하기"
+          />
+        </ModalMain>
+      } */}
+      <Card>
+        <Card.CardContainer>
+          <Card.image imageUrl={imageUrl} />
+          <Card.information
+            title={name}
+            maker={nickName}
+            grade={grade}
+            genre={genre}
+            type="exchange"
+          />
+          <Card.Description description={description} />
+          {type === 'seller' ? (
+            <div className={styles.buttonContainer}>
+              <Button thickness="mini" buttonStyle="secondary">
+                {isMobile ? '거절' : '거절하기'}
+              </Button>
+              <Button thickness="mini">{isMobile ? '승인' : '승인하기'}</Button>
+            </div>
+          ) : (
+            <div className={styles.buttonContainer}>
+              <Button thickness="thin" buttonStyle="secondary">
+                취소하기
+              </Button>
+            </div>
+          )}
+        </Card.CardContainer>
+      </Card>
+    </>
   )
 }
