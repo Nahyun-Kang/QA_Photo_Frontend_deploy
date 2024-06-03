@@ -78,6 +78,8 @@
 
 .description {
   margin-bottom: 60px;
+  text-align: center;
+  line-height: normal;
 
   color: colors.$gray300;
   @include fonts.base-regular-16;

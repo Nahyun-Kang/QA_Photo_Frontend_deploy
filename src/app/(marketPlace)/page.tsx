@@ -18,6 +18,22 @@ export default function Home() {
 
   return (
     <>
+      {/* {
+        <ModalMain>
+          <BasicModal
+            title="로그인이 필요합니다."
+            description={
+              <>
+                로그인 하시겠습니까?
+                <br />
+                다양한 서비스를 편리하게 이용하실 수 있습니다.
+              </>
+            }
+            onClick={() => console.log()}
+            buttonName="확인"
+          />
+        </ModalMain>
+      } */}
       <main className={styles.main}>
         <div className={styles.section}>
           <div className={styles.titleWrapper}>

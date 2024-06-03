@@ -1,6 +1,5 @@
 'use client'
 
-import Title from '@/app/_components/Title'
 import { usePathname, useParams } from 'next/navigation'
 import ForBuyer from './_components/ForBuyer'
 
