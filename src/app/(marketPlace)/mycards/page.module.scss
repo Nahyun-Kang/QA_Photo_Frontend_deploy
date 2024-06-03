@@ -1,5 +1,4 @@
 .main {
-  position: relative;
   max-width: 1480px;
   margin: 0 auto;
 
@@ -57,7 +56,6 @@
   right: 0;
   left: 0;
   display: none;
-  z-index: 4;
 
   @include device.mobile {
     display: block;
