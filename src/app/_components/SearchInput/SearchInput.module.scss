@@ -16,6 +16,11 @@
     padding: 11px 20px;
   }
 
+  @include device.mobile {
+    height: 45px;
+    padding: 11px 20px;
+  }
+
   &:focus-within {
     background-color: colors.$gray500; // 원하는 색상으로 변경
   }

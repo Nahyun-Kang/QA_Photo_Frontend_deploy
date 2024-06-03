@@ -10,29 +10,34 @@ import styles from './header.module.scss'
 import AlarmIcon from '/public/icons/alarm.svg'
 import MobileAlarmPage from '../Alarm/MobileAlarmPage'
 
-export default function MemberHeader() {
-  const [isProfileOpened, setIsProfileOpened] = useState(false)
+interface MemberHeaderProps {
+  isProfileOpened: boolean
+  handleToggleProfile: () => void
+  handleCloseProfile: () => void
+}
+
+export default function MemberHeader({
+  handleCloseProfile,
+  handleToggleProfile,
+  isProfileOpened,
+}: MemberHeaderProps) {
   const [isAlarmOpened, setIsAlarmOpened] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
   const ref = useRef<null | HTMLDivElement>(null)
   const alarmRef = useRef<null | HTMLDivElement>(null)
 
-  const handleToggleProfile = () => {
-    setIsProfileOpened((state) => !state)
-  }
-
   const handleToggleAlarm = () => {
     setIsAlarmOpened((state) => !state)
   }
 
-  const handleProfileOutsideClick = (e: Event) => {
-    if (
-      ref.current &&
-      !(e.target instanceof Node && ref.current.contains(e.target))
-    ) {
-      setIsProfileOpened(false)
-    }
-  }
+  // const handleProfileOutsideClick = (e: Event) => {
+  //   if (
+  //     ref.current &&
+  //     !(e.target instanceof Node && ref.current.contains(e.target))
+  //   ) {
+  //     handleCloseProfile()
+  //   }
+  // }
 
   const handleAlarmOutsideClick = (e: Event) => {
     if (
@@ -43,13 +48,13 @@ export default function MemberHeader() {
     }
   }
 
-  useEffect(() => {
-    document.addEventListener('mousedown', handleProfileOutsideClick)
+  // useEffect(() => {
+  //   document.addEventListener('mousedown', handleProfileOutsideClick)
 
-    return () => {
-      document.removeEventListener('mousedown', handleProfileOutsideClick)
-    }
-  }, [ref])
+  //   return () => {
+  //     document.removeEventListener('mousedown', handleProfileOutsideClick)
+  //   }
+  // }, [])
 
   useEffect(() => {
     document.addEventListener('mousedown', handleAlarmOutsideClick)
@@ -78,14 +83,6 @@ export default function MemberHeader() {
 
   return (
     <>
-      {isProfileOpened && isMobile && (
-        <ModalMain>
-          <div className={styles.mobileProfileContainer}>
-            <Profile nickname="유디" point={1540} />
-            <span className={styles.logout}>로그아웃</span>
-          </div>
-        </ModalMain>
-      )}
       <div className={styles.memberContainer}>
         <span className={styles.point}>1,540 P</span>
         <div className={styles.alarmContainer} ref={alarmRef}>
@@ -109,10 +106,18 @@ export default function MemberHeader() {
         </div>
         <div
           className={styles.userName}
-          ref={ref}
           onClick={handleToggleProfile}
+          ref={ref}
         >
-          <span>{'유디'}</span>
+          {isProfileOpened && isMobile && (
+            <ModalMain>
+              <div className={styles.mobileProfileContainer}>
+                <Profile nickname="유디" point={1540} />
+                <span className={styles.logout}>로그아웃</span>
+              </div>
+            </ModalMain>
+          )}
+          <div>{'유디'}</div>
           {isProfileOpened && (
             <div className={styles.profileContainer}>
               <Profile nickname="유디" point={1540} />

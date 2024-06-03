@@ -9,6 +9,7 @@ import MarketPlaceCardList from './_components/CardsList'
 import ModalMain from '../_components/Modal/Modal'
 import BasicModal from '../_components/Modal/BasicModal'
 import Profile from '../_components/Profile'
+import SellPhotoCardModal from '../_components/Modal/SellPhotoCardModal'
 
 export default function Home() {
   const handleButtonClick = () => {
@@ -32,7 +33,7 @@ export default function Home() {
           <MarketPlaceCardList />
         </div>
         <div className={styles.floatButtonContainer}>
-          <Button thickness="thin">포토카드 생성하기</Button>
+          <Button thickness="thin">나의 포토카드 판매하기</Button>
         </div>
       </main>
     </>

@@ -1,3 +1,5 @@
+import Link from 'next/link'
+
 import Title from '@/app/_components/Title'
 import Button from '@/app/_components/Button'
 
@@ -5,6 +7,7 @@ import styles from './page.module.scss'
 import OwnedCards from './_components/OwnedCards'
 
 import { MOCK_GRADELIST } from './MOCK_DATA'
+import MyGalleryCardList from './_components/MyGalleryCardList'
 
 export default function myGalleryPage() {
   return (
@@ -13,9 +16,11 @@ export default function myGalleryPage() {
         <Title>
           <div className={styles.titleContainer}>
             <h2 className={styles.title}>마이갤러리</h2>
-            <div className={styles.buttonContainer}>
-              <Button thickness="thin">포토카드 생성하기</Button>
-            </div>
+            <Link href={'/mygallery/create-card'}>
+              <div className={styles.buttonContainer}>
+                <Button thickness="thin">포토카드 생성하기</Button>
+              </div>
+            </Link>
           </div>
         </Title>
       </div>
@@ -23,6 +28,7 @@ export default function myGalleryPage() {
       <div className={styles.floatButtonContainer}>
         <Button thickness="thin">포토카드 생성하기</Button>
       </div>
+      <MyGalleryCardList />
     </main>
   )
 }

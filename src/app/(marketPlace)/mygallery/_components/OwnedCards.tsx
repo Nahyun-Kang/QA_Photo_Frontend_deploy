@@ -1,5 +1,6 @@
 import GradeChip from '@/app/_components/GradeChip'
 import styles from './ownedCards.module.scss'
+import Pagination from '@/app/_components/pagination'
 
 interface Grade {
   grade: 'common' | 'rare' | 'super_rare' | 'legendary'
@@ -32,6 +33,7 @@ export default function OwnedCards({
           )
         })}
       </ul>
+      <div className={styles.bottomLine}></div>
     </div>
   )
 }
