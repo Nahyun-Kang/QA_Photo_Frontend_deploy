@@ -31,6 +31,20 @@
       @include fonts.base-bold-12;
       color: colors.$white;
     }
+
+    &.thin {
+      @include fonts.base-regular-18;
+      color: colors.$white;
+
+      @include device.tablet {
+        @include fonts.base-regular-16;
+      }
+
+      @include device.mobile {
+        @include fonts.base-regular-12;
+        height: 40px;
+      }
+    }
   }
 
   &.thick {

@@ -4,6 +4,7 @@ import CardBuyer from '@/app/_components/Card/CardBuyer'
 import Title from '@/app/_components/Title'
 import Button from '@/app/_components/Button'
 import Grade from '@/app/_components/Grade'
+import ExchangeList from './ExchangeList'
 
 import styles from './forBuyer.module.scss'
 
@@ -53,6 +54,9 @@ export default function ForBuyer() {
             <Button thickness="thin">포토카드 교환하기</Button>
           </div>
         </div>
+      </div>
+      <div className={styles.exchangeListWrapper}>
+        <ExchangeList type="buyer" />
       </div>
     </div>
   )

@@ -202,6 +202,7 @@ const Card = Object.assign(CardWrapper, {
   CardContainer,
   image: CardImage,
   information: CardInformation,
+  ExchangeInformation,
   QuantityContainer,
   Quantity,
   Remain,

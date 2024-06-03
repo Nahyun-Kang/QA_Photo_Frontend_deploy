@@ -1,5 +1,6 @@
 .grade {
   &.card {
+    text-wrap: nowrap;
     @include fonts.base-light-16;
 
     @include device.mobile {

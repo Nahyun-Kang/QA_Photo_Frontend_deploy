@@ -38,7 +38,9 @@ export type ExchangeCardType = Omit<
   CardType,
   'totalQuantity' | 'remainingQuantity'
 > &
-  InformationDetailType
+  InformationDetailType & {
+    type?: 'seller' | 'buyer'
+  }
 
 export interface CardListType {
   list: CardListType[]
