@@ -67,6 +67,18 @@ export default function ExchangeCard({
           />
         </ModalMain>
       } */}
+      {/* {
+        <ModalMain>
+          <BasicModal
+            title="교환 제시 취소"
+            description={
+              <>{`[${gradeExtract(grade)} | ${name}] 교환 제시를 취소하시겠습니까?`}</>
+            }
+            onClick={() => console.log()}
+            buttonName="취소하기"
+          />
+        </ModalMain>
+      } */}
       <Card>
         <Card.CardContainer>
           <Card.image imageUrl={imageUrl} />
