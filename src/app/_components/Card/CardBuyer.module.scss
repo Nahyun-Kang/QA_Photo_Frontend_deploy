@@ -18,3 +18,35 @@
     @include fonts.base-regular-18;
   }
 }
+
+.priceWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.price {
+  color: colors.$white;
+  @include fonts.base-bold-24;
+
+  @include device.tablet {
+    @include fonts.base-bold-20;
+  }
+}
+
+.quantity {
+  color: colors.$gray300;
+  @include fonts.base-regular-20;
+
+  @include device.tablet {
+    @include fonts.base-regular-18;
+  }
+}
+
+.buttonWrapper {
+  margin-top: 80px;
+
+  @include device.tablet {
+    margin-top: 40px;
+  }
+}

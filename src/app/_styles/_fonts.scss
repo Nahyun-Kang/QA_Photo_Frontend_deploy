@@ -49,6 +49,13 @@ $black-font: #2b2b2b;
   letter-spacing: -3%;
 }
 
+@mixin main-title-16 {
+  font-family: 'BaskinRobbins';
+  font-size: 1.6rem;
+  font-weight: 600;
+  letter-spacing: -3%;
+}
+
 @mixin base-bold-40 {
   font-family: 'NotoSansKR';
   font-size: 4rem;

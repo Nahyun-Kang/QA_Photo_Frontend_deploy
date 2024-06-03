@@ -1,0 +1,30 @@
+.wrapper {
+  margin: 0 auto;
+  max-width: 1480px;
+  display: flex;
+  flex-direction: column;
+
+  @include device.tablet {
+    width: 100%;
+    padding: 0 20px;
+  }
+  @include device.mobile {
+    width: 100%;
+    padding: 0 15px;
+  }
+}
+
+.pageTitle {
+  display: block;
+  margin: 60px 0;
+  color: colors.$gray300;
+  @include fonts.main-title-24;
+
+  @include device.tablet {
+    @include fonts.main-title-16;
+  }
+
+  @include device.mobile {
+    display: none;
+  }
+}

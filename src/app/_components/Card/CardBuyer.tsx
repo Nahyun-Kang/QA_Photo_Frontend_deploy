@@ -78,12 +78,14 @@ export default function CardBuyer({
           <label id="totalPrice" className={styles.option_label}>
             총 가격
           </label>
-          <div>
-            <span>8p</span>
-            <span>(2장)</span>
+          <div className={styles.priceWrapper}>
+            <span className={styles.price}>{`${price * quantity}P`}</span>
+            <span className={styles.quantity}>{`(${quantity}장)`}</span>
           </div>
         </div>
-        <Button>포토카드 구매하기</Button>
+        <div className={styles.buttonWrapper}>
+          <Button>포토카드 구매하기</Button>
+        </div>
       </form>
     </CardDetail>
   )
