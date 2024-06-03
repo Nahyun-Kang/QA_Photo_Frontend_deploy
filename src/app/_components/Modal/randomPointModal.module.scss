@@ -1,0 +1,165 @@
+.modalContainer {
+  margin: 0 auto;
+  padding: 80px 99px;
+  width: 1034px;
+  height: 646px;
+
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+  border-radius: 2px;
+  background-color: colors.$gray500;
+
+  @include device.tablet {
+    width: 600px;
+    height: 500px;
+  }
+
+  @include device.tablet {
+    width: 100%;
+  }
+}
+
+.button {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+}
+
+.modalWrapper {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  @include device.tablet {
+  }
+
+  @include device.mobile {
+    width: 100%;
+    padding: 0 15px;
+  }
+}
+
+.boxWrapper {
+  position: relative;
+  width: 245px;
+  height: 196px;
+
+  @include device.tablet {
+    width: 165px;
+    height: 127px;
+  }
+
+  @include device.mobile {
+    width: 97px;
+    height: 75px;
+  }
+}
+
+.titleWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+
+  @include device.tablet {
+    gap: 30px;
+  }
+}
+
+.boxContainer {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+
+  @include device.tablet {
+    gap: 25px;
+  }
+
+  @include device.mobile {
+    gap: 15px;
+  }
+}
+
+.randomPointWrapper {
+  display: flex;
+  align-items: center;
+}
+
+.random {
+  color: colors.$white;
+  @include fonts.main-title-46;
+
+  @include device.tablet {
+    @include fonts.main-title-36;
+  }
+
+  @include device.mobile {
+    @include fonts.main-title-30;
+  }
+}
+
+.point {
+  color: colors.$main;
+  @include fonts.main-title-46;
+
+  @include device.tablet {
+    @include fonts.main-title-36;
+  }
+
+  @include device.mobile {
+    @include fonts.main-title-30;
+  }
+}
+
+.messageWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.message {
+  color: colors.$white;
+  @include fonts.base-bold-20;
+  text-align: center;
+
+  line-height: normal;
+
+  @include device.tablet {
+    @include fonts.base-bold-16;
+  }
+}
+
+.timeWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 80px;
+
+  @include device.tablet {
+    flex-direction: column;
+    gap: 5px;
+    margin-bottom: 60px;
+  }
+}
+
+.timeMessage {
+  color: colors.$gray300;
+  @include fonts.base-regular-16;
+
+  @include device.tablet {
+    @include fonts.base-regular-14;
+  }
+}
+
+.time {
+  color: colors.$main;
+  @include fonts.base-regular-16;
+
+  @include device.tablet {
+    @include fonts.base-regular-14;
+  }
+}

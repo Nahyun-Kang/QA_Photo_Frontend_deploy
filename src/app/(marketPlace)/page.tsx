@@ -10,6 +10,7 @@ import ModalMain from '../_components/Modal/Modal'
 import BasicModal from '../_components/Modal/BasicModal'
 import Profile from '../_components/Profile'
 import SellPhotoCardModal from '../_components/Modal/SellPhotoCardModal'
+import RandomPointModal from '../_components/Modal/RandomPointModal'
 
 export default function Home() {
   const handleButtonClick = () => {
@@ -34,6 +35,11 @@ export default function Home() {
           />
         </ModalMain>
       } */}
+      {
+        <ModalMain>
+          <RandomPointModal />
+        </ModalMain>
+      }
       <main className={styles.main}>
         <div className={styles.section}>
           <div className={styles.titleWrapper}>
