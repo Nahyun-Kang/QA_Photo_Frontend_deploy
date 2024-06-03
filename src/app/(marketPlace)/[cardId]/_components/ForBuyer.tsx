@@ -26,6 +26,7 @@ export default function ForBuyer() {
         </div>
         <div className={styles.cardContainer}>
           <CardBuyer
+            name="우리집 앞마당"
             grade="legendary"
             genre="풍경"
             maker="미쓰손"
