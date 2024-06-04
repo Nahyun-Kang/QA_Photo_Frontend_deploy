@@ -1,0 +1,172 @@
+.wrapper {
+  position: relative;
+}
+
+.container {
+  width: 100%px;
+  height: 480px;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 0 0 40px;
+
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  border-radius: 16px 16px 0px 0px;
+  background-color: #1b1b1b;
+}
+
+.titleContainer {
+  width: 100%;
+  padding: 16px 10px;
+
+  display: grid;
+  grid-template-areas: '. filter close';
+}
+
+.title {
+  grid-area: filter;
+  justify-self: center;
+  align-self: center;
+
+  color: colors.$gray400;
+  @include fonts.base-regular-16;
+}
+
+.close {
+  grid-area: close;
+  justify-self: end;
+  align-self: center;
+}
+
+.buttonContainer {
+  padding: 0 15px;
+
+  display: flex;
+  align-items: center;
+  justify-self: end;
+  gap: 10px;
+}
+
+.refreshButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 8px;
+
+  cursor: pointer;
+
+  width: 55px;
+  height: 55px;
+  padding: 15px;
+}
+
+.filterButton {
+  width: 100%;
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: colors.$main;
+
+  cursor: pointer;
+
+  @include fonts.base-bold-16;
+}
+
+.filterList {
+  padding: 0 24px;
+
+  display: flex;
+  gap: 24px;
+  margin-bottom: 16px;
+
+  border-bottom: 1px solid var(--gray-gray500, #161616);
+}
+
+.filterContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  padding: 16px;
+
+  cursor: pointer;
+
+  &.active {
+    border-bottom: 1.5px solid var(--white-white, #fff);
+  }
+}
+
+.filterName {
+  color: colors.$gray400;
+  @include fonts.base-regular-14;
+
+  &.active {
+    color: colors.$white;
+    @include fonts.base-bold-14;
+  }
+}
+
+.activeFilterCount {
+  color: colors.$gray400;
+  @include fonts.base-regular-14;
+
+  &.active {
+    color: colors.$white;
+    @include fonts.base-bold-14;
+  }
+}
+
+.attributeList {
+  display: flex;
+  flex-direction: column;
+}
+
+.attributeItem {
+  padding: 16px 32px;
+  display: flex;
+  justify-content: space-between;
+
+  background-color: #1b1b1b;
+  cursor: pointer;
+
+  &.active {
+    background-color: colors.$gray500;
+  }
+}
+
+.attributeListContainer {
+  flex-grow: 1;
+}
+
+.grade_common {
+  color: colors.$main;
+  @include fonts.base-light-14;
+}
+.grade_rare {
+  color: colors.$blue;
+  @include fonts.base-light-14;
+}
+.grade_super_rare {
+  color: colors.$purple;
+  @include fonts.base-light-14;
+}
+.grade_legendary {
+  color: colors.$red;
+  @include fonts.base-light-14;
+}
+
+.attributeName {
+  color: colors.$white;
+  @include fonts.base-light-14;
+}
+
+.count {
+  color: colors.$gray100;
+  @include fonts.base-light-14;
+}

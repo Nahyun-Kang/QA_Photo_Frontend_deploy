@@ -13,6 +13,7 @@ import RandomPointModal from '../_components/Modal/RandomPointModal'
 import RegisterExpectedExchangeInformation from '../_components/Modal/RetisterExpectedExchangeInformationModal'
 import ExchangePhotoCardModal from '../_components/Modal/ExchangePhotoCardModal'
 import ProposeExchangeModal from '../_components/Modal/ProposeExchangeModal'
+import Filter from '../_components/Filter'
 
 export default function Home() {
   const handleButtonClick = () => {
@@ -21,11 +22,11 @@ export default function Home() {
 
   return (
     <>
-      {/* {
+      {
         <ModalMain>
-          <ProposeExchangeModal />
+          <Filter hasGenre={true} hasGrade={true} hasSoldOut={true} />
         </ModalMain>
-      } */}
+      }
       {/* {
         <ModalMain>
           <BasicModal
