@@ -21,11 +21,11 @@ export default function Home() {
 
   return (
     <>
-      {
+      {/* {
         <ModalMain>
           <ProposeExchangeModal />
         </ModalMain>
-      }
+      } */}
       {/* {
         <ModalMain>
           <BasicModal

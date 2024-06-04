@@ -7,6 +7,7 @@ import replaceSingleQuotes from '@/app/_util/replaceSingleQuote'
 
 import styles from './result.module.scss'
 import Close from '/public/icons/close.svg'
+import gradeExtract from '@/app/_util/gradeExtract'
 
 interface ResultType {
   isSuccess: boolean
@@ -35,7 +36,7 @@ export default function Result({
 
   const message = () => {
     if (pathname.includes('create-card')) {
-      return `[${replaceSingleQuotes(grade)} | ${replaceSingleQuotes(cardName)}] ${description}`
+      return `[${gradeExtract(replaceSingleQuotes(grade) as GradeType)} | ${replaceSingleQuotes(cardName)}] ${description}`
     } else {
       return `[${grade} | ${cardName}] ${quantity}장 ${description}]`
     }
@@ -43,16 +44,18 @@ export default function Result({
 
   return (
     <div className={styles.container}>
-      <div>
+      <div className={styles.wrapper}>
         <button onClick={onClose}>
           <Close className={styles.closeIcon} />
         </button>
-        <div>
+        <div className={styles.titleWrapper}>
           <div className={styles.title}>{title}</div>
-          <div>{isSuccess ? '성공' : '실패'}</div>
+          <div className={isSuccess ? styles.success : styles.fail}>
+            {isSuccess ? '성공' : '실패'}
+          </div>
         </div>
-        <div>{message()}</div>
-        <div>
+        <div className={styles.message}>{message()}</div>
+        <div className={styles.buttonContainer}>
           <Button buttonStyle="secondary" thickness="thin" onClick={onClick}>
             {buttonMessage}
           </Button>

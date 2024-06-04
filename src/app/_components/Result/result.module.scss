@@ -5,14 +5,101 @@
   display: flex;
   justify-content: center;
   align-items: center;
+
+  position: relative;
 }
 
 .closeIcon {
+  position: absolute;
+  top: 20%;
+  right: 30%;
+
   width: 36px;
   height: 36px;
+
+  cursor: pointer;
+
+  @include device.tablet {
+    top: 20%;
+    right: 10%;
+
+    width: 24px;
+    height: 24px;
+  }
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.titleWrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .title {
   color: colors.$white;
   @include fonts.main-title-46;
+
+  @include device.tablet {
+    @include fonts.main-title-36;
+  }
+
+  @include device.mobile {
+    @include fonts.main-title-30;
+  }
+}
+
+.success {
+  color: colors.$main;
+  @include fonts.main-title-46;
+
+  @include device.tablet {
+    @include fonts.main-title-36;
+  }
+
+  @include device.mobile {
+    @include fonts.main-title-30;
+  }
+}
+
+.fail {
+  color: colors.$gray300;
+  @include fonts.main-title-46;
+
+  @include device.tablet {
+    @include fonts.main-title-36;
+  }
+
+  @include device.mobile {
+    @include fonts.main-title-30;
+  }
+}
+
+.buttonContainer {
+  width: 440px;
+
+  @include device.tablet {
+    width: 277px;
+  }
+
+  @include device.mobile {
+    width: 226px;
+  }
+}
+
+.message {
+  color: colors.$white;
+  word-wrap: normal;
+  word-break: keep-all;
+  @include fonts.base-bold-20;
+  text-align: center;
+
+  @include device.tablet {
+    @include fonts.base-bold-16;
+  }
 }
