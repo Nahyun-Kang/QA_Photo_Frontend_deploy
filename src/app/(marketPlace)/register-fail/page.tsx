@@ -13,7 +13,7 @@ export default function RegisterFailPage() {
   }
 
   const handleButtonClick = () => {
-    router.push('/mygallery')
+    router.push('/')
   }
 
   const cardName = decodeURIComponent(searchParams.get('cardname') || '')

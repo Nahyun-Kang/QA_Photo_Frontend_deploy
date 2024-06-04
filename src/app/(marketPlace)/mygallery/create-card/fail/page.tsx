@@ -18,9 +18,6 @@ export default function FailCreateCardPage() {
 
   const cardName = decodeURIComponent(searchParams.get('cardname') || '')
 
-  console.log(searchParams.get('grade'))
-  console.log(cardName)
-
   return (
     <div>
       <Result

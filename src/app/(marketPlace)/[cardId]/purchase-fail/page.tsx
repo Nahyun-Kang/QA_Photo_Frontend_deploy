@@ -4,7 +4,7 @@ import { useRouter, useSearchParams } from 'next/navigation'
 
 import Result from '@/app/_components/Result'
 
-export default function RegisterSuccessPage() {
+export default function PurchaseFailPage() {
   const router = useRouter()
   const searchParams = useSearchParams()
 
@@ -13,7 +13,7 @@ export default function RegisterSuccessPage() {
   }
 
   const handleButtonClick = () => {
-    router.push('/mycards')
+    router.push('/')
   }
 
   const cardName = decodeURIComponent(searchParams.get('cardname') || '')
@@ -22,12 +22,12 @@ export default function RegisterSuccessPage() {
     <div>
       <Result
         isSuccess={true}
-        title={'판매 등록'}
+        title={'구매'}
         grade={searchParams.get('grade')}
         cardName={cardName}
         quantity={searchParams.get('quantity')}
-        description="판매 등록에 성공했습니다!"
-        buttonMessage="나의 판매 포토카드에서 확인하기"
+        description="구매에 실패했습니다."
+        buttonMessage="마켓플레이스로 돌아가기"
         onClick={handleButtonClick}
         onClose={handleCloseButtonClick}
       />
