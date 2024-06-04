@@ -8,12 +8,12 @@ import { CARDS_LIST } from '@/app/(marketPlace)/CARD_LISTS'
 
 import { GENRE_LIST, GRADE_LIST } from '@/app/_constants/listConstants'
 
-import styles from './sellPhotoCard.module.scss'
+import styles from './exchangePhotoCardModal.module.scss'
 import Close from '/public/icons/close.svg'
 import Filter from '/public/icons/filter.svg'
 import MobileBar from '/public/icons/mobile_bar.svg'
 
-export default function SellPhotoCardModal() {
+export default function ExchangePhotoCardModal() {
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
@@ -22,7 +22,7 @@ export default function SellPhotoCardModal() {
         <div>
           <div className={styles.myGallery}>마이갤러리</div>
           <Title>
-            <div className={styles.title}>나의 포토카드 판매하기</div>
+            <div className={styles.title}>포토카드 교환하기</div>
           </Title>
           <div className={styles.filterContainer}>
             <div className={styles.filterWrapper}>

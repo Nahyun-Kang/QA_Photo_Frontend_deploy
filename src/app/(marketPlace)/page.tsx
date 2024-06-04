@@ -11,6 +11,7 @@ import BasicModal from '../_components/Modal/BasicModal'
 import Profile from '../_components/Profile'
 import RandomPointModal from '../_components/Modal/RandomPointModal'
 import RegisterExpectedExchangeInformation from '../_components/Modal/RetisterExpectedExchangeInformationModal'
+import ExchangePhotoCardModal from '../_components/Modal/ExchangePhotoCardModal'
 
 export default function Home() {
   const handleButtonClick = () => {
@@ -21,7 +22,7 @@ export default function Home() {
     <>
       {
         <ModalMain>
-          <RegisterExpectedExchangeInformation />
+          <ExchangePhotoCardModal />
         </ModalMain>
       }
       {/* {
