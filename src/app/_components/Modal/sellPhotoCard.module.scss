@@ -1,0 +1,181 @@
+.wrapper {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  position: relative;
+
+  width: 1160px;
+  height: 1000px;
+
+  padding: 60px 120px;
+
+  border-radius: 2px;
+  background-color: colors.$gray500;
+
+  @include device.tablet {
+    width: 100%;
+    height: 100%;
+
+    padding: 60px 20px;
+
+    position: fixed;
+    top: 40px;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+.closeIcon {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+
+  @include device.tablet {
+    display: none;
+  }
+}
+
+.mobileBar {
+  display: none;
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  @include device.tablet {
+    display: block;
+  }
+}
+
+.title {
+  color: colors.$white;
+  @include fonts.main-title-46;
+
+  @include device.tablet {
+    @include fonts.main-title-40;
+  }
+
+  @include device.mobile {
+    @include fonts.main-title-26;
+  }
+}
+
+.myGallery {
+  margin-bottom: 40px;
+
+  color: colors.$gray300;
+  @include fonts.main-title-24;
+
+  @include device.tablet {
+    @include fonts.main-title-16;
+  }
+
+  @include device.mobile {
+    @include fonts.main-title-14;
+  }
+}
+
+.ul {
+  margin-top: 40px;
+  height: 640px;
+
+  overflow: auto;
+
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+
+  @include device.tablet {
+    height: 100vh;
+    margin-top: 20px;
+    gap: 20px;
+  }
+
+  @include device.mobile {
+    gap: 5px;
+  }
+
+  &::-webkit-scrollbar {
+    width: 8px; /* 세로축 스크롤바 폭 너비 */
+    height: 20px;
+    background-color: transparent;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    width: 8px;
+    height: 20px;
+    background-color: colors.$gray400;
+    border-radius: 9999px;
+  }
+
+  &::-webkit-scrollbar-track {
+    width: 8px;
+  }
+}
+
+.filterContainer {
+  margin-top: 20px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  @include device.mobile {
+    flex-direction: column;
+    align-items: normal;
+    gap: 15px;
+  }
+}
+
+.filterWrapper {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 60px;
+
+  @include device.tablet {
+    gap: 25px;
+  }
+
+  @include device.mobile {
+    gap: 10px;
+  }
+}
+
+.filters {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+
+  gap: 45px;
+
+  @include device.tablet {
+    gap: 25px;
+  }
+
+  @include device.mobile {
+    display: none;
+  }
+}
+
+.button {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 45px;
+  height: 45px;
+
+  background-color: colors.$black;
+  border: 1px solid colors.$gray200;
+  border-radius: 2px;
+
+  @include device.mobile {
+    display: flex;
+  }
+}

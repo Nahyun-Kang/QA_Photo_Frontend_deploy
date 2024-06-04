@@ -19,6 +19,11 @@ export default function Home() {
 
   return (
     <>
+      {
+        <ModalMain>
+          <SellPhotoCardModal />
+        </ModalMain>
+      }
       {/* {
         <ModalMain>
           <BasicModal
@@ -35,11 +40,11 @@ export default function Home() {
           />
         </ModalMain>
       } */}
-      {
+      {/* {
         <ModalMain>
           <RandomPointModal />
         </ModalMain>
-      }
+      } */}
       <main className={styles.main}>
         <div className={styles.section}>
           <div className={styles.titleWrapper}>
