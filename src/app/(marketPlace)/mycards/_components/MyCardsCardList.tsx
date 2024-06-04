@@ -25,7 +25,7 @@ export default function MyCardsCardList() {
           <div className={styles.filters}>
             <Dropdown attribute="등급" list={GRADE_LIST} />
             <Dropdown attribute="장르" list={GENRE_LIST} />
-            <Dropdown attribute="판매방법" list={SOLD_OUT_LIST} />
+            {/* <Dropdown attribute="판매방법" list={SOLD_OUT_LIST} /> */}
             <Dropdown attribute="매진여부" list={SOLD_OUT_LIST} />
           </div>
         </div>

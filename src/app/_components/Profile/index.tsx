@@ -26,6 +26,9 @@ export default function Profile({ nickname, point }: ProfileProps) {
         <Link href={'/mycards'} className={styles.link}>
           <div>나의 판매 포토카드</div>
         </Link>
+        <Link href={'/myexchangecards'} className={styles.link}>
+          <div>나의 교환 포토카드</div>
+        </Link>
       </div>
     </div>
   )
