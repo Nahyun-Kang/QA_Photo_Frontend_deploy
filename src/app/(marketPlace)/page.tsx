@@ -9,8 +9,8 @@ import MarketPlaceCardList from './_components/CardsList'
 import ModalMain from '../_components/Modal/Modal'
 import BasicModal from '../_components/Modal/BasicModal'
 import Profile from '../_components/Profile'
-import SellPhotoCardModal from '../_components/Modal/SellPhotoCardModal'
 import RandomPointModal from '../_components/Modal/RandomPointModal'
+import RegisterExpectedExchangeInformation from '../_components/Modal/RetisterExpectedExchangeInformationModal'
 
 export default function Home() {
   const handleButtonClick = () => {
@@ -21,7 +21,7 @@ export default function Home() {
     <>
       {
         <ModalMain>
-          <SellPhotoCardModal />
+          <RegisterExpectedExchangeInformation />
         </ModalMain>
       }
       {/* {

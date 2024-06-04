@@ -55,14 +55,14 @@
 
 .title {
   color: colors.$white;
-  @include fonts.main-title-46;
+  @include fonts.base-bold-40;
 
   @include device.tablet {
-    @include fonts.main-title-40;
+    @include fonts.base-bold-32;
   }
 
   @include device.mobile {
-    @include fonts.main-title-26;
+    @include fonts.base-bold-24;
   }
 }
 
