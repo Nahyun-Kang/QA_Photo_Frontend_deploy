@@ -2,7 +2,7 @@ import type { Metadata } from 'next'
 import './_styles/reset.css'
 import './_styles/globals.css'
 
-import JotaiProviders from './JotaiProvider'
+import Providers from './Providers'
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -17,10 +17,10 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <body>
-        <JotaiProviders>
+        <Providers>
           <div id="modal-root" />
           <div>{children}</div>
-        </JotaiProviders>
+        </Providers>
       </body>
     </html>
   )

@@ -13,6 +13,7 @@ import Input from '@/app/_components/Input/InputComponents'
 import { PLACEHOLDER } from '@/app/(auth)/_constants/authConstants'
 import CommonButton from '@/app/_components/Button'
 import login from '@/app/_api/auth/login'
+import { setCookie } from '@/app/_util/cookie'
 
 import styles from './loginForm.module.scss'
 
@@ -36,7 +37,10 @@ export default function LoginForm() {
 
   const onSubmit = async (data: FieldValues) => {
     const res = await login({ email: data.email, password: data.password })
-    if (res !== null) {
+    if (res) {
+      const { accessToken, refreshToken } = res.data
+      setCookie('accessToken', accessToken, 'access')
+      setCookie('refreshToken', refreshToken, 'refresh')
       router.push('/')
     } else {
       setError('email', { message: ERROR_MESSAGE.emailCheck })
