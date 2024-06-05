@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 
-import { GradeType } from '@/app/_lib/cardType'
+import { GradeType } from '@/app/_lib/types/cardType'
 
 import styles from './filter.module.scss'
 

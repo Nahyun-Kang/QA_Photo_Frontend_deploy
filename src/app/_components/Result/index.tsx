@@ -2,7 +2,7 @@
 import { usePathname } from 'next/navigation'
 
 import Button from '@/app/_components/Button'
-import { GradeType } from '@/app/_lib/cardType'
+import { GradeType } from '@/app/_lib/types/cardType'
 import replaceSingleQuotes from '@/app/_util/replaceSingleQuote'
 
 import styles from './result.module.scss'

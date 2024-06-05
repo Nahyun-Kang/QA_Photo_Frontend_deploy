@@ -3,7 +3,7 @@ import { useState } from 'react'
 
 import CardDetail from './CardDetailComponents'
 import NumberInput from './NumberInput'
-import { GradeType } from '@/app/_lib/cardType'
+import { GradeType } from '@/app/_lib/types/cardType'
 
 import styles from './MyCardDetail.module.scss'
 

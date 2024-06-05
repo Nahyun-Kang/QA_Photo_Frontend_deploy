@@ -1,4 +1,4 @@
-import { GradeType } from '@/app/_lib/cardType'
+import { GradeType } from '@/app/_lib/types/cardType'
 
 interface ExchangeCardListType {
   cardName: string

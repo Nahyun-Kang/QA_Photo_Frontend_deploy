@@ -1,4 +1,4 @@
-import { GradeType } from '@/app/_lib/cardType'
+import { GradeType } from '@/app/_lib/types/cardType'
 import { AlarmType } from '@/app/_lib/alarmType'
 import { getTimeAgo } from '@/app/_util/getTimeAgo'
 import gradeExtract from '@/app/_util/gradeExtract'

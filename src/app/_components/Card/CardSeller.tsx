@@ -1,5 +1,5 @@
 import Button from '@/app/_components/Button'
-import { GradeType } from '@/app/_lib/cardType'
+import { GradeType } from '@/app/_lib/types/cardType'
 import CardDetail from './CardDetailComponents'
 
 import styles from './CardSeller.module.scss'

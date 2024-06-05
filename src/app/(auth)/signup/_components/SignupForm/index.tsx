@@ -7,6 +7,7 @@ import {
   useFormContext,
 } from 'react-hook-form'
 import { ErrorMessage } from '@hookform/error-message'
+import signup from '@/app/_api/auth/signup'
 
 import {
   EMAIL_RULES,
@@ -29,6 +30,7 @@ export default function SignupForm() {
     handleSubmit,
     watch,
     getValues,
+    setError,
   } = useForm({
     defaultValues: {
       email: '',
@@ -40,14 +42,20 @@ export default function SignupForm() {
   })
 
   const values = getValues()
-  console.log(values)
 
   const handleEyeClick = () => {
     setIsVisible((state) => !state)
   }
 
-  const onSubmit = (data: FieldValues) => {
-    console.log(data)
+  const onSubmit = async (data: FieldValues) => {
+    const res = await signup({
+      email: data.email,
+      password: data.password,
+      nickname: data.nickname,
+    })
+    if (res !== null) {
+      console.log(res)
+    }
   }
 
   return (

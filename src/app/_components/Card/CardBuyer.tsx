@@ -6,7 +6,7 @@ import ModalMain from '../Modal/Modal'
 import BasicModal from '../Modal/BasicModal'
 import CardDetail from './CardDetailComponents'
 import Button from '@/app/_components/Button'
-import { GradeType } from '@/app/_lib/cardType'
+import { GradeType } from '@/app/_lib/types/cardType'
 
 import styles from './CardBuyer.module.scss'
 import gradeExtract from '@/app/_util/gradeExtract'

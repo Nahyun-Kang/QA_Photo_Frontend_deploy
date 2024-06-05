@@ -7,7 +7,7 @@ import ModalMain from '../Modal/Modal'
 import BasicModal from '../Modal/BasicModal'
 
 import gradeExtract from '@/app/_util/gradeExtract'
-import { ExchangeCardType } from '@/app/_lib/cardType'
+import { ExchangeCardType } from '@/app/_lib/types/cardType'
 
 import styles from './Card.module.scss'
 

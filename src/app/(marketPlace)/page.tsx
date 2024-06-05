@@ -22,11 +22,11 @@ export default function Home() {
 
   return (
     <>
-      {
+      {/* {
         <ModalMain>
           <Filter hasGenre={true} hasGrade={true} hasSoldOut={true} />
         </ModalMain>
-      }
+      } */}
       {/* {
         <ModalMain>
           <BasicModal

@@ -1,4 +1,4 @@
-import { GradeType } from '@/app/_lib/cardType'
+import { GradeType } from '@/app/_lib/types/cardType'
 import { AlarmType } from '@/app/_lib/alarmType'
 
 interface AlarmMockDataType {

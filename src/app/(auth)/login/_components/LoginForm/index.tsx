@@ -6,10 +6,12 @@ import { ErrorMessage } from '@hookform/error-message'
 import {
   EMAIL_RULES,
   LOGIN_PASSWORD_RULES,
+  ERROR_MESSAGE,
 } from '@/app/(auth)/_constants/authConstants'
 import Input from '@/app/_components/Input/InputComponents'
 import { PLACEHOLDER } from '@/app/(auth)/_constants/authConstants'
 import CommonButton from '@/app/_components/Button'
+import login from '@/app/_api/auth/login'
 
 import styles from './loginForm.module.scss'
 
@@ -29,8 +31,14 @@ export default function LoginForm() {
     setIsVisible((state) => !state)
   }
 
-  const onSubmit = (data: FieldValues) => {
-    console.log(data)
+  const onSubmit = async (data: FieldValues) => {
+    const res = await login({ email: data.email, password: data.password })
+    if (res !== null) {
+      console.log(res)
+    } else {
+      setError('email', { message: ERROR_MESSAGE.emailCheck })
+      setError('password', { message: ERROR_MESSAGE.passwordCheck })
+    }
   }
 
   return (
