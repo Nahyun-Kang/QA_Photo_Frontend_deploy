@@ -7,6 +7,7 @@ import ModalMain from '@/app/_components/Modal/Modal'
 import Alarm from '@/app/_components/Alarm'
 import logout from '@/app/_api/auth/logout'
 import { removeCookie } from '@/app/_util/cookie'
+import pointTostring from '@/app/_util/pointToString'
 
 import styles from './header.module.scss'
 import AlarmIcon from '/public/icons/alarm.svg'
@@ -16,12 +17,16 @@ interface MemberHeaderProps {
   isProfileOpened: boolean
   handleToggleProfile: () => void
   handleCloseProfile: () => void
+  points: number
+  nickname: string
 }
 
 export default function MemberHeader({
   handleCloseProfile,
   handleToggleProfile,
   isProfileOpened,
+  points,
+  nickname,
 }: MemberHeaderProps) {
   const [isAlarmOpened, setIsAlarmOpened] = useState(false)
   const [isMobile, setIsMobile] = useState(false)
@@ -98,7 +103,7 @@ export default function MemberHeader({
   return (
     <>
       <div className={styles.memberContainer}>
-        <span className={styles.point}>1,540 P</span>
+        <span className={styles.point}>{`${pointTostring(points)} P`}</span>
         <div className={styles.alarmContainer} ref={alarmRef}>
           {isAlarmOpened && isMobile && (
             <ModalMain>
@@ -126,15 +131,15 @@ export default function MemberHeader({
           {isProfileOpened && isMobile && (
             <ModalMain>
               <div className={styles.mobileProfileContainer}>
-                <Profile nickname="유디" point={1540} />
+                <Profile nickname={nickname} point={points} />
                 <span className={styles.logout}>로그아웃</span>
               </div>
             </ModalMain>
           )}
-          <div>{'유디'}</div>
+          <div>{nickname}</div>
           {isProfileOpened && (
             <div className={styles.profileContainer}>
-              <Profile nickname="유디" point={1540} />
+              <Profile nickname={nickname} point={points} />
             </div>
           )}
         </div>

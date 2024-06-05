@@ -63,6 +63,16 @@
   }
 }
 
+.notMemberContainer {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+  @include device.mobile {
+    gap: 10px;
+  }
+}
+
 .authButton {
   @include fonts.base-regular-14;
   color: colors.$gray200;

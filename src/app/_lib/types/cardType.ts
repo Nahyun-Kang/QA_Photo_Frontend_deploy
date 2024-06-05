@@ -45,3 +45,11 @@ export type ExchangeCardType = Omit<
 export interface CardListType {
   list: CardListType[]
 }
+
+export interface CardCountType {
+  totalCount: number
+  commonCount: number
+  rareCount: number
+  superRareCount: number
+  legendaryCount: number
+}
