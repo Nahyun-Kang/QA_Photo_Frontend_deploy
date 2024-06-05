@@ -1,4 +1,5 @@
 'use client'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import {
   useForm,
@@ -23,6 +24,7 @@ import styles from './SignupForm.module.scss'
 
 export default function SignupForm() {
   const [isVisible, setIsVisible] = useState(false)
+  const router = useRouter()
 
   const {
     control,
@@ -54,7 +56,7 @@ export default function SignupForm() {
       nickname: data.nickname,
     })
     if (res !== null) {
-      console.log(res)
+      router.push('/login')
     }
   }
 

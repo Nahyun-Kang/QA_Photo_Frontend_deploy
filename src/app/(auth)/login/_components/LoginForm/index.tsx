@@ -1,4 +1,5 @@
 'use client'
+import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm, Controller, FieldValues } from 'react-hook-form'
 import { ErrorMessage } from '@hookform/error-message'
@@ -17,6 +18,8 @@ import styles from './loginForm.module.scss'
 
 export default function LoginForm() {
   const [isVisible, setIsVisible] = useState(false)
+  const router = useRouter()
+
   const {
     control,
     formState: { errors },
@@ -34,7 +37,7 @@ export default function LoginForm() {
   const onSubmit = async (data: FieldValues) => {
     const res = await login({ email: data.email, password: data.password })
     if (res !== null) {
-      console.log(res)
+      router.push('/')
     } else {
       setError('email', { message: ERROR_MESSAGE.emailCheck })
       setError('password', { message: ERROR_MESSAGE.passwordCheck })
