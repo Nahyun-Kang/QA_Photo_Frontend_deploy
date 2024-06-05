@@ -1,6 +1,7 @@
 'use client'
 import { useRouter } from 'next/navigation'
 import { useState, useRef, useEffect } from 'react'
+import { useQueryClient } from '@tanstack/react-query'
 
 import Profile from '@/app/_components/Profile'
 import ModalMain from '@/app/_components/Modal/Modal'
@@ -12,6 +13,7 @@ import pointTostring from '@/app/_util/pointToString'
 import styles from './header.module.scss'
 import AlarmIcon from '/public/icons/alarm.svg'
 import MobileAlarmPage from '../Alarm/MobileAlarmPage'
+import { QUERY_KEYS } from '@/app/_constants/queryKeys'
 
 interface MemberHeaderProps {
   isProfileOpened: boolean
@@ -33,6 +35,7 @@ export default function MemberHeader({
   const ref = useRef<null | HTMLDivElement>(null)
   const alarmRef = useRef<null | HTMLDivElement>(null)
   const router = useRouter()
+  const queryClient = useQueryClient()
 
   const handleLogout = async () => {
     const result = await logout()
@@ -42,6 +45,9 @@ export default function MemberHeader({
       removeCookie('accessToken')
       removeCookie('refreshToken')
       router.push('/')
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.userProfile],
+      })
     }
   }
 
