@@ -1,10 +1,12 @@
 'use client'
-
+import { useRouter } from 'next/navigation'
 import { useState, useRef, useEffect } from 'react'
 
 import Profile from '@/app/_components/Profile'
 import ModalMain from '@/app/_components/Modal/Modal'
 import Alarm from '@/app/_components/Alarm'
+import logout from '@/app/_api/auth/logout'
+import { removeCookie } from '@/app/_util/cookie'
 
 import styles from './header.module.scss'
 import AlarmIcon from '/public/icons/alarm.svg'
@@ -25,6 +27,18 @@ export default function MemberHeader({
   const [isMobile, setIsMobile] = useState(false)
   const ref = useRef<null | HTMLDivElement>(null)
   const alarmRef = useRef<null | HTMLDivElement>(null)
+  const router = useRouter()
+
+  const handleLogout = async () => {
+    const result = await logout()
+
+    if (result && result.status === 200) {
+      console.log('로그아웃 성공')
+      removeCookie('accessToken')
+      removeCookie('refreshToken')
+      router.push('/')
+    }
+  }
 
   const handleToggleAlarm = () => {
     setIsAlarmOpened((state) => !state)
@@ -125,7 +139,9 @@ export default function MemberHeader({
           )}
         </div>
         <div className={styles.line}></div>
-        <button className={styles.logoutButton}>로그아웃</button>
+        <button className={styles.logoutButton} onClick={handleLogout}>
+          로그아웃
+        </button>
       </div>
     </>
   )
