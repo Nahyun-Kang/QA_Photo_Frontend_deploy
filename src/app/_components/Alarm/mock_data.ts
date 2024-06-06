@@ -1,5 +1,5 @@
 import { GradeType } from '@/app/_lib/types/cardType'
-import { AlarmType } from '@/app/_lib/alarmType'
+import { AlarmType } from '@/app/_lib/types/alarmType'
 
 interface AlarmMockDataType {
   userName?: string

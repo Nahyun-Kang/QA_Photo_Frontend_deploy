@@ -32,9 +32,7 @@ export default function ProposeExchangeModal() {
             <div className={styles.title}>{MOCK_DATA.name}</div>
           </Title>
           <div className={styles.exchangeWrapper}>
-            <div className={styles.cardWrapper}>
-              <MyCard />
-            </div>
+            <div className={styles.cardWrapper}>{/* <MyCard/> */}</div>
             <div className={styles.descriptionWrapper}>
               <Input.field>
                 <Input.label htmlFor="description">교환 제시 내용</Input.label>
