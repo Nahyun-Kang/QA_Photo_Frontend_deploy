@@ -1,4 +1,5 @@
 'use client'
+import { Suspense } from 'react'
 import { usePathname } from 'next/navigation'
 import { ReactNode } from 'react'
 
@@ -30,12 +31,14 @@ export default function MainLayout({ children }: { children: ReactNode }) {
   }
 
   return (
-    <div className={styles.main}>
-      <div>
-        <MainHeader />
+    <Suspense fallback={<div>Loading...</div>}>
+      <div className={styles.main}>
+        <div>
+          <MainHeader />
+        </div>
+        {commonHeader(pathname)}
+        {children}
       </div>
-      {commonHeader(pathname)}
-      {children}
-    </div>
+    </Suspense>
   )
 }

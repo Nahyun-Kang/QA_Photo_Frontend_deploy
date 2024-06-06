@@ -2,6 +2,10 @@
 const path = require('path')
 const nextConfig = {
   reactStrictMode: true,
+  experimental: {
+    concurrentFeatures: true,
+    serverComponents: true,
+  },
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
     prependData:
