@@ -1,4 +1,5 @@
 'use client'
+import { Suspense } from 'react'
 
 import SuccessCreateCardComponent from './successCreateCardComponent'
 
@@ -12,8 +13,8 @@ const SuccessCreateCard = dynamic(
 
 export default function SuccessCreateCardPage() {
   return (
-    <>
+    <Suspense fallback={<div>Loading...</div>}>
       <SuccessCreateCardComponent />
-    </>
+    </Suspense>
   )
 }
