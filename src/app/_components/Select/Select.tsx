@@ -97,6 +97,7 @@ function Trigger({ children, isOpened, onClick, value, style }: TriggerProps) {
     <button
       className={`${styles.button} ${style === 'filter' && styles.filter}`}
       onClick={onClick}
+      type="button"
     >
       <span
         className={`${styles.title} ${value === '' && styles.placeholder} ${style === 'filter' && styles.filterTitle}`}

@@ -1,4 +1,5 @@
-export type GradeType = 'common' | 'rare' | 'super_rare' | 'legendary'
+export type GradeType = 'COMMON' | 'RARE' | 'SUPER_RARE' | 'LEGENDARY'
+export type GenreType = 'TRIP' | 'PORTRAIT' | 'OBJECT' | 'LANDSCAPE'
 
 export interface CardType {
   id: number
@@ -6,7 +7,7 @@ export interface CardType {
   name: string
   price: number
   grade: GradeType
-  genre: string
+  genre: GenreType
   description: string
   totalQuantity: number
   remainingQuantity: number

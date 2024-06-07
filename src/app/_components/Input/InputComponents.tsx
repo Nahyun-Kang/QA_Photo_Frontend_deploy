@@ -1,5 +1,11 @@
 'use client'
-import { ChangeEventHandler, FocusEventHandler, ReactNode, useRef } from 'react'
+import {
+  ChangeEventHandler,
+  FocusEventHandler,
+  ReactNode,
+  useRef,
+  ChangeEvent,
+} from 'react'
 import { FieldValues } from 'react-hook-form'
 
 import styles from './InputComponents.module.scss'
@@ -98,9 +104,9 @@ interface IButton {
   children: ReactNode
   htmlFor?: string
   placeholder?: string
-  onChange: ChangeEventHandler<HTMLInputElement>
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void
   onBlur: FocusEventHandler<HTMLInputElement>
-  value: string
+  // value: string
 }
 
 function FileInput({
@@ -108,16 +114,16 @@ function FileInput({
   placeholder,
   onChange,
   onBlur,
-  value,
+  // value,
 }: IButton) {
   const ref = useRef<HTMLInputElement | null>(null)
 
   return (
     <>
       <div className={styles.fileInputWrapper}>
-        <span className={styles.title}>
+        {/* <span className={styles.title}>
           {value === null ? placeholder : value}
-        </span>
+        </span> */}
         <input
           className={`${styles.input}`}
           id="file"

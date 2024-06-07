@@ -1,6 +1,8 @@
 'use client'
+import { useRouter } from 'next/navigation'
 import { useForm, Controller, FieldValues, useWatch } from 'react-hook-form'
 import { ErrorMessage } from '@hookform/error-message'
+import { ChangeEvent } from 'react'
 
 import Input from '@/app/_components/Input/InputComponents'
 import SelectComponent from '@/app/_components/Select/Select'
@@ -12,8 +14,10 @@ import {
   GRADE,
 } from '@/app/(marketPlace)/mygallery/create-card/_constants/createCardConstants'
 import CommonButton from '@/app/_components/Button'
+import createCard from '@/app/_api/card/createCard'
 
 import styles from './cardform.module.scss'
+import { GenreType } from '@/app/_lib/types/cardType'
 
 export default function CreateCardForm() {
   const {
@@ -27,13 +31,30 @@ export default function CreateCardForm() {
       name: '',
       price: 0,
       totalQuantity: 0,
-      file: '',
+      image: '',
       genre: '',
       grade: '',
       description: '',
     },
     mode: 'onTouched',
   })
+  const router = useRouter()
+
+  const getKeyByValue = (obj: any, value: any) => {
+    return Object.keys(obj).find((key) => obj[key] === value)
+  }
+
+  const encodeFileToBase64 = (file: File): Promise<string> => {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader()
+      reader.readAsDataURL(file)
+      reader.onload = () => resolve(reader.result as string)
+      reader.onerror = (error) => reject(error)
+    })
+  }
+
+  const values = getValues()
+  console.log(values)
 
   const genre = useWatch({
     control,
@@ -45,6 +66,11 @@ export default function CreateCardForm() {
     name: 'grade',
   })
 
+  const image = useWatch({
+    control,
+    name: 'image',
+  })
+
   const handleClickGenreOption = (item: string) => {
     setValue('genre', item)
   }
@@ -54,7 +80,19 @@ export default function CreateCardForm() {
   }
 
   const onSubmit = async (data: FieldValues) => {
+    const base64Image = await encodeFileToBase64(data.image)
     console.log(data)
+    const res = await createCard({
+      image: base64Image,
+      name: data.name,
+      price: data.price,
+      grade: data.grade,
+      genre: getKeyByValue(GENRE, data.genre) as GenreType,
+      description: data.description,
+      totalQuantity: data.totalQuantity,
+    })
+    console.log(res)
+    // router.push('/mycards')
   }
 
   return (
@@ -100,7 +138,7 @@ export default function CreateCardForm() {
         <Input.label htmlFor="genre">장르</Input.label>
         <SelectComponent
           placeholder={PLACEHOLDER.grade}
-          list={GENRE}
+          list={Object.values(GENRE)}
           value={genre}
           defaultValue={getValues('genre')}
           onClick={handleClickGenreOption}
@@ -149,13 +187,17 @@ export default function CreateCardForm() {
         <Input.containerWithButton>
           <Controller
             control={control}
-            name="file"
+            name="image"
             render={({ field: { onChange, onBlur, value } }) => (
               <Input.fileInput
                 placeholder={PLACEHOLDER.file}
-                onChange={onChange}
+                onChange={(e) => {
+                  if (e.target && e.target.files && e.target.files[0]) {
+                    onChange(e.target.files[0])
+                  }
+                }}
                 onBlur={onBlur}
-                value={value}
+                // value={image}
               >
                 파일 선택
               </Input.fileInput>

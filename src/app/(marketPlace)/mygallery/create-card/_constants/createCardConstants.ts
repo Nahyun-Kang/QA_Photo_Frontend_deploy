@@ -1,6 +1,6 @@
 export const PLACEHOLDER = {
   name: '포토카드 이름을 입력해 주세요',
-  grade: '등급을 선택헤 주세요',
+  grade: '등급을 선택해 주세요',
   genre: '장르를 선택해 주세요',
   price: '가격을 입력해 주세요',
   totalQuantity: '총 발행량을 입력해 주세요',
@@ -18,5 +18,10 @@ export const CARDNAME_RULES = {
   maxLength: { value: 10, message: ERROR_MESSAGE.cardnameInvalid },
 }
 
-export const GENRE = ['공포', '재미', '사랑']
+export const GENRE = {
+  TRIP: '여행',
+  PORTRAIT: '인물',
+  OBJECT: '사물',
+  LANDSCAPE: '풍경',
+}
 export const GRADE = ['COMMON', 'RARE', 'SUPER RARE', 'LEGENDARY']
