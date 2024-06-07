@@ -5,6 +5,9 @@ const nextConfig = {
   experimental: {
     missingSuspenseWithCSRBailout: false,
   },
+  images: {
+    domains: ['qa-photo-bucket.s3.ap-northeast-2.amazonaws.com'],
+  },
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
     prependData:

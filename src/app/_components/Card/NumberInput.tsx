@@ -14,14 +14,12 @@ interface INumberInput {
 }
 
 export default function NumberInput({
-  limitQuantity: remainingQuantity,
+  limitQuantity,
   id,
   quantity,
   handlePlusButtonClick,
   handleMinusButtonClick,
 }: INumberInput) {
-  const [number, setNumber] = useState<number>(1)
-
   return (
     <div className={styles.container}>
       <button
@@ -35,7 +33,7 @@ export default function NumberInput({
         id={id}
         type="number"
         min={1}
-        max={remainingQuantity}
+        max={limitQuantity}
         value={quantity}
         className={styles.input}
       />

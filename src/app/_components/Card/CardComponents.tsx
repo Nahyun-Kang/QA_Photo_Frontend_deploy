@@ -3,6 +3,7 @@ import { ReactNode } from 'react'
 
 import Chip from '@/app/_components/Chip'
 import Grade from '@/app/_components/Grade'
+import { GradeType, GenreType } from '@/app/_lib/types/cardType'
 
 import styles from './Card.module.scss'
 import SoldOut from '/public/images/soldout.svg'
@@ -58,8 +59,8 @@ function CardImage({
 
 interface ICardInformation {
   title: string
-  grade: 'common' | 'rare' | 'super_rare' | 'legendary'
-  genre: string
+  grade: GradeType
+  genre: GenreType
   maker: string
   point?: number
   type?: 'sale' | 'exchange'

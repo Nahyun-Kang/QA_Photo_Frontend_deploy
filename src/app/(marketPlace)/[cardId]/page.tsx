@@ -1,6 +1,3 @@
-'use client'
-
-import { usePathname, useParams } from 'next/navigation'
 import ForBuyer from './_components/ForBuyer'
 
 import styles from './page.module.scss'

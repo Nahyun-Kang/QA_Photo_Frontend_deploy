@@ -35,7 +35,7 @@ export default function CardBuyer({
   const [quantity, setQuantity] = useState<number>(1)
 
   const handlePlusButtonClick = () => {
-    if (quantity >= remainingQuantity) {
+    if (quantity >= totalQuantity) {
       return
     }
 

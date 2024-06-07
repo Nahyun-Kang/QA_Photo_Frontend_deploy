@@ -1,23 +1,38 @@
+'use client'
+import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
+import { useParams } from 'next/navigation'
 
 import CardBuyer from '@/app/_components/Card/CardBuyer'
 import Title from '@/app/_components/Title'
 import Button from '@/app/_components/Button'
 import Grade from '@/app/_components/Grade'
 import ExchangeList from './ExchangeList'
+import { QUERY_KEYS } from '@/app/_constants/queryKeys'
+import getCardDetail from '@/app/_api/card/getCard'
+import gradeExtract from '@/app/_util/gradeExtract'
 
 import styles from './forBuyer.module.scss'
 
 export default function ForBuyer() {
+  const { cardId } = useParams<{ cardId: string }>()
+  const { data } = useQuery({
+    queryKey: [QUERY_KEYS.cardDetail, cardId],
+    queryFn: () => getCardDetail(cardId),
+    retry: 0,
+  })
+
+  console.log(data)
+
   return (
     <div className={styles.buyerContainer}>
       <Title>
-        <div className={styles.cardTitle}>우리집 앞마당</div>
+        <div className={styles.cardTitle}>{data?.name}</div>
       </Title>
       <div className={styles.cardWrapper}>
         <div className={styles.imageWrapper}>
           <Image
-            src={'/images/image1.png'}
+            src={data?.image}
             alt="카드 이미지"
             style={{ objectFit: 'cover' }}
             layout="fill"
@@ -26,14 +41,14 @@ export default function ForBuyer() {
         </div>
         <div className={styles.cardContainer}>
           <CardBuyer
-            name="우리집 앞마당"
-            grade="legendary"
-            genre="풍경"
-            maker="미쓰손"
+            name={data?.name}
+            grade={data?.grade}
+            genre={data?.genre}
+            maker={data?.seller_nickname}
             description="sdfsf"
-            price={4}
-            remainingQuantity={2}
-            totalQuantity={5}
+            price={data?.price}
+            remainingQuantity={data?.remainingQuantity}
+            totalQuantity={data?.totalQuantity}
           />
         </div>
       </div>

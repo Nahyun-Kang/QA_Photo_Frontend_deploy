@@ -2,6 +2,7 @@ import { ReactNode } from 'react'
 
 import Grade from '@/app/_components/Grade'
 import NumberInput from './NumberInput'
+import { GradeType } from '@/app/_lib/types/cardType'
 
 import styles from './CardDetail.module.scss'
 
@@ -10,7 +11,7 @@ function CardDetailContainer({ children }: { children: ReactNode }) {
 }
 
 interface ICardInformation {
-  grade: 'common' | 'rare' | 'super_rare' | 'legendary'
+  grade: GradeType
   genre: string
   maker?: string
 }

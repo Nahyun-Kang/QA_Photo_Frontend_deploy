@@ -2,16 +2,16 @@ const gradeExtract = (type: string): string => {
   let grade: string
 
   switch (type) {
-    case 'common':
+    case 'COMMON':
       grade = 'COMMON'
       break
-    case 'rare':
+    case 'RARE':
       grade = 'RARE'
       break
-    case 'super_rare':
+    case 'SUPER_RARE':
       grade = 'SUPER RARE'
       break
-    case 'legendary':
+    case 'LEGENDARY':
       grade = 'LEGENDARY'
       break
     default:
