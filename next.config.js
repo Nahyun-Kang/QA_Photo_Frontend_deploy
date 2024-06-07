@@ -4,9 +4,6 @@ const nextConfig = {
   reactStrictMode: true,
   experimental: {
     missingSuspenseWithCSRBailout: false,
-    appDir: true,
-    concurrentFeatures: true,
-    serverComponents: true,
   },
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
