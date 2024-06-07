@@ -11,8 +11,10 @@ import ExchangeList from './ExchangeList'
 import { QUERY_KEYS } from '@/app/_constants/queryKeys'
 import getCardDetail from '@/app/_api/card/getCard'
 import gradeExtract from '@/app/_util/gradeExtract'
+import { GENRE } from '../../mygallery/create-card/_constants/createCardConstants'
 
 import styles from './forBuyer.module.scss'
+import { GradeType } from '@/app/_lib/types/cardType'
 
 export default function ForBuyer() {
   const { cardId } = useParams<{ cardId: string }>()
@@ -42,8 +44,8 @@ export default function ForBuyer() {
         <div className={styles.cardContainer}>
           <CardBuyer
             name={data?.name}
-            grade={data?.grade}
-            genre={data?.genre}
+            grade={gradeExtract(data?.grade) as GradeType}
+            genre={GENRE[data?.genre]}
             maker={data?.seller_nickname}
             description="sdfsf"
             price={data?.price}

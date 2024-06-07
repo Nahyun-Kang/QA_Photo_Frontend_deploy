@@ -1,3 +1,5 @@
+import { GenreType } from '@/app/_lib/types/cardType'
+
 export const PLACEHOLDER = {
   name: '포토카드 이름을 입력해 주세요',
   grade: '등급을 선택해 주세요',
@@ -18,7 +20,11 @@ export const CARDNAME_RULES = {
   maxLength: { value: 10, message: ERROR_MESSAGE.cardnameInvalid },
 }
 
-export const GENRE = {
+interface GenreListType {
+  [key: string]: string
+}
+
+export const GENRE: GenreListType = {
   TRIP: '여행',
   PORTRAIT: '인물',
   OBJECT: '사물',
