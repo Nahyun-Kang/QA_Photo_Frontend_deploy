@@ -1,12 +1,14 @@
 'use client'
 
-import FailCreateCardComponent from './FailCreateCardComponent'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 
-const FailCreateCard = dynamic(() => import('./FailCreateCardComponent'), {
-  ssr: false,
-})
+const FailCreateCardComponent = dynamic(
+  () => import('./FailCreateCardComponent'),
+  {
+    ssr: false,
+  },
+)
 
 export default function FailCreateCardPage() {
   return (

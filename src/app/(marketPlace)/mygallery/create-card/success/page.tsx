@@ -1,10 +1,8 @@
 'use client'
 import { Suspense } from 'react'
 
-import SuccessCreateCardComponent from './successCreateCardComponent'
-
 import dynamic from 'next/dynamic'
-const SuccessCreateCard = dynamic(
+const SuccessCreateCardComponent = dynamic(
   () => import('./successCreateCardComponent'),
   {
     ssr: false,

@@ -1,10 +1,9 @@
 'use client'
 
-import ProposeFailComponent from './ProposeFailComponent'
 import { Suspense } from 'react'
 
 import dynamic from 'next/dynamic'
-const ProposeFail = dynamic(() => import('./ProposeFailComponent'), {
+const ProposeFailComponent = dynamic(() => import('./ProposeFailComponent'), {
   ssr: false,
 })
 

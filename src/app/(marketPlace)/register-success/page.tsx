@@ -1,12 +1,14 @@
 'use client'
 
-import RegisterSuccessComponent from './RegisterSuccessComponent'
 import dynamic from 'next/dynamic'
 import { Suspense } from 'react'
 
-const RegisterSuccess = dynamic(() => import('./RegisterSuccessComponent'), {
-  ssr: false,
-})
+const RegisterSuccessComponent = dynamic(
+  () => import('./RegisterSuccessComponent'),
+  {
+    ssr: false,
+  },
+)
 
 export default function RegisterSuccessPage() {
   return (
