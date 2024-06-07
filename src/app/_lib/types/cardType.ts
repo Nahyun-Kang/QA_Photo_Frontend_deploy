@@ -54,3 +54,16 @@ export interface CardCountType {
   superRareCount: number
   legendaryCount: number
 }
+
+export interface ShopCardType {
+  id: string;
+  image: string;
+  grade: GradeType
+  genre: GenreType
+  name: string;
+  price: number
+  totalQuantity: number
+  remainingQuantity: number
+  isSoldOut: boolean
+  seller_nickname: string
+}

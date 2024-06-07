@@ -76,7 +76,7 @@ export default function MarketPlaceCardList() {
         })}
       </ul>
       <div className={styles.paginationWrapper}>
-        <Pagination count={45} />
+        <Pagination count={1000} />
       </div>
     </section>
   )

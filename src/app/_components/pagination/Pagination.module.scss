@@ -64,3 +64,30 @@
 .button {
   cursor: pointer;
 }
+
+.ellipsisButton {
+  position: relative;
+  cursor: pointer;
+}
+
+.ellipsisContainer {
+  position: absolute;
+  bottom: 10;
+
+  display: flex;
+  flex-direction: column;
+
+  border: 1px solid colors.$gray100;
+  background: colors.$gray500;
+}
+
+.ellipsisItem {
+  padding: 13px 20px;
+  color: colors.$white;
+
+  @include fonts.base-regular-16;
+
+  @include device.mobile {
+    @include fonts.base-regular-14;
+  }
+}

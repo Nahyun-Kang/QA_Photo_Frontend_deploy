@@ -4,6 +4,8 @@ import styles from './Pagination.module.scss'
 
 import Left from '/public/icons/left.svg'
 import Right from '/public/icons/right.svg'
+import Ellipsis from '/public/icons/ellipsis.svg'
+import EllipsisComponent from './ellipsisComponent'
 
 //사이즈를 프롭스로 받는다. (데이터 총 개수를)
 //반응형에 따라서 LIMIT 와 페이지 개수가 달라짐
@@ -23,15 +25,6 @@ export default function Pagination({ count }: PaginationProps) {
 
   const handlePageCLick = (el: number) => {
     setCurrentPage(el)
-    if (currentList.includes(totalPageCount)) {
-      return
-    }
-    const newArray = new Array(10)
-      .fill(el)
-      .map((_, i) => i + el)
-      .filter((el) => el <= totalPageCount)
-
-    setCurrentList([...newArray])
   }
 
   const handleRightArrowClick = () => {
@@ -132,6 +125,11 @@ function NumberList({
 }: NumberListProps) {
   const listSliceSize = 3
   const limit = 7
+  const [isActive, setIsActive] = useState(false)
+
+  const handleToggleEllipsis = () => {
+    setIsActive((state) => !state)
+  }
 
   return (
     <>
@@ -162,7 +160,19 @@ function NumberList({
               </li>
             )
           })}
-          <span className={styles.text}>...</span>
+          <button
+            type="button"
+            className={styles.ellipsisButton}
+            onClick={handleToggleEllipsis}
+          >
+            <Ellipsis />
+            {isActive && (
+              <EllipsisComponent
+                list={list.slice(listSliceSize, list.length - listSliceSize)}
+                onClick={onClick}
+              />
+            )}
+          </button>
           {list.slice(list.length - listSliceSize, list.length).map((el) => {
             return (
               <li
