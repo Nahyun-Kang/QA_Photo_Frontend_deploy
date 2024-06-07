@@ -53,9 +53,6 @@ export default function CreateCardForm() {
     })
   }
 
-  const values = getValues()
-  console.log(values)
-
   const genre = useWatch({
     control,
     name: 'genre',
@@ -80,10 +77,8 @@ export default function CreateCardForm() {
   }
 
   const onSubmit = async (data: FieldValues) => {
-    const base64Image = await encodeFileToBase64(data.image)
-    console.log(data)
     const res = await createCard({
-      image: base64Image,
+      image: data.image,
       name: data.name,
       price: data.price,
       grade: data.grade,
@@ -91,8 +86,10 @@ export default function CreateCardForm() {
       description: data.description,
       totalQuantity: data.totalQuantity,
     })
-    console.log(res)
-    // router.push('/mycards')
+    if (res !== null) {
+      console.log(res)
+      router.push('/mycards')
+    }
   }
 
   return (

@@ -1,4 +1,6 @@
 'use client'
+import { useQuery } from '@tanstack/react-query'
+
 import Dropdown from '@/app/_components/Dropdown'
 import SelectComponent from '@/app/_components/Select/Select'
 import {
@@ -11,11 +13,20 @@ import SearchInput from '@/app/_components/SearchInput'
 import Pagination from '@/app/_components/pagination'
 import { CARDS_LIST } from '../CARD_LISTS'
 import OriginalCard from '@/app/_components/Card/OriginalCard'
+import { QUERY_KEYS } from '@/app/_constants/queryKeys'
+import getShopCards from '@/app/_api/card/getCards'
 
 import styles from './CardsList.module.scss'
 import Filter from '/public/icons/filter.svg'
 
 export default function MarketPlaceCardList() {
+  const { data } = useQuery({
+    queryKey: [QUERY_KEYS.shopCards],
+    queryFn: getShopCards,
+  })
+
+  console.log(data)
+
   return (
     <section className={styles.section}>
       <div className={styles.filterContainer}>

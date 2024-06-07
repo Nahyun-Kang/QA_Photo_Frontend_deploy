@@ -1,4 +1,4 @@
-import { GradeType } from '../_lib/types/cardType'
+import { GradeType, GenreType } from '../_lib/types/cardType'
 
 interface CardListType {
   imageUrl: string

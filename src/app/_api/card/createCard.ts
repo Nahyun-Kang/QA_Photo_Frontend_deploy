@@ -33,7 +33,7 @@ const createCard = async (data: CreateCardParams) => {
       },
     )
 
-    if (response.status === 200) {
+    if (response.status === 201) {
       console.log(response.data)
       return response.data
     }
