@@ -3,6 +3,7 @@ const path = require('path')
 const nextConfig = {
   reactStrictMode: true,
   experimental: {
+    appDir: true,
     concurrentFeatures: true,
     serverComponents: true,
   },
