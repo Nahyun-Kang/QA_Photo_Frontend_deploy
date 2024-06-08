@@ -1,5 +1,6 @@
 'use client'
-import { ReactNode } from 'react'
+
+import { ReactNode, useEffect, useRef } from 'react'
 import ModalMain from './Modal'
 
 import styles from './modal.module.scss'
@@ -21,9 +22,29 @@ export default function BasicModal({
   onClick,
   onClose,
 }: BasicModalProps) {
+  const ref = useRef<null | HTMLDivElement>(null)
+
+  const handleOutSideClick = (e: Event) => {
+    if (
+      onClose &&
+      ref.current &&
+      !(e.target instanceof Node && ref.current.contains(e.target))
+    ) {
+      onClose()
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleOutSideClick)
+
+    return () => {
+      document.addEventListener('mousedown', handleOutSideClick)
+    }
+  }, [])
+
   return (
     <div className={styles.basicModalWrapper}>
-      <div className={styles.basicModalContainer}>
+      <div className={styles.basicModalContainer} ref={ref}>
         <button onClick={onClose} className={styles.closeButton}>
           <Close className={styles.closeIcon} />
         </button>

@@ -1,4 +1,5 @@
 'use client'
+import { useRef, useEffect } from 'react'
 
 import Title from '@/app/_components/Title'
 import SearchInput from '../SearchInput'
@@ -12,12 +13,44 @@ import styles from './sellPhotoCard.module.scss'
 import Close from '/public/icons/close.svg'
 import Filter from '/public/icons/filter.svg'
 import MobileBar from '/public/icons/mobile_bar.svg'
+import { GenreType } from '@/app/_lib/types/cardType'
 
-export default function SellPhotoCardModal() {
+interface SellPhotoCardModalProps {
+  onClose: () => void
+}
+
+export default function SellPhotoCardModal({
+  onClose,
+}: SellPhotoCardModalProps) {
+  const ref = useRef<null | HTMLDivElement>(null)
+
+  const handleOutSideClick = (e: Event) => {
+    if (
+      onClose &&
+      ref.current &&
+      !(e.target instanceof Node && ref.current.contains(e.target))
+    ) {
+      onClose()
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleOutSideClick)
+
+    return () => {
+      document.addEventListener('mousedown', handleOutSideClick)
+    }
+  }, [])
+
   return (
     <div className={styles.wrapper}>
-      <div className={styles.container}>
-        <Close width={32} height={32} className={styles.closeIcon} />
+      <div className={styles.container} ref={ref}>
+        <Close
+          width={32}
+          height={32}
+          className={styles.closeIcon}
+          onClick={onClose}
+        />
         <MobileBar className={styles.mobileBar} />
         <div>
           <div className={styles.myGallery}>마이갤러리</div>
@@ -48,7 +81,7 @@ export default function SellPhotoCardModal() {
                     name={el.name}
                     price={el.price}
                     grade={el.grade}
-                    genre={el.genre}
+                    genre={el.genre as GenreType}
                     remainingQuantity={el.remainingQuantity}
                     createdDate={el.createdDate}
                     updatedDate={el.updatedDate}
