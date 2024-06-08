@@ -1,19 +1,21 @@
 'use client'
 import { useRef, useEffect } from 'react'
+import { useQuery } from '@tanstack/react-query'
 
 import Title from '@/app/_components/Title'
 import SearchInput from '../SearchInput'
 import Dropdown from '../Dropdown'
 import MyCard from '../Card/MyCard'
+import Filter from '/public/icons/filter.svg'
 import { CARDS_LIST } from '@/app/(marketPlace)/CARD_LISTS'
-
+import { GenreType } from '@/app/_lib/types/cardType'
 import { GENRE_LIST, GRADE_LIST } from '@/app/_constants/listConstants'
+import getMyCards from '@/app/_api/card/getMyCards'
 
 import styles from './sellPhotoCard.module.scss'
 import Close from '/public/icons/close.svg'
-import Filter from '/public/icons/filter.svg'
 import MobileBar from '/public/icons/mobile_bar.svg'
-import { GenreType } from '@/app/_lib/types/cardType'
+import { QUERY_KEYS } from '@/app/_constants/queryKeys'
 
 interface SellPhotoCardModalProps {
   onClose: () => void
@@ -23,6 +25,13 @@ export default function SellPhotoCardModal({
   onClose,
 }: SellPhotoCardModalProps) {
   const ref = useRef<null | HTMLDivElement>(null)
+
+  const { data } = useQuery({
+    queryKey: [QUERY_KEYS.myCards],
+    queryFn: () => getMyCards(1),
+  })
+
+  console.log(data)
 
   const handleOutSideClick = (e: Event) => {
     if (

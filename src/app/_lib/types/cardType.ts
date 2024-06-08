@@ -67,3 +67,17 @@ export interface ShopCardType {
   isSoldOut: boolean
   seller_nickname: string
 }
+
+export interface MyGalleryCardType {
+  id: string
+  image: string
+  grade: GradeType
+  genre: GenreType
+  name: string
+  totalQuantity: number
+  availableQuantity: number
+  price: number
+  user: {
+    nickname: string
+  }
+}
