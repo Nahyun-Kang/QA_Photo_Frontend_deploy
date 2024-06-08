@@ -37,10 +37,14 @@
   @include fonts.base-regular-16;
 }
 
-.close {
+.closeButton {
   grid-area: close;
   justify-self: end;
   align-self: center;
+}
+
+.close {
+  cursor: pointer;
 }
 
 .buttonContainer {

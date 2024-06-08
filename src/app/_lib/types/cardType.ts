@@ -56,11 +56,11 @@ export interface CardCountType {
 }
 
 export interface ShopCardType {
-  id: string;
-  image: string;
+  id: string
+  image: string
   grade: GradeType
   genre: GenreType
-  name: string;
+  name: string
   price: number
   totalQuantity: number
   remainingQuantity: number

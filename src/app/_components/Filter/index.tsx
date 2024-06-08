@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useRef, useEffect } from 'react'
 
 import Button from '@/app/_components/Button'
 import GradeFilter from './GradeFilter'
@@ -15,12 +15,14 @@ interface FilterProps {
   hasGrade?: boolean
   hasGenre?: boolean
   hasSoldOut?: boolean
+  onClose: () => void
 }
 
 export default function Filter({
   hasGrade,
   hasGenre,
   hasSoldOut,
+  onClose,
 }: FilterProps) {
   type FilterType = 'grade' | 'genre' | 'soldOut'
 
@@ -28,6 +30,7 @@ export default function Filter({
   const [gradeCount, setGradeCount] = useState(0)
   const [genreCount, setGenreCount] = useState(0)
   const [soldOutCount, setSoldOutCount] = useState(0)
+  const filterRef = useRef<null | HTMLDivElement>(null)
 
   const handleGradeCount = (num: number) => {
     setGradeCount(num)
@@ -39,12 +42,40 @@ export default function Filter({
     setSoldOutCount(num)
   }
 
+  const handleFilterOutsideClick = (e: Event) => {
+    if (
+      filterRef.current &&
+      !(e.target instanceof Node && filterRef.current.contains(e.target))
+    ) {
+      onClose()
+    }
+  }
+
+  useEffect(() => {
+    document.addEventListener('mousedown', handleFilterOutsideClick)
+
+    const handleResize = () => {
+      if (window.innerWidth >= 744) {
+        onClose()
+      }
+    }
+
+    window.addEventListener('resize', handleResize)
+
+    return () => {
+      document.removeEventListener('mousedown', handleFilterOutsideClick)
+      window.removeEventListener('resize', handleResize)
+    }
+  }, [])
+
   return (
     <div className={styles.wrapper}>
-      <div className={styles.container}>
+      <div className={styles.container} ref={filterRef}>
         <div className={styles.titleContainer}>
           <div className={styles.title}>필터</div>
-          <CloseIcon width={24} height={24} className={styles.close} />
+          <button onClick={onClose} className={styles.closeButton}>
+            <CloseIcon width={24} height={24} className={styles.close} />
+          </button>
         </div>
         <ul className={styles.filterList}>
           {hasGrade && (
