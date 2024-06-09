@@ -1,9 +1,12 @@
 import axiosInstance from '@/app/_lib/axios/axiosInstance'
 import { MyGalleryCardType } from '@/app/_lib/types/cardType'
 
-const getMyCards = async (page = 1) => {
+const getMyCards = async (page = 1, size = 15) => {
   try {
-    const query = new URLSearchParams({ page: page.toString() }).toString()
+    const query = new URLSearchParams({
+      page: page.toString(),
+      size: size.toString(),
+    }).toString()
     const response = await axiosInstance.get(`/api/users/my-cards?${query}`, {
       headers: {
         'Content-Type': 'application/json',

@@ -2,17 +2,16 @@ export type GradeType = 'COMMON' | 'RARE' | 'SUPER_RARE' | 'LEGENDARY'
 export type GenreType = 'TRIP' | 'PORTRAIT' | 'OBJECT' | 'LANDSCAPE'
 
 export interface CardType {
-  id: number
-  userId: number
+  id: string
   name: string
   price: number
   grade: GradeType
   genre: GenreType
   description: string
   totalQuantity: number
-  remainingQuantity: number
-  createdDate: string
-  updatedDate: string
+  remainingQuantity?: number
+  createdDate?: string
+  updatedDate?: string
 }
 
 type InformationDetailType = {
@@ -23,8 +22,7 @@ type InformationDetailType = {
 export type OriginalCardType = Omit<CardType, 'description'> &
   InformationDetailType
 
-export type MyCardType = Omit<CardType, 'description' | 'totalQuantity'> &
-  InformationDetailType
+export type MyCardType = Omit<CardType, 'description'> & InformationDetailType
 
 export type CardForSaleType = Omit<
   CardType,
@@ -75,7 +73,6 @@ export interface MyGalleryCardType {
   genre: GenreType
   name: string
   totalQuantity: number
-  availableQuantity: number
   price: number
   user: {
     nickname: string

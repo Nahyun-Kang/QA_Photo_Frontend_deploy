@@ -5,7 +5,6 @@ export default function MyCard({
   imageUrl,
   nickName,
   id,
-  userId,
   name,
   price,
   grade,

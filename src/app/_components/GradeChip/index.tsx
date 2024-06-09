@@ -1,11 +1,13 @@
 import styles from './GradeChip.module.scss'
 import gradeExtract from '@/app/_util/gradeExtract'
+import { GradeType } from '@/app/_lib/types/cardType'
+
 interface GradeProps {
-  grade?: 'common' | 'rare' | 'super_rare' | 'legendary'
-  count: number
+  grade?: GradeType
+  count?: number
 }
 
-export default function GradeChip({ grade = 'common', count = 0 }: GradeProps) {
+export default function GradeChip({ grade = 'COMMON', count = 0 }: GradeProps) {
   return (
     <div className={`${styles.container} ${styles[grade]}`}>
       <div className={styles.grade}>{gradeExtract(grade)}</div>

@@ -11,19 +11,19 @@
   background-color: colors.$black;
   @include fonts.base-light-16;
 
-  &.common {
+  &.COMMON {
     border: 1px solid colors.$main;
     color: colors.$main;
   }
-  &.rare {
+  &.RARE {
     border: 1px solid colors.$blue;
     color: colors.$blue;
   }
-  &.super_rare {
+  &.SUPER_RARE {
     border: 1px solid colors.$purple;
     color: colors.$purple;
   }
-  &.legendary {
+  &.LEGENDARY {
     border: 1px solid colors.$red;
     color: colors.$red;
   }

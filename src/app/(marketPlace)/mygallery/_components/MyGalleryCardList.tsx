@@ -1,14 +1,27 @@
+'use client'
+import { useQuery } from '@tanstack/react-query'
+
 import SearchInput from '@/app/_components/SearchInput'
 import Dropdown from '@/app/_components/Dropdown'
 import { GRADE_LIST, GENRE_LIST } from '@/app/_constants/listConstants'
-import { CARDS_LIST } from '@/app/(marketPlace)/CARD_LISTS'
 import MyCard from '@/app/_components/Card/MyCard'
 import Pagination from '@/app/_components/pagination'
+import { QUERY_KEYS } from '@/app/_constants/queryKeys'
+import getMyCards from '@/app/_api/card/getMyCards'
+import { MyGalleryCardType } from '@/app/_lib/types/cardType'
 
 import styles from '@/app/(marketPlace)/mygallery/_components/mygalleryCardList.module.scss'
 import Filter from '/public/icons/filter.svg'
+import { GenreType } from '@/app/_lib/types/cardType'
 
 export default function MyGalleryCardList() {
+  const { data } = useQuery({
+    queryKey: [QUERY_KEYS.myCards],
+    queryFn: () => getMyCards(1, 15),
+  })
+
+  console.log(data?.data)
+
   return (
     <section className={styles.section}>
       <div className={styles.filterContainer}>
@@ -24,25 +37,23 @@ export default function MyGalleryCardList() {
         </div>
       </div>
       <ul className={styles.ul}>
-        {CARDS_LIST?.map((el, idx) => {
-          return (
-            <li key={idx.toString()}>
-              <MyCard
-                imageUrl={el.imageUrl}
-                nickName={el.nickName}
-                id={el.id}
-                userId={el.userId}
-                name={el.name}
-                price={el.price}
-                grade={el.grade}
-                genre={el.genre}
-                remainingQuantity={el.remainingQuantity}
-                createdDate={el.createdDate}
-                updatedDate={el.updatedDate}
-              />
-            </li>
-          )
-        })}
+        {data &&
+          data?.data.map((el: MyGalleryCardType, idx: number) => {
+            return (
+              <li key={idx.toString()}>
+                <MyCard
+                  imageUrl={el.image}
+                  nickName={el.user.nickname}
+                  id={el.id}
+                  name={el.name}
+                  price={el.price}
+                  grade={el.grade}
+                  genre={el.genre as GenreType}
+                  totalQuantity={el.totalQuantity}
+                />
+              </li>
+            )
+          })}
       </ul>
       <div className={styles.paginationWrapper}>
         <Pagination count={45} />

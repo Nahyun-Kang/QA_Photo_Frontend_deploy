@@ -155,7 +155,7 @@ function Price({ price }: IPrice) {
 
 interface IRemain {
   totalQuantity: number
-  remainingQuantity: number
+  remainingQuantity?: number
 }
 
 function Remain({ totalQuantity, remainingQuantity }: IRemain) {
@@ -171,7 +171,7 @@ function Remain({ totalQuantity, remainingQuantity }: IRemain) {
 }
 
 interface IQuantity {
-  quantity: number
+  quantity?: number
 }
 
 function Quantity({ quantity }: IQuantity) {
