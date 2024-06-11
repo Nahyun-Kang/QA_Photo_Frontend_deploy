@@ -8,7 +8,7 @@ import Dropdown from '../Dropdown'
 import MyCard from '../Card/MyCard'
 import Filter from '/public/icons/filter.svg'
 import { CARDS_LIST } from '@/app/(marketPlace)/CARD_LISTS'
-import { GenreType } from '@/app/_lib/types/cardType'
+import { GenreType, MyGalleryCardType } from '@/app/_lib/types/cardType'
 import { GENRE_LIST, GRADE_LIST } from '@/app/_constants/listConstants'
 import getMyCards from '@/app/_api/card/getMyCards'
 
@@ -19,10 +19,12 @@ import { QUERY_KEYS } from '@/app/_constants/queryKeys'
 
 interface SellPhotoCardModalProps {
   onClose: () => void
+  onOpen: (id: string) => void
 }
 
 export default function SellPhotoCardModal({
   onClose,
+  onOpen,
 }: SellPhotoCardModalProps) {
   const ref = useRef<null | HTMLDivElement>(null)
 
@@ -41,6 +43,10 @@ export default function SellPhotoCardModal({
     ) {
       onClose()
     }
+  }
+
+  const handleCardClick = (cardId: string) => {
+    onOpen(cardId)
   }
 
   useEffect(() => {
@@ -79,25 +85,27 @@ export default function SellPhotoCardModal({
             </div>
           </div>
           <ul className={styles.ul}>
-            {CARDS_LIST?.map((el, idx) => {
-              return (
-                <li key={idx.toString()}>
-                  <MyCard
-                    imageUrl={el.imageUrl}
-                    nickName={el.nickName}
-                    id={el.id}
-                    userId={el.userId}
-                    name={el.name}
-                    price={el.price}
-                    grade={el.grade}
-                    genre={el.genre as GenreType}
-                    remainingQuantity={el.remainingQuantity}
-                    createdDate={el.createdDate}
-                    updatedDate={el.updatedDate}
-                  />
-                </li>
-              )
-            })}
+            {data &&
+              data?.data.map((el: MyGalleryCardType, idx: number) => {
+                return (
+                  <li
+                    key={idx.toString()}
+                    className={styles.cardItem}
+                    onClick={() => handleCardClick(el.id)}
+                  >
+                    <MyCard
+                      image={el.image}
+                      nickName={el.user.nickname}
+                      id={el.id}
+                      name={el.name}
+                      price={el.price}
+                      grade={el.grade}
+                      genre={el.genre as GenreType}
+                      totalQuantity={el.totalQuantity}
+                    />
+                  </li>
+                )
+              })}
           </ul>
         </div>
       </div>

@@ -8,29 +8,54 @@ import { getCookie } from '@/app/_util/cookie'
 import ModalMain from '@/app/_components/Modal/Modal'
 import BasicModal from '@/app/_components/Modal/BasicModal'
 import SellPhotoCardModal from '@/app/_components/Modal/SellPhotoCardModal'
+import RegisterExpectedExchangeInformation from '@/app/_components/Modal/RetisterExpectedExchangeInformationModal'
 
 import styles from '../page.module.scss'
 
 export default function MarketPlaceTitle() {
   const accessToken = getCookie('accessToken')
-  const [isModalOn, setIsModalOn] = useState(false)
+  const [isSellModalOn, setIsSellModalOn] = useState(false)
+  const [isRegisterModalOn, setIsRegisterModalOn] = useState(false)
+  const [currentId, setCurrentId] = useState<string>('')
   const router = useRouter()
 
   const handleCloseModal = () => {
-    setIsModalOn(false)
+    setIsSellModalOn(false)
   }
 
   const handleSellButtonClick = () => {
-    setIsModalOn(true)
+    setIsSellModalOn(true)
   }
 
   const handleLoginButtonClick = () => {
     router.push('/login')
   }
 
+  const handleOpenRegisterModal = (id: string) => {
+    setIsSellModalOn(false)
+    setCurrentId(id)
+    setIsRegisterModalOn(true)
+  }
+
+  const handleCloseRegisterModal = () => {
+    setIsRegisterModalOn(false)
+  }
+
+  console.log(isSellModalOn)
+  console.log(isRegisterModalOn)
+  console.log(currentId)
+
   return (
     <>
-      {!accessToken && isModalOn && (
+      {accessToken && isRegisterModalOn && (
+        <ModalMain>
+          <RegisterExpectedExchangeInformation
+            onClose={handleCloseRegisterModal}
+            id={currentId}
+          />
+        </ModalMain>
+      )}
+      {!accessToken && isSellModalOn && (
         <ModalMain>
           <BasicModal
             title="로그인이 필요합니다."
@@ -47,9 +72,12 @@ export default function MarketPlaceTitle() {
           />
         </ModalMain>
       )}
-      {accessToken && isModalOn && (
+      {accessToken && isSellModalOn && (
         <ModalMain>
-          <SellPhotoCardModal onClose={handleCloseModal} />
+          <SellPhotoCardModal
+            onClose={handleCloseModal}
+            onOpen={handleOpenRegisterModal}
+          />
         </ModalMain>
       )}
       <div className={styles.titleWrapper}>

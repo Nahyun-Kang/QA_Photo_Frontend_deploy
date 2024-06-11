@@ -42,7 +42,7 @@ export default function MyGalleryCardList() {
             return (
               <li key={idx.toString()}>
                 <MyCard
-                  imageUrl={el.image}
+                  image={el.image}
                   nickName={el.user.nickname}
                   id={el.id}
                   name={el.name}

@@ -52,7 +52,7 @@ export default function OwnedCards() {
       </div>
       <ul className={styles.grade_list}>
         {data &&
-          GRADE_LIST?.map((el) => {
+          GRADE_LIST?.map((el: GradeListType) => {
             return (
               <li>
                 <GradeChip grade={el.grade} count={el.count} />

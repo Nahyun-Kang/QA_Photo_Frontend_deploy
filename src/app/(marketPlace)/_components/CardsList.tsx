@@ -57,7 +57,7 @@ export default function MarketPlaceCardList() {
       <ul className={styles.ul}>
         {CARDS_LIST?.map((el, idx) => {
           return (
-            <li key={idx.toString()}>
+            <li key={idx.toString()} className={styles.cardItem}>
               <OriginalCard
                 imageUrl={el.imageUrl}
                 nickName={el.nickName}

@@ -2,7 +2,7 @@ import Card from './CardComponents'
 import { MyCardType } from '@/app/_lib/types/cardType'
 
 export default function MyCard({
-  imageUrl,
+  image,
   nickName,
   id,
   name,
@@ -14,7 +14,7 @@ export default function MyCard({
   return (
     <Card>
       <Card.CardContainer>
-        <Card.image imageUrl={imageUrl} />
+        <Card.image imageUrl={image} />
         <Card.information
           title={name}
           maker={nickName}

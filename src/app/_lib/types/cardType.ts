@@ -15,7 +15,7 @@ export interface CardType {
 }
 
 type InformationDetailType = {
-  imageUrl: string
+  image: string
   nickName: string
 }
 

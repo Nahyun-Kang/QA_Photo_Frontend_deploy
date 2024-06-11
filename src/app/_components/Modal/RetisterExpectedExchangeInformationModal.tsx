@@ -1,5 +1,7 @@
 'use client'
 import Image from 'next/image'
+import { useParams } from 'next/navigation'
+import { useQuery } from '@tanstack/react-query'
 import { useEffect } from 'react'
 import { useForm, Controller, FieldValues, useWatch } from 'react-hook-form'
 import { ErrorMessage } from '@hookform/error-message'
@@ -11,6 +13,8 @@ import MyCardDetail from '../Card/MyCardDetail'
 import Button from '@/app/_components/Button'
 import Grade from '../Grade'
 import { GENRE_LIST, GRADE_LIST } from '@/app/_constants/listConstants'
+import { QUERY_KEYS } from '@/app/_constants/queryKeys'
+import getCardDetail from '@/app/_api/card/getCard'
 
 import styles from './registerExpectedExchangeInformationModal.module.scss'
 import Close from '/public/icons/close.svg'
@@ -18,10 +22,26 @@ import Filter from '/public/icons/filter.svg'
 import MobileBar from '/public/icons/mobile_bar.svg'
 import SelectComponent from '../Select/Select'
 
-export default function RegisterExpectedExchangeInformation() {
+interface RegisterExpectedExchangeInformationProps {
+  onClose: () => void
+  id: string
+}
+
+export default function RegisterExpectedExchangeInformation({
+  onClose,
+  id,
+}: RegisterExpectedExchangeInformationProps) {
   const MOCK_DATA = {
     name: '우리집 앞마당',
   }
+
+  const { data } = useQuery({
+    queryKey: [QUERY_KEYS.cardDetail, id],
+    queryFn: () => getCardDetail(id),
+    enabled: !!id,
+  })
+
+  console.log(data)
 
   return (
     <div className={styles.wrapper}>
@@ -48,7 +68,7 @@ export default function RegisterExpectedExchangeInformation() {
             </div>
             <div className={styles.cardContainer}>
               <MyCardDetail
-                grade="legendary"
+                grade="LEGENDARY"
                 genre="풍경"
                 maker="미쓰손"
                 totalQuantity={5}

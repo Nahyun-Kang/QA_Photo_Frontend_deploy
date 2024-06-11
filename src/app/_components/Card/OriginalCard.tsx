@@ -2,10 +2,9 @@ import Card from './CardComponents'
 import { OriginalCardType } from '@/app/_lib/types/cardType'
 
 export default function OriginalCard({
-  imageUrl,
+  image,
   nickName,
   id,
-  userId,
   name,
   price,
   grade,
@@ -18,7 +17,7 @@ export default function OriginalCard({
   return (
     <Card>
       <Card.CardContainer>
-        <Card.image imageUrl={imageUrl} isSoldOut={remainingQuantity === 0} />
+        <Card.image imageUrl={image} isSoldOut={remainingQuantity === 0} />
         <Card.information
           title={name}
           maker={nickName}
