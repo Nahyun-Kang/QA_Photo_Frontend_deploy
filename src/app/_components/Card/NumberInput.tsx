@@ -24,7 +24,9 @@ export default function NumberInput({
     <div className={styles.container}>
       <button
         className={styles.button}
-        onClick={handleMinusButtonClick}
+        onClick={() => {
+          handleMinusButtonClick()
+        }}
         type="button"
       >
         <Minus />
@@ -39,7 +41,9 @@ export default function NumberInput({
       />
       <button
         className={styles.button}
-        onClick={handlePlusButtonClick}
+        onClick={() => {
+          handlePlusButtonClick()
+        }}
         type="button"
       >
         <Plus />

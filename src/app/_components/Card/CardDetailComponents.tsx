@@ -1,8 +1,9 @@
-import { ReactNode } from 'react'
+import { ChangeEvent, ReactNode } from 'react'
 
 import Grade from '@/app/_components/Grade'
 import NumberInput from './NumberInput'
 import { GradeType } from '@/app/_lib/types/cardType'
+import { GENRE } from '@/app/(marketPlace)/mygallery/create-card/_constants/createCardConstants'
 
 import styles from './CardDetail.module.scss'
 
@@ -22,7 +23,7 @@ function CardDetailInformation({ grade, genre, maker }: ICardInformation) {
       <div className={styles.informationGradeContainer}>
         <Grade grade={grade} type="detail" />
         <div className={styles.bar}>|</div>
-        <span className={styles.informationGenre}>{genre}</span>
+        <span className={styles.informationGenre}>{GENRE[genre]}</span>
       </div>
       {maker && <div className={styles.informationMaker}>{maker}</div>}
     </div>
@@ -65,9 +66,10 @@ function DetailQuantityContainer({
 
 interface IPriceInput {
   id: string
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-function PriceInput({ id }: IPriceInput) {
+function PriceInput({ id, onChange }: IPriceInput) {
   return (
     <div className={styles.priceInputContainer}>
       <input
@@ -76,6 +78,7 @@ function PriceInput({ id }: IPriceInput) {
         min={0}
         placeholder="숫자만 입력"
         className={styles.priceInput}
+        onChange={onChange}
       />
       <span className={styles.price}>{'P'}</span>
     </div>

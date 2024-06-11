@@ -9,14 +9,34 @@ import ModalMain from '@/app/_components/Modal/Modal'
 import BasicModal from '@/app/_components/Modal/BasicModal'
 import SellPhotoCardModal from '@/app/_components/Modal/SellPhotoCardModal'
 import RegisterExpectedExchangeInformation from '@/app/_components/Modal/RetisterExpectedExchangeInformationModal'
+import { GradeType, GenreType } from '@/app/_lib/types/cardType'
 
 import styles from '../page.module.scss'
+
+export interface CardDataType {
+  name: string
+  grade: GradeType
+  genre: GenreType
+  userName: string
+  totalQuantity: number
+  image: string
+}
+
+const INITIAL_VALUE: CardDataType = {
+  name: '',
+  grade: 'COMMON',
+  genre: 'LANDSCAPE',
+  userName: '',
+  totalQuantity: 0,
+  image: '',
+}
 
 export default function MarketPlaceTitle() {
   const accessToken = getCookie('accessToken')
   const [isSellModalOn, setIsSellModalOn] = useState(false)
   const [isRegisterModalOn, setIsRegisterModalOn] = useState(false)
   const [currentId, setCurrentId] = useState<string>('')
+  const [cardData, setCardData] = useState(INITIAL_VALUE)
   const router = useRouter()
 
   const handleCloseModal = () => {
@@ -31,9 +51,10 @@ export default function MarketPlaceTitle() {
     router.push('/login')
   }
 
-  const handleOpenRegisterModal = (id: string) => {
+  const handleOpenRegisterModal = (id: string, data: CardDataType) => {
     setIsSellModalOn(false)
     setCurrentId(id)
+    setCardData({ ...data })
     setIsRegisterModalOn(true)
   }
 
@@ -52,6 +73,7 @@ export default function MarketPlaceTitle() {
           <RegisterExpectedExchangeInformation
             onClose={handleCloseRegisterModal}
             id={currentId}
+            data={cardData}
           />
         </ModalMain>
       )}

@@ -134,7 +134,7 @@ export default function CreateCardForm() {
       <Input.field>
         <Input.label htmlFor="genre">장르</Input.label>
         <SelectComponent
-          placeholder={PLACEHOLDER.grade}
+          placeholder={PLACEHOLDER.genre}
           list={Object.values(GENRE)}
           value={genre}
           defaultValue={getValues('genre')}
@@ -208,7 +208,7 @@ export default function CreateCardForm() {
           <Controller
             control={control}
             name="description"
-            render={({ field: { onChange, onBlur, value } }) => (
+            render={({ field: { onChange, onBlur } }) => (
               <Input.textarea
                 placeholder={PLACEHOLDER.description}
                 onChange={onChange}

@@ -1,5 +1,6 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect, ChangeEvent } from 'react'
+import { useFormContext } from 'react-hook-form'
 
 import CardDetail from './CardDetailComponents'
 import NumberInput from './NumberInput'
@@ -12,6 +13,10 @@ interface MyCardDetailProps {
   grade: GradeType
   maker: string
   totalQuantity: number
+  quantity: number
+  handlePlusButtonClick: () => void
+  handleMinusButtonClick: () => void
+  handleChangePriceInput: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
 export default function MyCardDetail({
@@ -19,25 +24,11 @@ export default function MyCardDetail({
   grade,
   maker,
   totalQuantity,
+  handlePlusButtonClick,
+  handleMinusButtonClick,
+  handleChangePriceInput,
+  quantity,
 }: MyCardDetailProps) {
-  const [quantity, setQuantity] = useState<number>(1)
-
-  const handlePlusButtonClick = () => {
-    if (quantity >= totalQuantity) {
-      return
-    }
-
-    setQuantity(quantity + 1)
-  }
-
-  const handleMinusButtonClick = () => {
-    if (quantity <= 1) {
-      return
-    }
-
-    setQuantity(quantity - 1)
-  }
-
   return (
     <CardDetail>
       <CardDetail.CardDetailInformation
@@ -72,7 +63,10 @@ export default function MyCardDetail({
             장당 가격
           </label>
           <div className={styles.price_input_wrapper}>
-            <CardDetail.PriceInput id="pricePerCard" />
+            <CardDetail.PriceInput
+              id="pricePerCard"
+              onChange={handleChangePriceInput}
+            />
           </div>
         </div>
       </div>

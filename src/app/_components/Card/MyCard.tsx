@@ -9,7 +9,7 @@ export default function MyCard({
   price,
   grade,
   genre,
-  remainingQuantity,
+  totalQuantity,
 }: MyCardType) {
   return (
     <Card>
@@ -23,7 +23,7 @@ export default function MyCard({
         />
         <Card.QuantityContainer>
           <Card.Price price={price} />
-          <Card.Quantity quantity={remainingQuantity} />
+          <Card.Quantity quantity={totalQuantity} />
         </Card.QuantityContainer>
         <Card.Logo />
       </Card.CardContainer>

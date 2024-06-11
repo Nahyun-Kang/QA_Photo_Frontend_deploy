@@ -16,10 +16,11 @@ import styles from './sellPhotoCard.module.scss'
 import Close from '/public/icons/close.svg'
 import MobileBar from '/public/icons/mobile_bar.svg'
 import { QUERY_KEYS } from '@/app/_constants/queryKeys'
+import { CardDataType } from '@/app/(marketPlace)/_components/Title'
 
 interface SellPhotoCardModalProps {
   onClose: () => void
-  onOpen: (id: string) => void
+  onOpen: (id: string, data: CardDataType) => void
 }
 
 export default function SellPhotoCardModal({
@@ -45,8 +46,8 @@ export default function SellPhotoCardModal({
     }
   }
 
-  const handleCardClick = (cardId: string) => {
-    onOpen(cardId)
+  const handleCardClick = (cardId: string, data: CardDataType) => {
+    onOpen(cardId, data)
   }
 
   useEffect(() => {
@@ -91,7 +92,16 @@ export default function SellPhotoCardModal({
                   <li
                     key={idx.toString()}
                     className={styles.cardItem}
-                    onClick={() => handleCardClick(el.id)}
+                    onClick={() =>
+                      handleCardClick(el.id, {
+                        name: el.name,
+                        grade: el.grade,
+                        genre: el.genre,
+                        totalQuantity: el.totalQuantity,
+                        userName: el.user.nickname,
+                        image: el.image,
+                      })
+                    }
                   >
                     <MyCard
                       image={el.image}
