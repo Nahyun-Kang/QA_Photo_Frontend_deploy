@@ -1,5 +1,6 @@
 'use client'
 import { useQuery } from '@tanstack/react-query'
+import { useRouter } from 'next/navigation'
 
 import Dropdown from '@/app/_components/Dropdown'
 import SelectComponent from '@/app/_components/Select/Select'
@@ -18,15 +19,20 @@ import getShopCards from '@/app/_api/card/getCards'
 
 import styles from './CardsList.module.scss'
 import Filter from '/public/icons/filter.svg'
-import { GenreType } from '@/app/_lib/types/cardType'
+import { GenreType, ShopCardType } from '@/app/_lib/types/cardType'
 
 export default function MarketPlaceCardList() {
   const { data } = useQuery({
     queryKey: [QUERY_KEYS.shopCards],
     queryFn: getShopCards,
   })
+  const router = useRouter()
 
   console.log(data)
+
+  const handleCardClick = (cardId: string) => {
+    router.push(`/${cardId}`)
+  }
 
   return (
     <section className={styles.section}>
@@ -55,28 +61,31 @@ export default function MarketPlaceCardList() {
         </div>
       </div>
       <ul className={styles.ul}>
-        {CARDS_LIST?.map((el, idx) => {
-          return (
-            <li key={idx.toString()} className={styles.cardItem}>
-              <OriginalCard
-                imageUrl={el.imageUrl}
-                nickName={el.nickName}
-                id={el.id}
-                name={el.name}
-                price={el.price}
-                grade={el.grade}
-                genre={el.genre as GenreType}
-                totalQuantity={el.totalQuantity}
-                remainingQuantity={el.remainingQuantity}
-                createdDate={el.createdDate}
-                updatedDate={el.updatedDate}
-              />
-            </li>
-          )
-        })}
+        {data &&
+          data?.data.map((el: ShopCardType) => {
+            return (
+              <li
+                key={el.id}
+                className={styles.cardItem}
+                onClick={() => handleCardClick(el.id)}
+              >
+                <OriginalCard
+                  image={el.image}
+                  nickName={el.seller_nickname}
+                  id={el.id}
+                  name={el.name}
+                  price={el.price}
+                  grade={el.grade}
+                  genre={el.genre as GenreType}
+                  totalQuantity={el.totalQuantity}
+                  remainingQuantity={el.remainingQuantity}
+                />
+              </li>
+            )
+          })}
       </ul>
       <div className={styles.paginationWrapper}>
-        <Pagination count={1000} />
+        {data && <Pagination count={data?.pagination?.totalCount} />}
       </div>
     </section>
   )

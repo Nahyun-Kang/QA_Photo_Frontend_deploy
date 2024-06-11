@@ -1,4 +1,8 @@
 import Image from 'next/image'
+import { useParams } from 'next/navigation'
+import { useQuery } from '@tanstack/react-query'
+import getCardDetail from '@/app/_api/card/getCard'
+import { QUERY_KEYS } from '@/app/_constants/queryKeys'
 
 import CardSeller from '@/app/_components/Card/CardSeller'
 import Title from '@/app/_components/Title'
@@ -9,15 +13,24 @@ import styles from './forSeller.module.scss'
 import ExchangeList from './ExchangeList'
 
 export default function ForSeller() {
+  const { cardId } = useParams<{ cardId: string }>()
+  const { data } = useQuery({
+    queryKey: [QUERY_KEYS.cardDetail, cardId],
+    queryFn: () => getCardDetail(cardId),
+    retry: 0,
+  })
+
+  console.log(data)
+
   return (
     <div className={styles.buyerContainer}>
       <Title>
-        <div className={styles.cardTitle}>우리집 앞마당</div>
+        <div className={styles.cardTitle}>{data.name}</div>
       </Title>
       <div className={styles.cardWrapper}>
         <div className={styles.imageWrapper}>
           <Image
-            src={'/images/image1.png'}
+            src={data.image}
             alt="카드 이미지"
             style={{ objectFit: 'cover' }}
             layout="fill"
@@ -26,16 +39,16 @@ export default function ForSeller() {
         </div>
         <div className={styles.cardContainer}>
           <CardSeller
-            grade="common"
-            genre="풍경"
-            maker="미쓰손"
-            description="sdfsf"
-            price={4}
-            remainingQuantity={2}
-            totalQuantity={5}
+            grade={data.grade}
+            genre={data.genre}
+            maker={data.seller_nickname}
+            description={data.description}
+            price={data.price}
+            remainingQuantity={data.remainingQuantity}
+            totalQuantity={data.totalQuantity}
             expectedContent="푸릇푸릇"
             expectedGenre="풍경"
-            expectedGrade="legendary"
+            expectedGrade="LEGENDARY"
           />
         </div>
       </div>

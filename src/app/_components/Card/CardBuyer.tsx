@@ -1,12 +1,14 @@
 'use client'
 
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
 
 import ModalMain from '../Modal/Modal'
 import BasicModal from '../Modal/BasicModal'
 import CardDetail from './CardDetailComponents'
 import Button from '@/app/_components/Button'
 import { GradeType } from '@/app/_lib/types/cardType'
+import purchaseCard from '@/app/_api/card/purchaseCard'
 
 import styles from './CardBuyer.module.scss'
 import gradeExtract from '@/app/_util/gradeExtract'
@@ -20,6 +22,7 @@ interface CardBuyerProps {
   totalQuantity: number
   maker: string
   name: string
+  cardId: string
 }
 
 export default function CardBuyer({
@@ -31,11 +34,22 @@ export default function CardBuyer({
   remainingQuantity,
   totalQuantity,
   maker,
+  cardId,
 }: CardBuyerProps) {
   const [quantity, setQuantity] = useState<number>(1)
+  const [isPurchaseModalOpen, setIsPurchaseModalOpen] = useState(false)
+  const router = useRouter()
+
+  const handleModalOpen = () => {
+    setIsPurchaseModalOpen(true)
+  }
+
+  const handleModalClose = () => {
+    setIsPurchaseModalOpen(false)
+  }
 
   const handlePlusButtonClick = () => {
-    if (quantity >= totalQuantity) {
+    if (quantity >= remainingQuantity) {
       return
     }
 
@@ -50,20 +64,30 @@ export default function CardBuyer({
     setQuantity(quantity - 1)
   }
 
+  const handlePurchaseButtonClick = async () => {
+    const res = await purchaseCard(cardId, quantity)
+    console.log(res)
+    if (res !== null) {
+      router.push(
+        `/${cardId}/purchase-success?grade=${grade}&cardname=${name}&quantity=${quantity}`,
+      )
+    }
+  }
   return (
     <>
-      {/* {
+      {isPurchaseModalOpen && (
         <ModalMain>
           <BasicModal
             title="포토카드 구매"
             description={
               <>{`[${gradeExtract(grade)} | ${name}] ${quantity}장을 구매하시겠습니까?`}</>
             }
-            onClick={() => console.log()}
+            onClick={handlePurchaseButtonClick}
+            onClose={handleModalClose}
             buttonName="구매하기"
           />
         </ModalMain>
-      } */}
+      )}
       <CardDetail>
         <CardDetail.CardDetailInformation
           genre={genre}
@@ -102,7 +126,13 @@ export default function CardBuyer({
             </div>
           </div>
           <div className={styles.buttonWrapper}>
-            <Button>포토카드 구매하기</Button>
+            <Button
+              type="button"
+              onClick={handleModalOpen}
+              disabled={remainingQuantity === 0}
+            >
+              포토카드 구매하기
+            </Button>
           </div>
         </form>
       </CardDetail>

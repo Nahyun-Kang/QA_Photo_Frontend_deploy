@@ -100,6 +100,7 @@ export default function SellPhotoCardModal({
                         totalQuantity: el.totalQuantity,
                         userName: el.user.nickname,
                         image: el.image,
+                        price: el.price,
                       })
                     }
                   >

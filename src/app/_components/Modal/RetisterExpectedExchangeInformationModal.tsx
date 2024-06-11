@@ -41,7 +41,7 @@ export default function RegisterExpectedExchangeInformation({
     defaultValues: {
       cardId: id,
       sellingQuantity: 1,
-      sellingPrice: 0,
+      sellingPrice: cardData.price,
       wishExchangeGenre: '',
       wishExchangeGrade: '',
       wishExchageDescription: '',
@@ -50,8 +50,11 @@ export default function RegisterExpectedExchangeInformation({
   })
   const router = useRouter()
 
-  const [quantity, setQuantity] = useState<number>(1)
-  const [price, setPrice] = useState<number>(0)
+  const [quantityAndPrice, setQuantityAndPrice] = useState({
+    quantity: 1,
+    price: cardData.price,
+  })
+
   const {
     control,
     formState: { errors },
@@ -104,32 +107,33 @@ export default function RegisterExpectedExchangeInformation({
   }
 
   const handlePlusButtonClick = () => {
-    if (quantity >= cardData.totalQuantity) {
+    if (quantityAndPrice.quantity >= cardData.totalQuantity) {
       return
     }
-
-    setQuantity(quantity + 1)
+    const newQuantity = quantityAndPrice.quantity + 1
+    setQuantityAndPrice((prevState) => ({
+      ...prevState,
+      quantity: newQuantity,
+      price: newQuantity * cardData.price,
+    }))
   }
 
   const handleMinusButtonClick = () => {
-    if (quantity <= 1) {
+    if (quantityAndPrice.quantity <= 1) {
       return
     }
-
-    setQuantity(quantity - 1)
-  }
-
-  const handleChangePriceInput = (event: ChangeEvent<HTMLInputElement>) => {
-    setPrice(parseFloat(event.target.value) || 0)
+    const newQuantity = quantityAndPrice.quantity - 1
+    setQuantityAndPrice((prevState) => ({
+      ...prevState,
+      quantity: newQuantity,
+      price: newQuantity * cardData.price,
+    }))
   }
 
   useEffect(() => {
-    setValue('sellingQuantity', quantity)
-  }, [quantity, setValue])
-
-  useEffect(() => {
-    setValue('sellingPrice', price)
-  }, [price, setValue])
+    setValue('sellingQuantity', quantityAndPrice.quantity)
+    setValue('sellingPrice', quantityAndPrice.price)
+  }, [quantityAndPrice, setValue])
 
   return (
     <div className={styles.wrapper}>
@@ -170,8 +174,8 @@ export default function RegisterExpectedExchangeInformation({
                 totalQuantity={cardData.totalQuantity}
                 handlePlusButtonClick={handlePlusButtonClick}
                 handleMinusButtonClick={handleMinusButtonClick}
-                handleChangePriceInput={handleChangePriceInput}
-                quantity={quantity}
+                priceValue={quantityAndPrice.price}
+                quantity={quantityAndPrice.quantity}
               />
             </div>
           </div>

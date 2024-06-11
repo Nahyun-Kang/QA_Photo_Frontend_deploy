@@ -16,7 +16,7 @@ interface MyCardDetailProps {
   quantity: number
   handlePlusButtonClick: () => void
   handleMinusButtonClick: () => void
-  handleChangePriceInput: (event: ChangeEvent<HTMLInputElement>) => void
+  priceValue: number
 }
 
 export default function MyCardDetail({
@@ -26,8 +26,8 @@ export default function MyCardDetail({
   totalQuantity,
   handlePlusButtonClick,
   handleMinusButtonClick,
-  handleChangePriceInput,
   quantity,
+  priceValue,
 }: MyCardDetailProps) {
   return (
     <CardDetail>
@@ -63,10 +63,7 @@ export default function MyCardDetail({
             장당 가격
           </label>
           <div className={styles.price_input_wrapper}>
-            <CardDetail.PriceInput
-              id="pricePerCard"
-              onChange={handleChangePriceInput}
-            />
+            <CardDetail.PriceInput id="pricePerCard" value={priceValue} />
           </div>
         </div>
       </div>

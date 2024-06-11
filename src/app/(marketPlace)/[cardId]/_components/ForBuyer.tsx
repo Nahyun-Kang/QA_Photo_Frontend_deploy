@@ -1,4 +1,5 @@
 'use client'
+import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import Image from 'next/image'
 import { useParams } from 'next/navigation'
@@ -12,6 +13,7 @@ import { QUERY_KEYS } from '@/app/_constants/queryKeys'
 import getCardDetail from '@/app/_api/card/getCard'
 import gradeExtract from '@/app/_util/gradeExtract'
 import { GENRE } from '../../mygallery/create-card/_constants/createCardConstants'
+import purchaseCard from '@/app/_api/card/purchaseCard'
 
 import styles from './forBuyer.module.scss'
 import { GradeType } from '@/app/_lib/types/cardType'
@@ -23,8 +25,6 @@ export default function ForBuyer() {
     queryFn: () => getCardDetail(cardId),
     retry: 0,
   })
-
-  console.log(data)
 
   return (
     <div className={styles.buyerContainer}>
@@ -51,6 +51,7 @@ export default function ForBuyer() {
             price={data?.price}
             remainingQuantity={data?.remainingQuantity}
             totalQuantity={data?.totalQuantity}
+            cardId={cardId}
           />
         </div>
       </div>
