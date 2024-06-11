@@ -1,10 +1,14 @@
 'use client'
 import { useState, useEffect } from 'react'
+import { useParams } from 'next/navigation'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 
 import Card from './CardComponents'
 import Button from '@/app/_components/Button'
 import ModalMain from '../Modal/Modal'
 import BasicModal from '../Modal/BasicModal'
+import cancelProposal from '@/app/_api/exchange/cancelProposal'
+import { QUERY_KEYS } from '@/app/_constants/queryKeys'
 
 import gradeExtract from '@/app/_util/gradeExtract'
 import { ExchangeCardType } from '@/app/_lib/types/cardType'
@@ -23,6 +27,36 @@ export default function ExchangeCard({
   image,
 }: ExchangeCardType) {
   const [isMobile, setIsMobile] = useState(false)
+  const [isCancelModalOn, setIsCancelModalOn] = useState(false)
+  const { cardId } = useParams<{ cardId: string }>()
+  const queryClient = useQueryClient()
+
+  const handleCloseCancelModal = () => {
+    setIsCancelModalOn(false)
+  }
+
+  const handleOpenCancelModal = () => {
+    setIsCancelModalOn(true)
+  }
+
+  const handleCancelProposal = async () => {
+    const res = await cancelProposal(id)
+    console.log(res)
+    handleCloseCancelModal()
+  }
+
+  const editCommentMutation = useMutation({
+    mutationFn: () => handleCancelProposal(),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.cardDetail, cardId],
+      })
+    },
+  })
+
+  const handleCancelButtonClick = () => {
+    editCommentMutation.mutate()
+  }
 
   useEffect(() => {
     const handleResize = () => {
@@ -67,18 +101,19 @@ export default function ExchangeCard({
           />
         </ModalMain>
       } */}
-      {/* {
+      {isCancelModalOn && (
         <ModalMain>
           <BasicModal
             title="교환 제시 취소"
             description={
               <>{`[${gradeExtract(grade)} | ${name}] 교환 제시를 취소하시겠습니까?`}</>
             }
-            onClick={() => console.log()}
+            onClick={handleCancelButtonClick}
+            onClose={handleCloseCancelModal}
             buttonName="취소하기"
           />
         </ModalMain>
-      } */}
+      )}
       <Card>
         <Card.CardContainer>
           <Card.image imageUrl={image} />
@@ -100,7 +135,12 @@ export default function ExchangeCard({
             </div>
           ) : (
             <div className={styles.buttonContainer}>
-              <Button thickness="thin" buttonStyle="secondary">
+              <Button
+                thickness="thin"
+                buttonStyle="secondary"
+                type="button"
+                onClick={handleOpenCancelModal}
+              >
                 취소하기
               </Button>
             </div>

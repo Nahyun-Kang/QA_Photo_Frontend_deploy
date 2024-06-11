@@ -1,17 +1,12 @@
 import axiosInstance from '@/app/_lib/axios/axiosInstance'
 
-const proposeExchange = async (exchangeId: string) => {
+const cancelProposal = async (exchangeId: string) => {
   try {
     const response = await axiosInstance.delete(
       `/api/cards/${exchangeId}/exchange`,
-      {
-        headers: {
-          'Content-Type': 'application/json',
-        },
-      },
     )
 
-    if (response.status === 200) {
+    if (response.status === 204) {
       console.log(response.data)
       return response.data
     }
@@ -21,4 +16,4 @@ const proposeExchange = async (exchangeId: string) => {
   }
 }
 
-export default proposeExchange
+export default cancelProposal
