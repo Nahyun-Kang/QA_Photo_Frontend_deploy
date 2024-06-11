@@ -4,14 +4,24 @@ import styles from './exchangeList.module.scss'
 import ExchangeCard from '@/app/_components/Card/ExchangeCard'
 
 import EXCHANGE_CARD_MOCK from './EXCHANGE_CARD_MOCK'
+import { GenreType, GradeType } from '@/app/_lib/types/cardType'
 
+interface ExchangeListType {
+  exchangeId: string
+  genre: GenreType
+  grade: GradeType
+  image: string
+  name: string
+  nickname: string
+  price: number
+  requestMessage: string
+}
 interface ExchangeListProps {
   type: 'buyer' | 'seller'
+  list: ExchangeListType[]
 }
 
-export default function ExchangeList({ type }: ExchangeListProps) {
-  const list = EXCHANGE_CARD_MOCK
-
+export default function ExchangeList({ type, list }: ExchangeListProps) {
   return (
     <div className={styles.exchangeWrapper}>
       <Title>
@@ -26,17 +36,14 @@ export default function ExchangeList({ type }: ExchangeListProps) {
               <li key={idx.toString()}>
                 <ExchangeCard
                   type="seller"
-                  name={el.cardName}
+                  name={el.name}
                   grade={el.grade}
                   genre={el.genre}
-                  description={el.message}
-                  nickName={el.maker}
-                  id={1}
-                  userId={1}
+                  requestMessage={el.requestMessage}
+                  nickName={el.nickname}
+                  id={el.exchangeId}
                   price={el.price}
-                  createdDate="2024-01-01"
-                  updatedDate="2024-01-01"
-                  imageUrl="/images/image2.png"
+                  image={el.image}
                 />
               </li>
             )
@@ -49,17 +56,14 @@ export default function ExchangeList({ type }: ExchangeListProps) {
               <li key={idx.toString()}>
                 <ExchangeCard
                   type="buyer"
-                  name={el.cardName}
+                  name={el.name}
                   grade={el.grade}
                   genre={el.genre}
-                  description={el.message}
-                  nickName={el.maker}
-                  id={1}
-                  userId={1}
+                  requestMessage={el.requestMessage}
+                  nickName={el.nickname}
+                  id={el.exchangeId}
                   price={el.price}
-                  createdDate="2024-01-01"
-                  updatedDate="2024-01-01"
-                  imageUrl="/images/image2.png"
+                  image={el.image}
                 />
               </li>
             )

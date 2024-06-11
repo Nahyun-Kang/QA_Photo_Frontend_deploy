@@ -6,7 +6,6 @@ export default function CardDetailPage() {
     <div className={styles.wrapper}>
       <div className={styles.pageTitle}>마켓플레이스</div>
       <SellerOrBuyer />
-      {/* <ForSeller /> */}
     </div>
   )
 }

@@ -33,13 +33,17 @@ export type CardForSaleType = Omit<
     method: 'sale' | 'exchange'
   }
 
-export type ExchangeCardType = Omit<
-  CardType,
-  'totalQuantity' | 'remainingQuantity'
-> &
-  InformationDetailType & {
-    type?: 'seller' | 'buyer'
-  }
+export interface ExchangeCardType {
+  type: 'seller' | 'buyer'
+  name: string
+  grade: GradeType
+  genre: GenreType
+  requestMessage: string
+  nickName: string
+  id: string
+  price: number
+  image: string
+}
 
 export interface CardListType {
   list: CardListType[]

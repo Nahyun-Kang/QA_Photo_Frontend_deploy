@@ -20,6 +20,7 @@ export interface CardDataType {
   userName: string
   totalQuantity: number
   image: string
+  price: number
 }
 
 const INITIAL_VALUE: CardDataType = {
@@ -29,6 +30,7 @@ const INITIAL_VALUE: CardDataType = {
   userName: '',
   totalQuantity: 0,
   image: '',
+  price: 0,
 }
 
 export default function MarketPlaceTitle() {
@@ -61,10 +63,6 @@ export default function MarketPlaceTitle() {
   const handleCloseRegisterModal = () => {
     setIsRegisterModalOn(false)
   }
-
-  console.log(isSellModalOn)
-  console.log(isRegisterModalOn)
-  console.log(currentId)
 
   return (
     <>

@@ -1,5 +1,6 @@
 'use client'
 import { useForm, Controller, FieldValues, useWatch } from 'react-hook-form'
+import { useParams } from 'next/navigation'
 
 import Input from '../Input/InputComponents'
 import Title from '@/app/_components/Title'
@@ -12,10 +13,36 @@ import Close from '/public/icons/close.svg'
 import Filter from '/public/icons/filter.svg'
 import MobileBar from '/public/icons/mobile_bar.svg'
 import SelectComponent from '../Select/Select'
+import { BuyerCardType } from '@/app/(marketPlace)/[cardId]/_components/ForBuyer'
+import getGenreNameFromType from '@/app/_util/getGenreNameFromType'
+import proposeExchange from '@/app/_api/exchange/proposeExchange'
 
-export default function ProposeExchangeModal() {
-  const MOCK_DATA = {
-    name: '우리집 앞마당',
+interface ProposeExchangeModal {
+  onClose: () => void
+  cardData: BuyerCardType
+}
+
+export default function ProposeExchangeModal({
+  onClose,
+  cardData,
+}: ProposeExchangeModal) {
+  const { cardId } = useParams<{ cardId: string }>()
+  const {
+    control,
+    formState: { errors },
+    handleSubmit,
+    setError,
+  } = useForm({
+    defaultValues: { description: '', offeredId: cardData.id },
+    mode: 'onTouched',
+  })
+
+  const onSubmit = async (data: FieldValues) => {
+    const res = proposeExchange(cardId, data.offeredId, data.description)
+    if (res !== null) {
+      console.log(res)
+      onClose()
+    }
   }
 
   return (
@@ -29,15 +56,30 @@ export default function ProposeExchangeModal() {
         <div className={styles.informationContainer}>
           <div className={styles.myGallery}>{'포토카드 교환하기'}</div>
           <Title>
-            <div className={styles.title}>{MOCK_DATA.name}</div>
+            <div className={styles.title}>{cardData.name}</div>
           </Title>
           <div className={styles.exchangeWrapper}>
-            <div className={styles.cardWrapper}>{/* <MyCard/> */}</div>
-            <div className={styles.descriptionWrapper}>
+            <div className={styles.cardWrapper}>
+              <MyCard
+                grade={cardData.grade}
+                genre={cardData.genre}
+                name={cardData.name}
+                image={cardData.image}
+                nickName={cardData.userName}
+                price={cardData.price}
+                totalQuantity={cardData.totalQuantity}
+                id={cardData.id}
+              />
+            </div>
+            <form
+              className={styles.descriptionWrapper}
+              onSubmit={handleSubmit(onSubmit)}
+            >
               <Input.field>
                 <Input.label htmlFor="description">교환 제시 내용</Input.label>
                 <Input.containerWithMessage>
                   <Controller
+                    control={control}
                     name="description"
                     render={({ field: { onChange, onBlur, value } }) => (
                       <Input.textarea
@@ -51,12 +93,19 @@ export default function ProposeExchangeModal() {
                 </Input.containerWithMessage>
               </Input.field>
               <div className={styles.buttonsWrapper}>
-                <Button thickness="thin" buttonStyle="secondary">
+                <Button
+                  thickness="thin"
+                  buttonStyle="secondary"
+                  type="button"
+                  onClick={onClose}
+                >
                   취소하기
                 </Button>
-                <Button thickness="thin">교환하기</Button>
+                <Button thickness="thin" type="submit">
+                  교환하기
+                </Button>
               </div>
-            </div>
+            </form>
           </div>
         </div>
       </div>

@@ -4,6 +4,7 @@ import { ReactNode } from 'react'
 import Chip from '@/app/_components/Chip'
 import Grade from '@/app/_components/Grade'
 import { GradeType, GenreType } from '@/app/_lib/types/cardType'
+import getGenreNameFromType from '@/app/_util/getGenreNameFromType'
 
 import styles from './Card.module.scss'
 import SoldOut from '/public/images/soldout.svg'
@@ -62,7 +63,7 @@ interface ICardInformation {
   grade: GradeType
   genre: GenreType
   maker: string
-  point?: number
+  price?: number
   type?: 'sale' | 'exchange'
 }
 
@@ -71,7 +72,7 @@ function CardInformation({
   grade,
   genre,
   maker,
-  point = 0,
+  price = 0,
   type = 'sale',
 }: ICardInformation) {
   return (
@@ -81,7 +82,7 @@ function CardInformation({
         <ExchangeInformation
           grade={grade}
           genre={genre}
-          point={point}
+          price={price}
           maker={maker}
         />
       ) : (
@@ -115,19 +116,19 @@ function ExchangeInformation({
   grade,
   genre,
   maker,
-  point,
+  price,
 }: IExchangeInformation) {
   return (
     <div className={styles.exchangeWrapper}>
       <div className={styles.gradeContainer}>
         <Grade grade={grade}></Grade>
         <span className={styles.bar}>{'|'}</span>
-        <span className={styles.genre}>{genre}</span>
+        <span className={styles.genre}>{getGenreNameFromType(genre)}</span>
       </div>
       <div className={styles.exchangeMakerContainer}>
         <div className={styles.gradeContainer}>
           <span className={`${styles.bar} ${styles.exchange}`}>{'|'}</span>
-          <span className={styles.point}>{`${point} P`}</span>
+          <span className={styles.point}>{`${price} P`}</span>
           <span className={styles.genre}>{`에 구매`}</span>
         </div>
         <span className={styles.maker}>{maker}</span>

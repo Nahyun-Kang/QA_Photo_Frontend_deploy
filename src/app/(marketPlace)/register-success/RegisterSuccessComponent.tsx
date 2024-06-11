@@ -1,8 +1,6 @@
 'use client'
 
 import { useRouter, useSearchParams } from 'next/navigation'
-import { GENRE } from '../mygallery/create-card/_constants/createCardConstants'
-
 import Result from '@/app/_components/Result'
 
 export default function RegisterSuccessComponent() {

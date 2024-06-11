@@ -13,14 +13,14 @@ import styles from './Card.module.scss'
 
 export default function ExchangeCard({
   type = 'seller',
-  imageUrl,
-  nickName,
-  id,
-  userId,
   name,
   grade,
   genre,
-  description,
+  requestMessage,
+  nickName,
+  id,
+  price,
+  image,
 }: ExchangeCardType) {
   const [isMobile, setIsMobile] = useState(false)
 
@@ -81,15 +81,16 @@ export default function ExchangeCard({
       } */}
       <Card>
         <Card.CardContainer>
-          <Card.image imageUrl={imageUrl} />
+          <Card.image imageUrl={image} />
           <Card.information
             title={name}
             maker={nickName}
             grade={grade}
             genre={genre}
+            price={price}
             type="exchange"
           />
-          <Card.Description description={description} />
+          <Card.Description description={requestMessage} />
           {type === 'seller' ? (
             <div className={styles.buttonContainer}>
               <Button thickness="mini" buttonStyle="secondary">

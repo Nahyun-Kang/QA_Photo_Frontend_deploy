@@ -2,14 +2,14 @@ import axiosInstance from '@/app/_lib/axios/axiosInstance'
 
 const proposeExchange = async (
   exchangeId: string,
-  offeredId: string,
+  offeredCardId: string,
   requestMessage: string,
 ) => {
   try {
     const response = await axiosInstance.post(
       `/api/cards/${exchangeId}/exchange`,
       {
-        offeredId,
+        offeredCardId,
         requestMessage,
       },
       {
