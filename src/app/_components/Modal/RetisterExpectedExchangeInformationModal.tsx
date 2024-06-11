@@ -2,6 +2,7 @@
 import { useState, useEffect, ChangeEvent } from 'react'
 import Image from 'next/image'
 import { useForm, Controller, FieldValues, useWatch } from 'react-hook-form'
+import { useRouter } from 'next/navigation'
 
 import Input from '../Input/InputComponents'
 import Title from '@/app/_components/Title'
@@ -47,6 +48,7 @@ export default function RegisterExpectedExchangeInformation({
     },
     mode: 'onTouched',
   })
+  const router = useRouter()
 
   const [quantity, setQuantity] = useState<number>(1)
   const [price, setPrice] = useState<number>(0)
@@ -77,6 +79,9 @@ export default function RegisterExpectedExchangeInformation({
     if (res !== null) {
       console.log(res)
       onClose()
+      router.push(
+        `/register-success?grade=${cardData.grade}&cardname=${cardData.name}&quantity=${data.sellingQuantity}`,
+      )
     }
   }
 
