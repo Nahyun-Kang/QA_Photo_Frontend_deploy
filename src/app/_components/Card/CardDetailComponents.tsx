@@ -66,10 +66,11 @@ function DetailQuantityContainer({
 
 interface IPriceInput {
   id: string
-  value: number
+  value?: number
+  onChange?: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-function PriceInput({ id, value }: IPriceInput) {
+function PriceInput({ id, value, onChange }: IPriceInput) {
   return (
     <div className={styles.priceInputContainer}>
       <input
@@ -78,7 +79,7 @@ function PriceInput({ id, value }: IPriceInput) {
         min={0}
         placeholder="숫자만 입력"
         className={styles.priceInput}
-        value={value}
+        onChange={onChange}
       />
       <span className={styles.price}>{'P'}</span>
     </div>

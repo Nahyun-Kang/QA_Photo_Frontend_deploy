@@ -46,14 +46,14 @@ export default function ForSeller() {
             price={data.price}
             remainingQuantity={data.remainingQuantity}
             totalQuantity={data.totalQuantity}
-            expectedContent="푸릇푸릇"
-            expectedGenre="풍경"
-            expectedGrade="LEGENDARY"
+            expectedContent={data?.wishExchangeData.wishExchangeDescription}
+            expectedGenre={data?.wishExchangeData.wishExchangeGenre}
+            expectedGrade={data?.wishExchangeData.wishExchangeGrade}
           />
         </div>
       </div>
       <div className={styles.exchangeListWrapper}>
-        <ExchangeList type="seller" />
+        <ExchangeList type="seller" list={data && data?.exchangeRequest} />
       </div>
     </div>
   )

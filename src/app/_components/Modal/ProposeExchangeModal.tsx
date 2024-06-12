@@ -1,4 +1,5 @@
 'use client'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { useForm, Controller, FieldValues, useWatch } from 'react-hook-form'
 import { useParams } from 'next/navigation'
 
@@ -7,6 +8,7 @@ import Title from '@/app/_components/Title'
 import CommonHeader from '../Header/CommonHeader'
 import MyCard from '../Card/MyCard'
 import Button from '@/app/_components/Button'
+import { QUERY_KEYS } from '@/app/_constants/queryKeys'
 
 import styles from './proposeExchangeModal.module.scss'
 import Close from '/public/icons/close.svg'
@@ -36,13 +38,25 @@ export default function ProposeExchangeModal({
     defaultValues: { description: '', offeredId: cardData.id },
     mode: 'onTouched',
   })
+  const queryClient = useQueryClient()
+
+  const proposeExchangeMutation = useMutation({
+    mutationFn: (data: FieldValues) =>
+      proposeExchange(cardId, data.offeredId, data.description),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.cardDetail, cardId],
+      })
+    },
+  })
+
+  const handleProposeButtonClick = async (data: FieldValues) => {
+    await proposeExchangeMutation.mutate(data)
+  }
 
   const onSubmit = async (data: FieldValues) => {
-    const res = proposeExchange(cardId, data.offeredId, data.description)
-    if (res !== null) {
-      console.log(res)
-      onClose()
-    }
+    handleProposeButtonClick(data)
+    onClose()
   }
 
   return (

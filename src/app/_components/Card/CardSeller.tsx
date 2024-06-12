@@ -1,3 +1,6 @@
+'use client'
+import { useState } from 'react'
+
 import Button from '@/app/_components/Button'
 import { GradeType } from '@/app/_lib/types/cardType'
 import CardDetail from './CardDetailComponents'
@@ -7,6 +10,8 @@ import ExchangeIcon from '/public/icons/exchange.svg'
 
 import ModalMain from '../Modal/Modal'
 import BasicModal from '../Modal/BasicModal'
+import EditCardModal from '../Modal/EditCardModal'
+
 interface CardSellerProps {
   genre: string
   grade: GradeType
@@ -21,8 +26,23 @@ interface CardSellerProps {
 }
 
 export default function CardSeller({ ...props }: CardSellerProps) {
+  const [isEditModalOn, setIsEditModalOn] = useState(false)
+
+  const handleCloseEditModal = () => {
+    setIsEditModalOn(false)
+  }
+
+  const handleOpenEditModal = () => {
+    setIsEditModalOn(true)
+  }
+
   return (
     <>
+      {isEditModalOn && (
+        <ModalMain>
+          <EditCardModal onClose={handleCloseEditModal} />
+        </ModalMain>
+      )}
       {/* {
         <ModalMain>
           <BasicModal
@@ -61,7 +81,9 @@ export default function CardSeller({ ...props }: CardSellerProps) {
         <CardDetail.BottomLine />
         <CardDetail.Description description={props.expectedContent} />
         <div className={styles.buttonContainer}>
-          <Button>수정하기</Button>
+          <Button type="button" onClick={handleOpenEditModal}>
+            수정하기
+          </Button>
           <Button buttonStyle="secondary">판매 내리기</Button>
         </div>
       </CardDetail>

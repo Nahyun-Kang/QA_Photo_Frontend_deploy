@@ -113,7 +113,7 @@ export default function ForBuyer() {
               grade={gradeExtract(data?.grade) as GradeType}
               genre={GENRE[data?.genre]}
               maker={data?.seller_nickname}
-              description="sdfsf"
+              description={data?.description}
               price={data?.price}
               remainingQuantity={data?.remainingQuantity}
               totalQuantity={data?.totalQuantity}
@@ -135,11 +135,18 @@ export default function ForBuyer() {
             </div>
           </Title>
           <div className={styles.exchangeContentsWrapper}>
-            <div className={styles.exchangeDescription}>푸릇푸릇한 여름</div>
+            <div className={styles.exchangeDescription}>
+              {data && data?.wishExchangeData?.wishExchangeDescription}
+            </div>
             <div className={styles.gradeWrapper}>
-              <Grade type="detail" />
+              <Grade
+                type="detail"
+                grade={data && data?.wishExchangeData?.wishExchangeGrade}
+              />
               <div className={styles.genre}>|</div>
-              <div className={styles.genre}>풍경</div>
+              <div className={styles.genre}>
+                {data && data?.wishExchangeData?.wishExchangeGenre}
+              </div>
             </div>
             <div className={styles.mobileExchangeButtonContainer}>
               <Button
