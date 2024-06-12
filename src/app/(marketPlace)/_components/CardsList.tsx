@@ -28,8 +28,6 @@ export default function MarketPlaceCardList() {
   })
   const router = useRouter()
 
-  console.log(data)
-
   const handleCardClick = (cardId: string) => {
     router.push(`/${cardId}`)
   }

@@ -5,4 +5,5 @@ export const QUERY_KEYS = {
   myCards: 'myCards',
   saleCards: 'saleCards',
   exchangeCards: 'exchangeCards',
+  notifications: 'notifications',
 }

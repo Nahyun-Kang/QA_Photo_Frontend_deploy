@@ -34,8 +34,6 @@ export default function SellPhotoCardModal({
     queryFn: () => getMyCards(1),
   })
 
-  console.log(data)
-
   const handleOutSideClick = (e: Event) => {
     if (
       onClose &&

@@ -23,8 +23,6 @@ export default function MyCardsCardList() {
     queryFn: () => getSaleCards(1, 16),
   })
 
-  console.log(data)
-
   return (
     <section className={styles.section}>
       <div className={styles.filterContainer}>

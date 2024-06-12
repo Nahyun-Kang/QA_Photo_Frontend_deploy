@@ -36,7 +36,6 @@ const editCard = async (params: EditCardType) => {
     })
 
     if (response.status === 201) {
-      console.log(response.data)
       return response.data
     }
   } catch (error: any) {

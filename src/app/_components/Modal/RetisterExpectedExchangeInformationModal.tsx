@@ -9,7 +9,6 @@ import Title from '@/app/_components/Title'
 import CommonHeader from '../Header/CommonHeader'
 import MyCardDetail from '../Card/MyCardDetail'
 import Button from '@/app/_components/Button'
-import { GENRE_LIST, GRADE_LIST } from '@/app/_constants/listConstants'
 import registerCard from '@/app/_api/card/registerCard'
 import {
   GRADE,
@@ -20,7 +19,6 @@ import { gradeToType } from '@/app/_util/gradeExtract'
 
 import styles from './registerExpectedExchangeInformationModal.module.scss'
 import Close from '/public/icons/close.svg'
-import Filter from '/public/icons/filter.svg'
 import MobileBar from '/public/icons/mobile_bar.svg'
 import SelectComponent from '../Select/Select'
 import { GenreType, GradeType } from '@/app/_lib/types/cardType'
@@ -70,7 +68,6 @@ export default function RegisterExpectedExchangeInformation({
   }
 
   const onSubmit = async (data: FieldValues) => {
-    console.log(data)
     const res = await registerCard({
       cardId: data.cardId,
       sellingQuantity: data.sellingQuantity,
@@ -83,7 +80,6 @@ export default function RegisterExpectedExchangeInformation({
       wishExchageDescription: data.wishExchageDescription,
     })
     if (res !== null) {
-      console.log(res)
       onClose()
       router.push(
         `/register-success?grade=${cardData.grade}&cardname=${cardData.name}&quantity=${data.sellingQuantity}`,

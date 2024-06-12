@@ -24,8 +24,6 @@ export default function MainHeader() {
     enabled: !!accessToken,
   })
 
-  console.log(data)
-
   const handleToggleProfile = () => {
     setIsProfileOpened((state) => !state)
   }

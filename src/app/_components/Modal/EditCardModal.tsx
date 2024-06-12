@@ -126,8 +126,6 @@ export default function EditCardModal({ onClose }: EditCardModalProps) {
     setValue('sellingQuantity', quantity)
   }, [quantity, setValue])
 
-  console.log(data)
-
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
