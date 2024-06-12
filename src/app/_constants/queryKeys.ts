@@ -3,4 +3,6 @@ export const QUERY_KEYS = {
   shopCards: 'shopCards',
   cardDetail: 'cardDetail',
   myCards: 'myCards',
+  saleCards: 'saleCards',
+  exchangeCards: 'exchangeCards',
 }

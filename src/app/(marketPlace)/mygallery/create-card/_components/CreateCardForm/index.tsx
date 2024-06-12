@@ -15,9 +15,10 @@ import {
 } from '@/app/(marketPlace)/mygallery/create-card/_constants/createCardConstants'
 import CommonButton from '@/app/_components/Button'
 import createCard from '@/app/_api/card/createCard'
+import { gradeToType } from '@/app/_util/gradeExtract'
 
 import styles from './cardform.module.scss'
-import { GenreType } from '@/app/_lib/types/cardType'
+import { GenreType, GradeType } from '@/app/_lib/types/cardType'
 
 export default function CreateCardForm() {
   const {
@@ -81,7 +82,7 @@ export default function CreateCardForm() {
       image: data.image,
       name: data.name,
       price: data.price,
-      grade: data.grade,
+      grade: gradeToType(data.grade) as GradeType,
       genre: getKeyByValue(GENRE, data.genre) as GenreType,
       description: data.description,
       totalQuantity: data.totalQuantity,

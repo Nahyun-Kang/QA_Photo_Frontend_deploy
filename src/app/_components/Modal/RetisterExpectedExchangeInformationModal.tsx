@@ -50,11 +50,6 @@ export default function RegisterExpectedExchangeInformation({
   })
   const router = useRouter()
 
-  const [quantityAndPrice, setQuantityAndPrice] = useState({
-    quantity: 1,
-    price: cardData.price,
-  })
-
   const {
     control,
     formState: { errors },
@@ -62,12 +57,20 @@ export default function RegisterExpectedExchangeInformation({
     getValues,
     setValue,
   } = methods
+  const [quantity, setQuantity] = useState<number>(getValues('sellingQuantity'))
+
+  const [price, setPrice] = useState<number>(getValues('sellingPrice'))
 
   const getKeyByValue = (obj: any, value: any) => {
     return Object.keys(obj).find((key) => obj[key] === value)
   }
 
+  const handleChangePriceInput = (e: ChangeEvent<HTMLInputElement>) => {
+    setPrice(Number(e.target.value))
+  }
+
   const onSubmit = async (data: FieldValues) => {
+    console.log(data)
     const res = await registerCard({
       cardId: data.cardId,
       sellingQuantity: data.sellingQuantity,
@@ -107,34 +110,22 @@ export default function RegisterExpectedExchangeInformation({
   }
 
   const handlePlusButtonClick = () => {
-    if (quantityAndPrice.quantity >= cardData.totalQuantity) {
+    if (quantity >= cardData.totalQuantity) {
       return
     }
-    const newQuantity = quantityAndPrice.quantity + 1
-    setQuantityAndPrice((prevState) => ({
-      ...prevState,
-      quantity: newQuantity,
-      price: newQuantity * cardData.price,
-    }))
+    setQuantity((prevState) => prevState + 1)
   }
 
   const handleMinusButtonClick = () => {
-    if (quantityAndPrice.quantity <= 1) {
+    if (quantity <= 1) {
       return
     }
-    const newQuantity = quantityAndPrice.quantity - 1
-    setQuantityAndPrice((prevState) => ({
-      ...prevState,
-      quantity: newQuantity,
-      price: newQuantity * cardData.price,
-    }))
+    setQuantity((prevState) => prevState - 1)
   }
 
   useEffect(() => {
-    setValue('sellingQuantity', quantityAndPrice.quantity)
-    setValue('sellingPrice', quantityAndPrice.price)
-  }, [quantityAndPrice, setValue])
-
+    setValue('sellingQuantity', quantity)
+  }, [quantity, setValue])
   return (
     <div className={styles.wrapper}>
       <div className={styles.container}>
@@ -174,8 +165,9 @@ export default function RegisterExpectedExchangeInformation({
                 totalQuantity={cardData.totalQuantity}
                 handlePlusButtonClick={handlePlusButtonClick}
                 handleMinusButtonClick={handleMinusButtonClick}
-                priceValue={quantityAndPrice.price}
-                quantity={quantityAndPrice.quantity}
+                priceValue={price}
+                quantity={quantity}
+                onChange={handleChangePriceInput}
               />
             </div>
           </div>

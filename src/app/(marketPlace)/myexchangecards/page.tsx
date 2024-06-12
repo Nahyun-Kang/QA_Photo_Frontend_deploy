@@ -7,7 +7,7 @@ import styles from '@/app/(marketPlace)/mycards/page.module.scss'
 import OwnedCards from '@/app/(marketPlace)/mygallery/_components/OwnedCards'
 
 import { MOCK_GRADELIST } from '@/app/(marketPlace)/mygallery/MOCK_DATA'
-import MyCardsCardList from '@/app/(marketPlace)/mycards/_components/MyCardsCardList'
+import MyExchangeCardList from './_components/MyExchangeCardList'
 
 export default function MyExchangeCardsPage() {
   return (
@@ -20,7 +20,7 @@ export default function MyExchangeCardsPage() {
         </Title>
       </div>
       <OwnedCards totalCount={20} gradeList={MOCK_GRADELIST} userName="유디" />
-      <MyCardsCardList />
+      <MyExchangeCardList />
     </main>
   )
 }

@@ -24,7 +24,7 @@ import { GenreType, ShopCardType } from '@/app/_lib/types/cardType'
 export default function MarketPlaceCardList() {
   const { data } = useQuery({
     queryKey: [QUERY_KEYS.shopCards],
-    queryFn: getShopCards,
+    queryFn: () => getShopCards(1, 16),
   })
   const router = useRouter()
 

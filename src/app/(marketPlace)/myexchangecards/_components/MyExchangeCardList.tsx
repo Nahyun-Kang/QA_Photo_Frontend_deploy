@@ -2,7 +2,7 @@
 import { useQuery } from '@tanstack/react-query'
 
 import { QUERY_KEYS } from '@/app/_constants/queryKeys'
-import getSaleCards from '@/app/_api/card/getSaleCards'
+import getExchangeCards from '@/app/_api/card/getExchangeCards'
 import SearchInput from '@/app/_components/SearchInput'
 import Dropdown from '@/app/_components/Dropdown'
 import {
@@ -13,14 +13,14 @@ import {
 import { CARDS_LIST } from '@/app/(marketPlace)/CARD_LISTS'
 import Pagination from '@/app/_components/pagination'
 import CardForSale from '@/app/_components/Card/CardForSale'
+import styles from './MyExchangeCardList.module.scss'
 
-import styles from './MycardsCardList.module.scss'
 import Filter from '/public/icons/filter.svg'
 
-export default function MyCardsCardList() {
+export default function MyExchangeCardList() {
   const { data } = useQuery({
-    queryKey: [QUERY_KEYS.saleCards],
-    queryFn: () => getSaleCards(1, 16),
+    queryKey: [QUERY_KEYS.exchangeCards],
+    queryFn: () => getExchangeCards(1, 16),
   })
 
   console.log(data)
@@ -55,7 +55,7 @@ export default function MyCardsCardList() {
                   grade={el.grade}
                   genre={el.genre}
                   registeredQuantity={el.quantity}
-                  method={el.method}
+                  method={'exchange'}
                 />
               </li>
             )
