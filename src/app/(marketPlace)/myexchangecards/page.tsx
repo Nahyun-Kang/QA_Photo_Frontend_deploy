@@ -19,7 +19,7 @@ export default function MyExchangeCardsPage() {
           </div>
         </Title>
       </div>
-      <OwnedCards totalCount={20} gradeList={MOCK_GRADELIST} userName="유디" />
+      <OwnedCards />
       <MyExchangeCardList />
     </main>
   )

@@ -2,7 +2,7 @@ import axiosInstance from '@/app/_lib/axios/axiosInstance'
 
 const acceptProposal = async (exchangeId: string) => {
   try {
-    const response = await axiosInstance.delete(
+    const response = await axiosInstance.post(
       `/api/cards/${exchangeId}/exchange/accept`,
       {
         headers: {

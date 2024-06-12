@@ -6,7 +6,6 @@ import Button from '@/app/_components/Button'
 import styles from './page.module.scss'
 import OwnedCards from '@/app/(marketPlace)/mygallery/_components/OwnedCards'
 
-import { MOCK_GRADELIST } from '@/app/(marketPlace)/mygallery/MOCK_DATA'
 import MyCardsCardList from './_components/MyCardsCardList'
 
 export default function MyCardsPage() {
@@ -19,7 +18,7 @@ export default function MyCardsPage() {
           </div>
         </Title>
       </div>
-      <OwnedCards totalCount={20} gradeList={MOCK_GRADELIST} userName="유디" />
+      <OwnedCards />
       <MyCardsCardList />
     </main>
   )

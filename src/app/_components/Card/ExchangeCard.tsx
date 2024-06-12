@@ -8,6 +8,8 @@ import Button from '@/app/_components/Button'
 import ModalMain from '../Modal/Modal'
 import BasicModal from '../Modal/BasicModal'
 import cancelProposal from '@/app/_api/exchange/cancelProposal'
+import acceptProposal from '@/app/_api/exchange/acceptProposal'
+import rejectProposal from '@/app/_api/exchange/rejectProposal'
 import { QUERY_KEYS } from '@/app/_constants/queryKeys'
 
 import gradeExtract from '@/app/_util/gradeExtract'
@@ -28,6 +30,8 @@ export default function ExchangeCard({
 }: ExchangeCardType) {
   const [isMobile, setIsMobile] = useState(false)
   const [isCancelModalOn, setIsCancelModalOn] = useState(false)
+  const [isRejectModalOn, setIsRejectModalOn] = useState(false)
+  const [isAcceptModalOn, setIsAcceptModalOn] = useState(false)
   const { cardId } = useParams<{ cardId: string }>()
   const queryClient = useQueryClient()
 
@@ -38,6 +42,20 @@ export default function ExchangeCard({
   const handleOpenCancelModal = () => {
     setIsCancelModalOn(true)
   }
+  const handleCloseAcceptModal = () => {
+    setIsAcceptModalOn(false)
+  }
+
+  const handleOpenAcceptModal = () => {
+    setIsAcceptModalOn(true)
+  }
+  const handleCloseRejectModal = () => {
+    setIsRejectModalOn(false)
+  }
+
+  const handleOpenRejectModal = () => {
+    setIsRejectModalOn(true)
+  }
 
   const handleCancelProposal = async () => {
     const res = await cancelProposal(id)
@@ -45,17 +63,46 @@ export default function ExchangeCard({
     handleCloseCancelModal()
   }
 
-  const editCommentMutation = useMutation({
+  const cancelProposalMutation = useMutation({
     mutationFn: () => handleCancelProposal(),
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [QUERY_KEYS.cardDetail, cardId],
       })
+      handleCloseCancelModal()
     },
   })
 
   const handleCancelButtonClick = () => {
-    editCommentMutation.mutate()
+    cancelProposalMutation.mutate()
+  }
+
+  const acceptProposalMutation = useMutation({
+    mutationFn: () => acceptProposal(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.cardDetail, cardId],
+      })
+      handleCloseAcceptModal()
+    },
+  })
+
+  const handleAcceptButtonClick = () => {
+    acceptProposalMutation.mutate()
+  }
+
+  const rejectProposalMutation = useMutation({
+    mutationFn: () => rejectProposal(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.cardDetail, cardId],
+      })
+      handleCloseRejectModal()
+    },
+  })
+
+  const handleRejectButtonClick = () => {
+    rejectProposalMutation.mutate()
   }
 
   useEffect(() => {
@@ -77,30 +124,32 @@ export default function ExchangeCard({
 
   return (
     <>
-      {/* {
+      {isRejectModalOn && (
         <ModalMain>
           <BasicModal
             title="교환 제시 거절"
             description={
               <>{`[${gradeExtract(grade)} | ${name}] 카드와의 교환을 거절하시겠습니까?`}</>
             }
-            onClick={() => console.log()}
+            onClick={handleRejectButtonClick}
             buttonName="거절하기"
+            onClose={handleCloseRejectModal}
           />
         </ModalMain>
-      }
-      {
+      )}
+      {isAcceptModalOn && (
         <ModalMain>
           <BasicModal
-            title="포토카드 구매"
+            title="교환 제시 승인"
             description={
               <>{`[${gradeExtract(grade)} | ${name}] 카드와의 교환을 승인하시겠습니까?`}</>
             }
-            onClick={() => console.log()}
+            onClick={handleAcceptButtonClick}
             buttonName="승인하기"
+            onClose={handleCloseAcceptModal}
           />
         </ModalMain>
-      } */}
+      )}
       {isCancelModalOn && (
         <ModalMain>
           <BasicModal
@@ -128,10 +177,21 @@ export default function ExchangeCard({
           <Card.Description description={requestMessage} />
           {type === 'seller' ? (
             <div className={styles.buttonContainer}>
-              <Button thickness="mini" buttonStyle="secondary">
+              <Button
+                thickness="mini"
+                buttonStyle="secondary"
+                type="button"
+                onClick={handleOpenRejectModal}
+              >
                 {isMobile ? '거절' : '거절하기'}
               </Button>
-              <Button thickness="mini">{isMobile ? '승인' : '승인하기'}</Button>
+              <Button
+                thickness="mini"
+                type="button"
+                onClick={handleOpenAcceptModal}
+              >
+                {isMobile ? '승인' : '승인하기'}
+              </Button>
             </div>
           ) : (
             <div className={styles.buttonContainer}>
