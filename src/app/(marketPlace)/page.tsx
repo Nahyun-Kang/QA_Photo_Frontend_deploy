@@ -5,10 +5,6 @@ import MarketPlaceCardList from './_components/CardsList'
 import RandomPointModal from '../_components/Modal/RandomPointModal'
 
 export default function Home() {
-  const handleButtonClick = () => {
-    console.log('clicked')
-  }
-
   return (
     <>
       {/* {

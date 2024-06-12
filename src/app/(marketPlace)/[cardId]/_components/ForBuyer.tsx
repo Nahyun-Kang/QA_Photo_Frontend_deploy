@@ -73,8 +73,6 @@ export default function ForBuyer() {
     setIsProposeModalOn(false)
   }
 
-  console.log(data)
-
   return (
     <>
       {isProposeModalOn && (

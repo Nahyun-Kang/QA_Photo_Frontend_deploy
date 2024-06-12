@@ -20,8 +20,6 @@ export default function ForSeller() {
     retry: 0,
   })
 
-  console.log(data)
-
   return (
     <div className={styles.buyerContainer}>
       <Title>
