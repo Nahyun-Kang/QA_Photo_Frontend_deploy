@@ -1,16 +1,18 @@
 'use client'
 import { useState } from 'react'
+import { useRouter } from 'next/navigation'
+import { useParams } from 'next/navigation'
 
 import Button from '@/app/_components/Button'
 import { GradeType } from '@/app/_lib/types/cardType'
 import CardDetail from './CardDetailComponents'
-
-import styles from './CardSeller.module.scss'
-import ExchangeIcon from '/public/icons/exchange.svg'
-
+import unregisterCard from '@/app/_api/card/unRegisterCard'
 import ModalMain from '../Modal/Modal'
 import BasicModal from '../Modal/BasicModal'
 import EditCardModal from '../Modal/EditCardModal'
+
+import styles from './CardSeller.module.scss'
+import ExchangeIcon from '/public/icons/exchange.svg'
 
 interface CardSellerProps {
   genre: string
@@ -27,6 +29,9 @@ interface CardSellerProps {
 
 export default function CardSeller({ ...props }: CardSellerProps) {
   const [isEditModalOn, setIsEditModalOn] = useState(false)
+  const [isUnRegisterModalOn, setIsUnregisterModalOn] = useState(false)
+  const { cardId } = useParams<{ cardId: string }>()
+  const router = useRouter()
 
   const handleCloseEditModal = () => {
     setIsEditModalOn(false)
@@ -34,6 +39,21 @@ export default function CardSeller({ ...props }: CardSellerProps) {
 
   const handleOpenEditModal = () => {
     setIsEditModalOn(true)
+  }
+  const handleUnregisterModalOpen = () => {
+    setIsUnregisterModalOn(true)
+  }
+
+  const handleUnregisterModalClose = () => {
+    setIsUnregisterModalOn(false)
+  }
+
+  const handleUnregisterButton = async () => {
+    const res = await unregisterCard(cardId)
+    if (res !== null) {
+      router.push('/mycards')
+      handleUnregisterModalClose()
+    }
   }
 
   return (
@@ -43,16 +63,17 @@ export default function CardSeller({ ...props }: CardSellerProps) {
           <EditCardModal onClose={handleCloseEditModal} />
         </ModalMain>
       )}
-      {/* {
+      {isUnRegisterModalOn && (
         <ModalMain>
           <BasicModal
             title="포토카드 판매 내리기"
             description={<>{`정말로 판매를 중단하시겠습니까?`}</>}
-            onClick={() => console.log()}
+            onClick={handleUnregisterButton}
             buttonName="판매 내리기"
+            onClose={handleUnregisterModalClose}
           />
         </ModalMain>
-      } */}
+      )}
       <CardDetail>
         <CardDetail.CardDetailInformation
           genre={props.genre}
@@ -84,7 +105,13 @@ export default function CardSeller({ ...props }: CardSellerProps) {
           <Button type="button" onClick={handleOpenEditModal}>
             수정하기
           </Button>
-          <Button buttonStyle="secondary">판매 내리기</Button>
+          <Button
+            buttonStyle="secondary"
+            type="button"
+            onClick={handleUnregisterModalOpen}
+          >
+            판매 내리기
+          </Button>
         </div>
       </CardDetail>
     </>
