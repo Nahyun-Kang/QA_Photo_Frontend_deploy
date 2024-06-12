@@ -7,11 +7,6 @@ import RandomPointModal from '../_components/Modal/RandomPointModal'
 export default function Home() {
   return (
     <>
-      {/* {
-        <ModalMain>
-          <RandomPointModal />
-        </ModalMain>
-      } */}
       <main className={styles.main}>
         <div className={styles.section}>
           <MarketPlaceTitle />

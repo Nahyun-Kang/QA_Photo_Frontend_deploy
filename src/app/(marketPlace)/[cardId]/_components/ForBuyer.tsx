@@ -108,8 +108,8 @@ export default function ForBuyer() {
           <div className={styles.cardContainer}>
             <CardBuyer
               name={data?.name}
-              grade={gradeExtract(data?.grade) as GradeType}
-              genre={GENRE[data?.genre]}
+              grade={data?.grade}
+              genre={data?.genre}
               maker={data?.seller_nickname}
               description={data?.description}
               price={data?.price}

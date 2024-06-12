@@ -110,7 +110,7 @@ export default function MemberHeader({
     <>
       <div className={styles.memberContainer}>
         <span className={styles.point}>{`${pointTostring(points)} P`}</span>
-        <div className={styles.alarmContainer} ref={alarmRef}>
+        <div className={styles.alarmContainer}>
           {isAlarmOpened && isMobile && (
             <ModalMain>
               <MobileAlarmPage onClick={handleToggleAlarm} />
