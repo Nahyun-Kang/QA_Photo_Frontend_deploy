@@ -48,6 +48,8 @@
   width: 245px;
   height: 196px;
 
+  cursor: pointer;
+
   @include device.tablet {
     width: 165px;
     height: 127px;

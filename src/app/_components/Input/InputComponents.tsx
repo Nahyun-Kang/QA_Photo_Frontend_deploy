@@ -154,9 +154,16 @@ interface ITextArea {
   type: string
   onChange: ChangeEventHandler<HTMLTextAreaElement>
   onBlur: FocusEventHandler<HTMLTextAreaElement>
+  value: string
 }
 
-function TextArea({ placeholder, type = 'text', onChange, onBlur }: ITextArea) {
+function TextArea({
+  placeholder,
+  type = 'text',
+  onChange,
+  onBlur,
+  value,
+}: ITextArea) {
   return (
     <>
       <textarea
@@ -164,6 +171,7 @@ function TextArea({ placeholder, type = 'text', onChange, onBlur }: ITextArea) {
         className={styles.textarea}
         onChange={onChange}
         onBlur={onBlur}
+        value={value}
       />
     </>
   )

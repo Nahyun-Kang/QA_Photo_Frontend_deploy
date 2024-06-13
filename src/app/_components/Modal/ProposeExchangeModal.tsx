@@ -101,6 +101,7 @@ export default function ProposeExchangeModal({
                         onChange={onChange}
                         onBlur={onBlur}
                         type="text"
+                        value={value}
                       />
                     )}
                   />

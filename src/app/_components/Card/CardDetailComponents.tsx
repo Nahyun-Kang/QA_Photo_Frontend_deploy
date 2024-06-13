@@ -76,10 +76,11 @@ function PriceInput({ id, value, onChange }: IPriceInput) {
       <input
         id={id}
         type="number"
-        min={0}
+        // min={0}
         placeholder="숫자만 입력"
         className={styles.priceInput}
         onChange={onChange}
+        value={value}
       />
       <span className={styles.price}>{'P'}</span>
     </div>

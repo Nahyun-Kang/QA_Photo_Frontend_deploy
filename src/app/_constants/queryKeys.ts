@@ -6,4 +6,5 @@ export const QUERY_KEYS = {
   saleCards: 'saleCards',
   exchangeCards: 'exchangeCards',
   notifications: 'notifications',
+  point: 'point',
 }

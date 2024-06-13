@@ -1,5 +1,6 @@
 'use client'
-import { useQuery } from '@tanstack/react-query'
+import { useState, useEffect } from 'react'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useRouter } from 'next/navigation'
 
 import Dropdown from '@/app/_components/Dropdown'
@@ -18,29 +19,60 @@ import { QUERY_KEYS } from '@/app/_constants/queryKeys'
 import getShopCards from '@/app/_api/card/getCards'
 import ModalMain from '@/app/_components/Modal/Modal'
 import RandomPointModal from '@/app/_components/Modal/RandomPointModal'
+import getLastDrawTime from '@/app/_api/points/getLastDrawTime'
 
 import styles from './CardsList.module.scss'
 import Filter from '/public/icons/filter.svg'
 import { GenreType, ShopCardType } from '@/app/_lib/types/cardType'
 
 export default function MarketPlaceCardList() {
+  const [isPointModalOn, setIsPointModalOn] = useState(false)
+  const router = useRouter()
+  const queryClient = useQueryClient()
+
   const { data } = useQuery({
     queryKey: [QUERY_KEYS.shopCards],
     queryFn: () => getShopCards(1, 16),
   })
-  const router = useRouter()
+
+  const { data: point } = useQuery({
+    queryKey: [QUERY_KEYS.point],
+    queryFn: () => getLastDrawTime(),
+  })
 
   const handleCardClick = (cardId: string) => {
     router.push(`/${cardId}`)
   }
 
+  const handleModalClose = () => {
+    setIsPointModalOn(false)
+  }
+
+  useEffect(() => {
+    const oneMinute = 1000 * 60 * 5
+    const oneHour = 1000 * 60 * 60 // 1시간을 밀리초 단위로 나타내는 상수
+    const interval = setInterval(() => {
+      if (point) {
+        const lastDrawTime = new Date(point.lastDrawTime)
+        const now = new Date()
+        const timeDifference = now.getTime() - lastDrawTime.getTime()
+
+        if (timeDifference >= oneHour) {
+          setIsPointModalOn(true)
+        }
+      }
+    }, oneMinute)
+
+    return () => clearInterval(interval)
+  }, [point])
+
   return (
     <>
-      {/* {
+      {isPointModalOn && (
         <ModalMain>
-          <RandomPointModal />
+          <RandomPointModal onClose={handleModalClose} />
         </ModalMain>
-      } */}
+      )}
       <section className={styles.section}>
         <div className={styles.filterContainer}>
           <div className={styles.filterWrapper}>

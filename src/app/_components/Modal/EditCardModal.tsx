@@ -53,6 +53,8 @@ export default function EditCardModal({ onClose }: EditCardModalProps) {
   })
   const router = useRouter()
 
+  console.log(data)
+
   const {
     control,
     formState: { errors },
@@ -119,12 +121,17 @@ export default function EditCardModal({ onClose }: EditCardModalProps) {
   }
 
   const onSubmit = async (data: FieldValues) => {
+    console.log(data)
     handleEditButtonClick(data)
     onClose()
   }
   useEffect(() => {
     setValue('sellingQuantity', quantity)
   }, [quantity, setValue])
+
+  useEffect(() => {
+    setValue('sellingPrice', price)
+  }, [price, setValue])
 
   return (
     <div className={styles.wrapper}>
@@ -212,6 +219,7 @@ export default function EditCardModal({ onClose }: EditCardModalProps) {
                         onChange={onChange}
                         onBlur={onBlur}
                         type="text"
+                        value={getValues('wishExchageDescription')}
                       />
                     )}
                   />
