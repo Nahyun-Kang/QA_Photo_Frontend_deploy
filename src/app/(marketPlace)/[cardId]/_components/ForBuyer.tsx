@@ -127,6 +127,7 @@ export default function ForBuyer() {
                 thickness="thin"
                 type="button"
                 onClick={handleOpenExchangeModal}
+                disabled={data?.remainingQuantity === 0}
               >
                 포토카드 교환하기
               </Button>
@@ -151,6 +152,7 @@ export default function ForBuyer() {
                 thickness="thin"
                 type="button"
                 onClick={handleOpenExchangeModal}
+                disabled={data?.remainingQuantity === 0}
               >
                 포토카드 교환하기
               </Button>
