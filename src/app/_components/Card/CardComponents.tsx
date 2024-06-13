@@ -101,7 +101,7 @@ function DefaultInformation({ grade, genre, maker }: IDefaultInformation) {
       <div className={styles.gradeContainer}>
         <Grade grade={grade}></Grade>
         <span className={styles.bar}>{'|'}</span>
-        <span className={styles.genre}>{genre}</span>
+        <span className={styles.genre}>{getGenreNameFromType(genre)}</span>
       </div>
       <div className={styles.makerContainer}>
         <span className={styles.maker}>{maker}</span>
