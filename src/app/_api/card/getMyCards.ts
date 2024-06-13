@@ -1,12 +1,27 @@
 import axiosInstance from '@/app/_lib/axios/axiosInstance'
-import { MyGalleryCardType } from '@/app/_lib/types/cardType'
+import { GenreType, MyGalleryCardType } from '@/app/_lib/types/cardType'
 
-const getMyCards = async (page = 1, size = 15) => {
+const getMyCards = async (
+  page = 1,
+  size = 16,
+  genre: string,
+  grade: string,
+  keyword: string,
+) => {
   try {
-    const query = new URLSearchParams({
+    const params = {
       page: page.toString(),
       size: size.toString(),
-    }).toString()
+      ...(genre && { genre }), // Add genre only if it has a value
+      ...(grade && { grade }),
+      ...(keyword && { keyword }),
+    }
+
+    if (grade) {
+      params.grade = grade
+    }
+
+    const query = new URLSearchParams(params).toString()
     const response = await axiosInstance.get(`/api/users/my-cards?${query}`, {
       headers: {
         'Content-Type': 'application/json',

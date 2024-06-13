@@ -1,11 +1,28 @@
 import axiosInstance from '@/app/_lib/axios/axiosInstance'
 
-const getExchangeCards = async (page = 1, size = 15) => {
+const getExchangeCards = async (
+  page = 1,
+  size = 15,
+  genre: string,
+  grade: string,
+  keyword: string,
+  isSoldOut: string,
+) => {
   try {
-    const query = new URLSearchParams({
+    const params = {
       page: page.toString(),
       size: size.toString(),
-    }).toString()
+      ...(genre && { genre }), // Add genre only if it has a value
+      ...(grade && { grade }),
+      ...(keyword && { keyword }),
+      ...(isSoldOut && { isSoldOut }),
+    }
+
+    if (grade) {
+      params.grade = grade
+    }
+
+    const query = new URLSearchParams(params).toString()
     const response = await axiosInstance.get(
       `/api/users/my-cards/exchange?${query}`,
       {

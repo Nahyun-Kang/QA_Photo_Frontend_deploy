@@ -6,15 +6,31 @@ import Down from '/public/icons/down.svg'
 import Up from '/public/icons/up.svg'
 
 interface DropdownProps {
+  value: string
   attribute: string
   list: string[]
+  handleItemClick: (item: string) => void
 }
 
-export default function Dropdown({ attribute, list }: DropdownProps) {
+export default function Dropdown({
+  attribute,
+  list,
+  value,
+  handleItemClick,
+}: DropdownProps) {
   const [dropdownOn, setDropdownOn] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   const handleTriggerClick = () => {
     setDropdownOn((state) => !state)
+  }
+
+  const handleListItemClick = (item: string) => {
+    if (item === value) {
+      console.log(true)
+      handleItemClick('')
+    } else {
+      handleItemClick(item)
+    }
   }
 
   const handleOutsideClick = (e: Event) => {
@@ -40,7 +56,7 @@ export default function Dropdown({ attribute, list }: DropdownProps) {
         {attribute}
       </Trigger>
       {dropdownOn && (
-        <DropdownList list={list} onClick={() => console.log('')} />
+        <DropdownList list={list} onClick={handleListItemClick} value={value} />
       )}
     </div>
   )
@@ -64,13 +80,14 @@ const Trigger = ({ children, onClick, isOpened }: TriggerProps) => {
 interface DropdownListProps {
   list: string[]
   onClick: (item: string) => void
+  value: string
 }
 
-function DropdownList({ list, onClick }: DropdownListProps) {
+function DropdownList({ list, onClick, value }: DropdownListProps) {
   return (
     <ul className={styles.dropdownBox}>
       {list?.map((item, idx) => {
-        return <DropdownItem item={item} onClick={onClick} />
+        return <DropdownItem item={item} onClick={onClick} value={value} />
       })}
     </ul>
   )
@@ -79,11 +96,15 @@ function DropdownList({ list, onClick }: DropdownListProps) {
 interface DropdownItemProps {
   item: string
   onClick: (item: string) => void
+  value: string
 }
 
-function DropdownItem({ item, onClick }: DropdownItemProps) {
+function DropdownItem({ item, onClick, value }: DropdownItemProps) {
   return (
-    <li className={styles.listItem} onClick={() => onClick(item)}>
+    <li
+      className={`${styles.listItem} ${value === item && styles.selectedItem}`}
+      onClick={() => onClick(item)}
+    >
       {item}
     </li>
   )

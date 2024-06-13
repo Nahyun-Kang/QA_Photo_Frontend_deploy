@@ -1,29 +1,39 @@
 'use client'
+import { ChangeEvent, useRef } from 'react'
 import { useForm, SubmitHandler } from 'react-hook-form'
 import styles from './SearchInput.module.scss'
 
 import SearchIcon from '/public/icons/search.svg'
 
 interface IFormInput {
-  keyword: string
+  onClick: (keyword: string) => void
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
-export default function SearchInput() {
-  const { register, handleSubmit } = useForm<IFormInput>()
-  const onSubmit: SubmitHandler<IFormInput> = (data) => console.log(data)
+export default function SearchInput({ onClick, onChange }: IFormInput) {
+  const inputRef = useRef<null | HTMLInputElement>(null)
+
+  const handleIconClick = () => {
+    if (inputRef.current && inputRef.current.value) {
+      onClick(inputRef?.current.value)
+    } else {
+      onClick('')
+    }
+  }
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className={styles.form}>
+    <div className={styles.form}>
       <input
         className={styles.input}
         placeholder={'검색'}
-        {...register('keyword')}
+        ref={inputRef}
+        onChange={onChange}
       />
       <SearchIcon
         className={styles.icon}
-        onClick={onSubmit}
+        onClick={handleIconClick}
         placeholder={'이메일을 입력해주세요'}
       />
-    </form>
+    </div>
   )
 }

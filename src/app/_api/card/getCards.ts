@@ -1,11 +1,28 @@
 import axiosInstance from '@/app/_lib/axios/axiosInstance'
 import { ShopCardType } from '@/app/_lib/types/cardType'
 
-const getShopCards = async (page = 1, size = 15) => {
-  const query = new URLSearchParams({
+const getShopCards = async (
+  page = 1,
+  size = 16,
+  genre: string,
+  grade: string,
+  keyword: string,
+  isSoldOut: string,
+) => {
+  const params = {
     page: page.toString(),
     size: size.toString(),
-  }).toString()
+    ...(genre && { genre }), // Add genre only if it has a value
+    ...(grade && { grade }),
+    ...(keyword && { keyword }),
+    ...(isSoldOut && { isSoldOut }),
+  }
+
+  if (grade) {
+    params.grade = grade
+  }
+
+  const query = new URLSearchParams(params).toString()
   try {
     const response = await axiosInstance.get(`/api/shop/cards?${query}`)
 

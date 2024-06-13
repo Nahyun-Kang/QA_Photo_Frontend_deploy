@@ -89,7 +89,7 @@ export default function CreateCardForm() {
     })
     if (res !== null) {
       console.log(res)
-      router.push('/mycards')
+      router.push('/mygallery')
     }
   }
 
@@ -209,12 +209,13 @@ export default function CreateCardForm() {
           <Controller
             control={control}
             name="description"
-            render={({ field: { onChange, onBlur } }) => (
+            render={({ field: { onChange, onBlur, value } }) => (
               <Input.textarea
                 placeholder={PLACEHOLDER.description}
                 onChange={onChange}
                 onBlur={onBlur}
                 type="text"
+                value={value}
               />
             )}
           />

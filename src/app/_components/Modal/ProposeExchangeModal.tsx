@@ -12,11 +12,8 @@ import { QUERY_KEYS } from '@/app/_constants/queryKeys'
 
 import styles from './proposeExchangeModal.module.scss'
 import Close from '/public/icons/close.svg'
-import Filter from '/public/icons/filter.svg'
 import MobileBar from '/public/icons/mobile_bar.svg'
-import SelectComponent from '../Select/Select'
 import { BuyerCardType } from '@/app/(marketPlace)/[cardId]/_components/ForBuyer'
-import getGenreNameFromType from '@/app/_util/getGenreNameFromType'
 import proposeExchange from '@/app/_api/exchange/proposeExchange'
 
 interface ProposeExchangeModal {

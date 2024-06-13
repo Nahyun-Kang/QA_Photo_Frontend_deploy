@@ -15,83 +15,23 @@ import EllipsisComponent from './ellipsisComponent'
 
 interface PaginationProps {
   count: number
+  handleLeftArrowClick: () => void
+  handleRightArrowClick: () => void
+  handlePageClick: (el: number) => void
+  currentList: number[]
+  currentPage: number
+  totalPageCount: number
 }
 
-export default function Pagination({ count }: PaginationProps) {
-  const [cardPerView, setCardPerView] = useState(15)
-  const [totalPageCount, setTotalPageCount] = useState(1)
-  const [currentList, setCurrentList] = useState([1])
-  const [currentPage, setCurrentPage] = useState(1)
-
-  const handlePageCLick = (el: number) => {
-    setCurrentPage(el)
-  }
-
-  const handleRightArrowClick = () => {
-    if (currentList.includes(totalPageCount)) {
-      return null
-    }
-    const newList = currentList
-      .map((el) => el + 10)
-      .filter((el) => el <= totalPageCount)
-    setCurrentList([...newList])
-    setCurrentPage(newList[0])
-  }
-
-  const handleInitialCurrentList = () => {
-    const newArray = new Array(10)
-      .fill(1)
-      .map((_, i) => i + 1)
-      .filter((el) => el <= totalPageCount)
-
-    setCurrentList([...newArray])
-    setCurrentPage(newArray[0])
-  }
-
-  const handleLeftArrowClick = () => {
-    if (currentList.includes(1)) {
-      return null
-    }
-
-    let newArray
-    if (currentList[0] - 9 <= 1) {
-      handleInitialCurrentList()
-    } else {
-      newArray = new Array(10)
-        .fill(1)
-        .map((_, i) => i + (currentList[0] - 10))
-        .filter((el) => el <= totalPageCount)
-      setCurrentList([...newArray])
-      setCurrentPage(newArray[0])
-    }
-  }
-
-  const handleTotalPageCount = (count: number) => {
-    const total_page =
-      count % cardPerView === 0
-        ? count / cardPerView
-        : Math.floor(count / cardPerView) + 1
-    setTotalPageCount(total_page)
-  }
-
-  const updateCardCount = () => {
-    setCardPerView(window.innerWidth < 1024 ? 16 : 15)
-  }
-
-  useEffect(() => {
-    handleTotalPageCount(count)
-    handleInitialCurrentList()
-  }, [totalPageCount, cardPerView])
-
-  useEffect(() => {
-    updateCardCount()
-    window.addEventListener('resize', updateCardCount)
-
-    return () => {
-      window.removeEventListener('resize', updateCardCount)
-    }
-  }, [])
-
+export default function Pagination({
+  count,
+  handleLeftArrowClick,
+  handlePageClick,
+  handleRightArrowClick,
+  currentList,
+  totalPageCount,
+  currentPage,
+}: PaginationProps) {
   return (
     <div className={styles.container}>
       <button className={styles.button} onClick={handleLeftArrowClick}>
@@ -101,7 +41,7 @@ export default function Pagination({ count }: PaginationProps) {
         list={currentList}
         currentPage={currentPage}
         totalPageCount={totalPageCount}
-        onClick={handlePageCLick}
+        onClick={handlePageClick}
       />
       <button>
         <Right className={styles.button} onClick={handleRightArrowClick} />
@@ -133,33 +73,35 @@ function NumberList({
 
   return (
     <>
-      {list.length < limit || list.includes(totalPageCount) ? (
+      {(list && list?.length < limit) || list?.includes(totalPageCount) ? (
         <ul className={styles.listContainer}>
-          {list.map((el) => {
-            return (
-              <li
-                key={el}
-                className={`${styles.listItem} ${el === currentPage && styles.currentPage}`}
-                onClick={() => onClick(el)}
-              >
-                {el}
-              </li>
-            )
-          })}
+          {list &&
+            list?.map((el) => {
+              return (
+                <li
+                  key={el}
+                  className={`${styles.listItem} ${el === currentPage && styles.currentPage}`}
+                  onClick={() => onClick(el)}
+                >
+                  {el}
+                </li>
+              )
+            })}
         </ul>
       ) : (
         <ul className={styles.listContainer}>
-          {list.slice(0, listSliceSize).map((el) => {
-            return (
-              <li
-                key={el}
-                className={`${styles.listItem} ${el === currentPage && styles.currentPage}`}
-                onClick={() => onClick(el)}
-              >
-                {el}
-              </li>
-            )
-          })}
+          {list &&
+            list?.slice(0, listSliceSize).map((el) => {
+              return (
+                <li
+                  key={el}
+                  className={`${styles.listItem} ${el === currentPage && styles.currentPage}`}
+                  onClick={() => onClick(el)}
+                >
+                  {el}
+                </li>
+              )
+            })}
           <button
             type="button"
             className={styles.ellipsisButton}
@@ -173,17 +115,18 @@ function NumberList({
               />
             )}
           </button>
-          {list.slice(list.length - listSliceSize, list.length).map((el) => {
-            return (
-              <li
-                key={el}
-                className={`${styles.listItem} ${el === currentPage && styles.currentPage}`}
-                onClick={() => onClick(el)}
-              >
-                {el}
-              </li>
-            )
-          })}
+          {list &&
+            list?.slice(list.length - listSliceSize, list.length).map((el) => {
+              return (
+                <li
+                  key={el}
+                  className={`${styles.listItem} ${el === currentPage && styles.currentPage}`}
+                  onClick={() => onClick(el)}
+                >
+                  {el}
+                </li>
+              )
+            })}
         </ul>
       )}
     </>

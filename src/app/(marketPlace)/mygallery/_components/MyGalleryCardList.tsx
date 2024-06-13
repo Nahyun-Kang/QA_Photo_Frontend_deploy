@@ -1,5 +1,6 @@
 'use client'
-import { useQuery } from '@tanstack/react-query'
+import { useState, useEffect } from 'react'
+import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import SearchInput from '@/app/_components/SearchInput'
 import Dropdown from '@/app/_components/Dropdown'
@@ -9,16 +10,136 @@ import Pagination from '@/app/_components/pagination'
 import { QUERY_KEYS } from '@/app/_constants/queryKeys'
 import getMyCards from '@/app/_api/card/getMyCards'
 import { MyGalleryCardType } from '@/app/_lib/types/cardType'
+import gradeExtract, { gradeToType } from '@/app/_util/gradeExtract'
+import getGenreNameFromType, {
+  getGenreTypeFromName,
+} from '@/app/_util/getGenreNameFromType'
 
 import styles from '@/app/(marketPlace)/mygallery/_components/mygalleryCardList.module.scss'
 import Filter from '/public/icons/filter.svg'
 import { GenreType } from '@/app/_lib/types/cardType'
 
+/*Todo
+  인풋 디바운스 걸기
+  필터 연동
+*/
 export default function MyGalleryCardList() {
+  const [grade, setGrade] = useState<string>('')
+  const [genre, setGenre] = useState<string>('')
+  const queryClient = useQueryClient()
+
+  const [cardPerView, setCardPerView] = useState(15)
+  const [totalPageCount, setTotalPageCount] = useState(1)
+  const [currentList, setCurrentList] = useState([1])
+  const [currentPage, setCurrentPage] = useState(1)
+  const [keyword, setKeyword] = useState<string>('')
+
   const { data } = useQuery({
-    queryKey: [QUERY_KEYS.myCards],
-    queryFn: () => getMyCards(1, 15),
+    queryKey: [
+      QUERY_KEYS.myCards,
+      currentPage,
+      cardPerView,
+      genre,
+      grade,
+      keyword,
+    ],
+    queryFn: () => getMyCards(currentPage, cardPerView, genre, grade, keyword),
   })
+
+  const handleSearchClick = (keyword: string) => {
+    setKeyword(keyword)
+  }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setKeyword(e.target.value)
+  }
+
+  const handlePageClick = (el: number) => {
+    setCurrentPage(el)
+    queryClient.invalidateQueries({
+      queryKey: [QUERY_KEYS.myCards, currentPage],
+    })
+  }
+
+  const handleRightArrowClick = () => {
+    if (currentList.includes(totalPageCount)) {
+      return null
+    }
+    const newList = currentList
+      .map((el) => el + 10)
+      .filter((el) => el <= totalPageCount)
+    setCurrentList([...newList])
+    setCurrentPage(newList[0])
+  }
+
+  const handleInitialCurrentList = () => {
+    const newArray = new Array(10)
+      .fill(1)
+      .map((_, i) => i + 1)
+      .filter((el) => el <= totalPageCount)
+
+    setCurrentList([...newArray])
+    setCurrentPage(newArray[0])
+  }
+
+  const handleLeftArrowClick = () => {
+    if (currentList.includes(1)) {
+      return null
+    }
+
+    let newArray
+    if (currentList[0] - 9 <= 1) {
+      handleInitialCurrentList()
+    } else {
+      newArray = new Array(10)
+        .fill(1)
+        .map((_, i) => i + (currentList[0] - 10))
+        .filter((el) => el <= totalPageCount)
+      setCurrentList([...newArray])
+      setCurrentPage(newArray[0])
+    }
+  }
+
+  const handleTotalPageCount = (count: number) => {
+    const total_page =
+      count % cardPerView === 0
+        ? count / cardPerView
+        : Math.floor(count / cardPerView) + 1
+    console.log(total_page)
+    setTotalPageCount(total_page)
+  }
+
+  const updateCardCount = () => {
+    setCardPerView(window.innerWidth < 1024 ? 16 : 15)
+  }
+
+  useEffect(() => {
+    updateCardCount()
+    window.addEventListener('resize', updateCardCount)
+
+    return () => {
+      window.removeEventListener('resize', updateCardCount)
+    }
+  }, [])
+
+  useEffect(() => {
+    if (data?.pagination?.totalCount) {
+      handleTotalPageCount(data.pagination.totalCount)
+    }
+  }, [data])
+
+  useEffect(() => {
+    if (totalPageCount && cardPerView) {
+      handleInitialCurrentList()
+    }
+  }, [totalPageCount, cardPerView])
+
+  const handleClickGradeItem = (item: string) => {
+    setGrade(gradeToType(item))
+  }
+  const handleClickGenreItem = (item: string) => {
+    setGenre(getGenreTypeFromName(item))
+  }
 
   return (
     <section className={styles.section}>
@@ -27,10 +148,23 @@ export default function MyGalleryCardList() {
           <button className={styles.button}>
             <Filter width={20} height={20} />
           </button>
-          <SearchInput />
+          <SearchInput
+            onClick={handleSearchClick}
+            onChange={handleInputChange}
+          />
           <div className={styles.filters}>
-            <Dropdown attribute="등급" list={GRADE_LIST} />
-            <Dropdown attribute="장르" list={GENRE_LIST} />
+            <Dropdown
+              attribute="등급"
+              list={GRADE_LIST}
+              handleItemClick={handleClickGradeItem}
+              value={gradeExtract(grade)}
+            />
+            <Dropdown
+              attribute="장르"
+              list={GENRE_LIST}
+              handleItemClick={handleClickGenreItem}
+              value={getGenreNameFromType(genre as GenreType)}
+            />
           </div>
         </div>
       </div>
@@ -54,7 +188,17 @@ export default function MyGalleryCardList() {
           })}
       </ul>
       <div className={styles.paginationWrapper}>
-        <Pagination count={45} />
+        {data && (
+          <Pagination
+            count={data?.pagination?.totalCount}
+            handleLeftArrowClick={handleLeftArrowClick}
+            handleRightArrowClick={handleRightArrowClick}
+            handlePageClick={handlePageClick}
+            totalPageCount={totalPageCount}
+            currentList={currentList}
+            currentPage={currentPage}
+          />
+        )}
       </div>
     </section>
   )

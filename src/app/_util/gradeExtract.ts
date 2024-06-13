@@ -17,7 +17,7 @@ const gradeExtract = (type: string): string => {
       grade = 'LEGENDARY'
       break
     default:
-      grade = 'COMMON'
+      grade = ''
   }
 
   return grade
@@ -42,7 +42,7 @@ export const gradeToType = (grade: string): string => {
       grade = 'LEGENDARY'
       break
     default:
-      grade = 'COMMON'
+      grade = ''
   }
 
   return grade

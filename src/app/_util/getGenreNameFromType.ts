@@ -1,6 +1,4 @@
-import { GenreType } from '../_lib/types/cardType'
-
-const getGenreNameFromType = (type: GenreType): string => {
+const getGenreNameFromType = (type: string): string => {
   let genreName: string
 
   switch (type) {
@@ -17,10 +15,33 @@ const getGenreNameFromType = (type: GenreType): string => {
       genreName = '사물'
       break
     default:
-      genreName = '사물'
+      genreName = ''
   }
 
   return genreName
 }
 
 export default getGenreNameFromType
+
+export const getGenreTypeFromName = (name: string): string => {
+  let type: string
+
+  switch (name) {
+    case '여행':
+      type = 'TRIP'
+      break
+    case '풍경':
+      type = 'LANDSCAPE'
+      break
+    case '인물':
+      type = 'PORTRAIT'
+      break
+    case '사물':
+      type = 'OBJECT'
+      break
+    default:
+      type = ''
+  }
+
+  return type
+}
