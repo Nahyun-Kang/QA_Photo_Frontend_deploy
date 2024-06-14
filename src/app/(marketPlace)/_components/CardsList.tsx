@@ -13,7 +13,6 @@ import {
 } from '@/app/_constants/listConstants'
 import SearchInput from '@/app/_components/SearchInput'
 import Pagination from '@/app/_components/pagination'
-import { CARDS_LIST } from '../CARD_LISTS'
 import OriginalCard from '@/app/_components/Card/OriginalCard'
 import { QUERY_KEYS } from '@/app/_constants/queryKeys'
 import getShopCards from '@/app/_api/card/getCards'
@@ -28,9 +27,10 @@ import {
   getSoldOutNameFromType,
   getSoldOutTypeFromName,
 } from '@/app/_util/getSoldOutNameFromType'
+import Filter from '@/app/_components/Filter'
 
 import styles from './CardsList.module.scss'
-import Filter from '/public/icons/filter.svg'
+import FilterIcon from '/public/icons/filter.svg'
 import { GenreType, ShopCardType } from '@/app/_lib/types/cardType'
 
 export default function MarketPlaceCardList() {
@@ -44,6 +44,7 @@ export default function MarketPlaceCardList() {
   const [currentPage, setCurrentPage] = useState(1)
   const [keyword, setKeyword] = useState<string>('')
   const [isPointModalOn, setIsPointModalOn] = useState(false)
+  const [isFilterModalOn, setIsFilterModalOn] = useState(false)
   const router = useRouter()
   const queryClient = useQueryClient()
 
@@ -72,6 +73,12 @@ export default function MarketPlaceCardList() {
 
   const handleModalClose = () => {
     setIsPointModalOn(false)
+  }
+  const handleFilterModalOpen = () => {
+    setIsFilterModalOn(true)
+  }
+  const handleFilterModalClose = () => {
+    setIsFilterModalOn(false)
   }
 
   const handleSearchClick = (keyword: string) => {
@@ -173,8 +180,6 @@ export default function MarketPlaceCardList() {
     setIsSoldOut(getSoldOutTypeFromName(item))
   }
 
-  console.log(point)
-
   useEffect(() => {
     const oneMinute = 1000 * 60
     const oneHour = 1000 * 60 * 60 // 1시간을 밀리초 단위로 나타내는 상수
@@ -198,6 +203,16 @@ export default function MarketPlaceCardList() {
       {isPointModalOn && (
         <ModalMain>
           <RandomPointModal onClose={handleModalClose} />
+        </ModalMain>
+      )}
+      {isFilterModalOn && (
+        <ModalMain>
+          <Filter
+            onClose={handleFilterModalClose}
+            hasGenre
+            hasGrade
+            hasSoldOut
+          />
         </ModalMain>
       )}
       <section className={styles.section}>
@@ -230,8 +245,8 @@ export default function MarketPlaceCardList() {
           </div>
           <div className={styles.line}></div>
           <div className={styles.orderContainer}>
-            <button className={styles.button}>
-              <Filter width={20} height={20} />
+            <button className={styles.button} onClick={handleFilterModalOpen}>
+              <FilterIcon width={20} height={20} />
             </button>
             <SelectComponent
               defaultValue={ORDER_LIST[0]}

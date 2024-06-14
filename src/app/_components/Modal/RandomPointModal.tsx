@@ -40,7 +40,10 @@ export default function RandomPointModal({ onClose }: RandomPointModalProps) {
     mutationFn: () => luckyDraw(),
     onSuccess: () => {
       queryClient.invalidateQueries({
-        queryKey: [QUERY_KEYS.userProfile, QUERY_KEYS.point],
+        queryKey: [QUERY_KEYS.userProfile],
+      })
+      queryClient.invalidateQueries({
+        queryKey: [QUERY_KEYS.point],
       })
       onClose()
     },

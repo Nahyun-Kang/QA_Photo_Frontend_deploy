@@ -11,7 +11,6 @@ import {
   GENRE_LIST,
   SOLD_OUT_LIST,
 } from '@/app/_constants/listConstants'
-import { CARDS_LIST } from '@/app/(marketPlace)/CARD_LISTS'
 import Pagination from '@/app/_components/pagination'
 import CardForSale from '@/app/_components/Card/CardForSale'
 import styles from './MyExchangeCardList.module.scss'
@@ -24,8 +23,18 @@ import {
   getSoldOutNameFromType,
   getSoldOutTypeFromName,
 } from '@/app/_util/getSoldOutNameFromType'
+import OwnedCards from '../../mygallery/_components/OwnedCards'
+import getProfile from '@/app/_api/profile/getProfile'
+import { GradeType } from '@/app/_lib/types/cardType'
+import ModalMain from '@/app/_components/Modal/Modal'
+import Filter from '@/app/_components/Filter'
 
-import Filter from '/public/icons/filter.svg'
+import FilterIcon from '/public/icons/filter.svg'
+
+interface GradeListType {
+  grade: GradeType
+  count?: number
+}
 
 export default function MyExchangeCardList() {
   const [grade, setGrade] = useState<string>('')
@@ -38,6 +47,16 @@ export default function MyExchangeCardList() {
   const [currentList, setCurrentList] = useState([1])
   const [currentPage, setCurrentPage] = useState(1)
   const [keyword, setKeyword] = useState<string>('')
+  const [cardCountList, setCardCountList] = useState<GradeListType[]>([])
+  const [isFilterModalOn, setIsFilterModalOn] = useState(false)
+
+  const handleFilterModalOpen = () => {
+    setIsFilterModalOn(true)
+  }
+  const handleFilterModalClose = () => {
+    setIsFilterModalOn(false)
+  }
+
   const { data } = useQuery({
     queryKey: [
       QUERY_KEYS.exchangeCards,
@@ -57,6 +76,21 @@ export default function MyExchangeCardList() {
         keyword,
         isSoldOut,
       ),
+  })
+
+  useEffect(() => {
+    queryClient.prefetchQuery({
+      queryKey: [QUERY_KEYS.userProfile],
+      queryFn: getProfile,
+    })
+  }, [queryClient])
+
+  const { data: userProfileData } = useQuery({
+    queryKey: [QUERY_KEYS.userProfile],
+    queryFn: getProfile,
+    initialData: () => {
+      return queryClient.getQueryData([QUERY_KEYS.userProfile])
+    },
   })
 
   const handleSearchClick = (keyword: string) => {
@@ -158,70 +192,101 @@ export default function MyExchangeCardList() {
     setIsSoldOut(getSoldOutTypeFromName(item))
   }
 
+  useEffect(() => {
+    if (data) {
+      const newCardCountList: GradeListType[] = [
+        { grade: 'COMMON', count: data.cardCount.commonCount },
+        { grade: 'RARE', count: data.cardCount.rareCount },
+        { grade: 'SUPER_RARE', count: data.cardCount.superRareCount },
+        { grade: 'LEGENDARY', count: data.cardCount.legendaryCount },
+      ]
+      setCardCountList(newCardCountList)
+    }
+  }, [data])
+
   return (
-    <section className={styles.section}>
-      <div className={styles.filterContainer}>
-        <div className={styles.filterWrapper}>
-          <button className={styles.button}>
-            <Filter width={20} height={20} />
-          </button>
-          <SearchInput
-            onClick={handleSearchClick}
-            onChange={handleInputChange}
+    <>
+      {isFilterModalOn && (
+        <ModalMain>
+          <Filter
+            onClose={handleFilterModalClose}
+            hasGenre
+            hasGrade
+            hasSoldOut
           />
-          <div className={styles.filters}>
-            <Dropdown
-              attribute="등급"
-              list={GRADE_LIST}
-              handleItemClick={handleClickGradeItem}
-              value={gradeExtract(grade)}
+        </ModalMain>
+      )}
+      <section className={styles.section}>
+        {data && (
+          <OwnedCards
+            cardCountList={cardCountList}
+            userName={userProfileData.nickname}
+            totalCount={data?.cardCount?.totalCount}
+          />
+        )}
+        <div className={styles.filterContainer}>
+          <div className={styles.filterWrapper}>
+            <button className={styles.button} onClick={handleFilterModalOpen}>
+              <FilterIcon width={20} height={20} />
+            </button>
+            <SearchInput
+              onClick={handleSearchClick}
+              onChange={handleInputChange}
             />
-            <Dropdown
-              attribute="장르"
-              list={GENRE_LIST}
-              handleItemClick={handleClickGenreItem}
-              value={getGenreNameFromType(genre as GenreType)}
-            />
-            <Dropdown
-              attribute="매진여부"
-              list={SOLD_OUT_LIST}
-              handleItemClick={handleClickSoldOutItem}
-              value={getSoldOutNameFromType(isSoldOut)}
-            />
+            <div className={styles.filters}>
+              <Dropdown
+                attribute="등급"
+                list={GRADE_LIST}
+                handleItemClick={handleClickGradeItem}
+                value={gradeExtract(grade)}
+              />
+              <Dropdown
+                attribute="장르"
+                list={GENRE_LIST}
+                handleItemClick={handleClickGenreItem}
+                value={getGenreNameFromType(genre as GenreType)}
+              />
+              <Dropdown
+                attribute="매진여부"
+                list={SOLD_OUT_LIST}
+                handleItemClick={handleClickSoldOutItem}
+                value={getSoldOutNameFromType(isSoldOut)}
+              />
+            </div>
           </div>
         </div>
-      </div>
-      <ul className={styles.ul}>
-        {data &&
-          data?.data.map((el: any, idx: number) => {
-            return (
-              <li key={idx.toString()}>
-                <CardForSale
-                  image={el.image}
-                  nickName={el.user.nickname}
-                  id={el.id}
-                  name={el.name}
-                  price={el.price}
-                  grade={el.grade}
-                  genre={el.genre}
-                  registeredQuantity={el.quantity}
-                  method={'exchange'}
-                />
-              </li>
-            )
-          })}
-      </ul>
-      <div className={styles.paginationWrapper}>
-        <Pagination
-          count={data?.pagination?.totalCount}
-          handleLeftArrowClick={handleLeftArrowClick}
-          handleRightArrowClick={handleRightArrowClick}
-          handlePageClick={handlePageClick}
-          totalPageCount={totalPageCount}
-          currentList={currentList}
-          currentPage={currentPage}
-        />
-      </div>
-    </section>
+        <ul className={styles.ul}>
+          {data &&
+            data?.data.map((el: any, idx: number) => {
+              return (
+                <li key={idx.toString()}>
+                  <CardForSale
+                    image={el.image}
+                    nickName={el.user.nickname}
+                    id={el.id}
+                    name={el.name}
+                    price={el.price}
+                    grade={el.grade}
+                    genre={el.genre}
+                    registeredQuantity={el.quantity}
+                    method={'exchange'}
+                  />
+                </li>
+              )
+            })}
+        </ul>
+        <div className={styles.paginationWrapper}>
+          <Pagination
+            count={data?.pagination?.totalCount}
+            handleLeftArrowClick={handleLeftArrowClick}
+            handleRightArrowClick={handleRightArrowClick}
+            handlePageClick={handlePageClick}
+            totalPageCount={totalPageCount}
+            currentList={currentList}
+            currentPage={currentPage}
+          />
+        </div>
+      </section>
+    </>
   )
 }

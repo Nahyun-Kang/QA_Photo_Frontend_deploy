@@ -19,7 +19,6 @@ export default function MyExchangeCardsPage() {
           </div>
         </Title>
       </div>
-      <OwnedCards />
       <MyExchangeCardList />
     </main>
   )

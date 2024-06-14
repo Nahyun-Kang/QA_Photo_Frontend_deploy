@@ -18,7 +18,6 @@ export default function MyCardsPage() {
           </div>
         </Title>
       </div>
-      <OwnedCards />
       <MyCardsCardList />
     </main>
   )

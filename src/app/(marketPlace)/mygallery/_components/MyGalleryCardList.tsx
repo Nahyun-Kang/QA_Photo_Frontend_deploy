@@ -14,10 +14,20 @@ import gradeExtract, { gradeToType } from '@/app/_util/gradeExtract'
 import getGenreNameFromType, {
   getGenreTypeFromName,
 } from '@/app/_util/getGenreNameFromType'
+import OwnedCards from './OwnedCards'
+import { GradeType } from '@/app/_lib/types/cardType'
+import ModalMain from '@/app/_components/Modal/Modal'
+import Filter from '@/app/_components/Filter'
 
 import styles from '@/app/(marketPlace)/mygallery/_components/mygalleryCardList.module.scss'
-import Filter from '/public/icons/filter.svg'
+import FilterIcon from '/public/icons/filter.svg'
 import { GenreType } from '@/app/_lib/types/cardType'
+import getProfile from '@/app/_api/profile/getProfile'
+
+interface GradeListType {
+  grade: GradeType
+  count?: number
+}
 
 /*Todo
   인풋 디바운스 걸기
@@ -33,7 +43,15 @@ export default function MyGalleryCardList() {
   const [currentList, setCurrentList] = useState([1])
   const [currentPage, setCurrentPage] = useState(1)
   const [keyword, setKeyword] = useState<string>('')
+  const [cardCountList, setCardCountList] = useState<GradeListType[]>([])
+  const [isFilterModalOn, setIsFilterModalOn] = useState(false)
 
+  const handleFilterModalOpen = () => {
+    setIsFilterModalOn(true)
+  }
+  const handleFilterModalClose = () => {
+    setIsFilterModalOn(false)
+  }
   const { data } = useQuery({
     queryKey: [
       QUERY_KEYS.myCards,
@@ -43,7 +61,21 @@ export default function MyGalleryCardList() {
       grade,
       keyword,
     ],
-    queryFn: () => getMyCards(currentPage, cardPerView, genre, grade, keyword),
+    queryFn: () => {
+      queryClient.prefetchQuery({
+        queryKey: [QUERY_KEYS.userProfile],
+        queryFn: getProfile,
+      })
+      return getMyCards(currentPage, cardPerView, genre, grade, keyword)
+    },
+  })
+
+  const { data: userProfileData } = useQuery({
+    queryKey: [QUERY_KEYS.userProfile],
+    queryFn: getProfile,
+    initialData: () => {
+      return queryClient.getQueryData([QUERY_KEYS.userProfile])
+    },
   })
 
   const handleSearchClick = (keyword: string) => {
@@ -141,65 +173,91 @@ export default function MyGalleryCardList() {
     setGenre(getGenreTypeFromName(item))
   }
 
+  useEffect(() => {
+    if (data) {
+      const newCardCountList: GradeListType[] = [
+        { grade: 'COMMON', count: data.cardCount.commonCount },
+        { grade: 'RARE', count: data.cardCount.rareCount },
+        { grade: 'SUPER_RARE', count: data.cardCount.superRareCount },
+        { grade: 'LEGENDARY', count: data.cardCount.legendaryCount },
+      ]
+      setCardCountList(newCardCountList)
+    }
+  }, [data])
+
   return (
-    <section className={styles.section}>
-      <div className={styles.filterContainer}>
-        <div className={styles.filterWrapper}>
-          <button className={styles.button}>
-            <Filter width={20} height={20} />
-          </button>
-          <SearchInput
-            onClick={handleSearchClick}
-            onChange={handleInputChange}
-          />
-          <div className={styles.filters}>
-            <Dropdown
-              attribute="등급"
-              list={GRADE_LIST}
-              handleItemClick={handleClickGradeItem}
-              value={gradeExtract(grade)}
-            />
-            <Dropdown
-              attribute="장르"
-              list={GENRE_LIST}
-              handleItemClick={handleClickGenreItem}
-              value={getGenreNameFromType(genre as GenreType)}
-            />
-          </div>
-        </div>
-      </div>
-      <ul className={styles.ul}>
-        {data &&
-          data?.data.map((el: MyGalleryCardType, idx: number) => {
-            return (
-              <li key={idx.toString()}>
-                <MyCard
-                  image={el.image}
-                  nickName={el.user.nickname}
-                  id={el.id}
-                  name={el.name}
-                  price={el.price}
-                  grade={el.grade}
-                  genre={el.genre as GenreType}
-                  totalQuantity={el.totalQuantity}
-                />
-              </li>
-            )
-          })}
-      </ul>
-      <div className={styles.paginationWrapper}>
+    <>
+      {isFilterModalOn && (
+        <ModalMain>
+          <Filter onClose={handleFilterModalClose} hasGenre hasGrade />
+        </ModalMain>
+      )}
+      <section className={styles.section}>
         {data && (
-          <Pagination
-            count={data?.pagination?.totalCount}
-            handleLeftArrowClick={handleLeftArrowClick}
-            handleRightArrowClick={handleRightArrowClick}
-            handlePageClick={handlePageClick}
-            totalPageCount={totalPageCount}
-            currentList={currentList}
-            currentPage={currentPage}
+          <OwnedCards
+            cardCountList={cardCountList}
+            userName={userProfileData?.nickname}
+            totalCount={data?.cardCount?.totalCount}
           />
         )}
-      </div>
-    </section>
+        <div className={styles.filterContainer}>
+          <div className={styles.filterWrapper}>
+            <button className={styles.button} onClick={handleFilterModalOpen}>
+              <FilterIcon width={20} height={20} />
+            </button>
+            <SearchInput
+              onClick={handleSearchClick}
+              onChange={handleInputChange}
+            />
+            <div className={styles.filters}>
+              <Dropdown
+                attribute="등급"
+                list={GRADE_LIST}
+                handleItemClick={handleClickGradeItem}
+                value={gradeExtract(grade)}
+              />
+              <Dropdown
+                attribute="장르"
+                list={GENRE_LIST}
+                handleItemClick={handleClickGenreItem}
+                value={getGenreNameFromType(genre as GenreType)}
+              />
+            </div>
+          </div>
+        </div>
+        <ul className={styles.ul}>
+          {data &&
+            data?.data.map((el: MyGalleryCardType, idx: number) => {
+              return (
+                <li key={idx.toString()}>
+                  <MyCard
+                    image={el.image}
+                    nickName={el.user.nickname}
+                    id={el.id}
+                    name={el.name}
+                    price={el.price}
+                    grade={el.grade}
+                    genre={el.genre as GenreType}
+                    totalQuantity={el.totalQuantity}
+                  />
+                </li>
+              )
+            })}
+        </ul>
+        <div className={styles.paginationWrapper}>
+          {data && (
+            <Pagination
+              count={data?.pagination?.totalCount}
+              handleLeftArrowClick={handleLeftArrowClick}
+              handleRightArrowClick={handleRightArrowClick}
+              handlePageClick={handlePageClick}
+              totalPageCount={totalPageCount}
+              currentList={currentList}
+              currentPage={currentPage}
+            />
+          )}
+        </div>
+      </section>
+    </>
   )
 }
