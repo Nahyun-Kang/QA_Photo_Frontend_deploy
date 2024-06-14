@@ -3,7 +3,6 @@ import Title from '@/app/_components/Title'
 import styles from './exchangeList.module.scss'
 import ExchangeCard from '@/app/_components/Card/ExchangeCard'
 
-import EXCHANGE_CARD_MOCK from './EXCHANGE_CARD_MOCK'
 import { GenreType, GradeType } from '@/app/_lib/types/cardType'
 
 interface ExchangeListType {
