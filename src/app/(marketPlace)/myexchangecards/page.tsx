@@ -1,12 +1,7 @@
-import Link from 'next/link'
-
 import Title from '@/app/_components/Title'
-import Button from '@/app/_components/Button'
 
 import styles from '@/app/(marketPlace)/mycards/page.module.scss'
-import OwnedCards from '@/app/(marketPlace)/mygallery/_components/OwnedCards'
 
-import { MOCK_GRADELIST } from '@/app/(marketPlace)/mygallery/MOCK_DATA'
 import MyExchangeCardList from './_components/MyExchangeCardList'
 
 export default function MyExchangeCardsPage() {

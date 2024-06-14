@@ -23,7 +23,6 @@ export default function myGalleryPage() {
           </div>
         </Title>
       </div>
-
       <div className={styles.floatButtonContainer}>
         <Button thickness="thin">포토카드 생성하기</Button>
       </div>

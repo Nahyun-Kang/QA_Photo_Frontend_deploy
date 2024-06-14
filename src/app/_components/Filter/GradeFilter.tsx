@@ -34,29 +34,29 @@ export default function GradeFilter({ handleGradeCount }: GradeFilterProps) {
   return (
     <ul className={styles.attributeList}>
       <li
-        className={`${styles.attributeItem} ${attributeList.includes('common') && styles.active}`}
-        onClick={() => handleClickAttribute('common')}
+        className={`${styles.attributeItem} ${attributeList.includes('COMMON') && styles.active}`}
+        onClick={() => handleClickAttribute('COMMON')}
       >
         <div className={styles.grade_common}>COMMON</div>
         <div className={styles.count}>{`${common}개`}</div>
       </li>
       <li
-        className={`${styles.attributeItem} ${attributeList.includes('rare') && styles.active}`}
-        onClick={() => handleClickAttribute('rare')}
+        className={`${styles.attributeItem} ${attributeList.includes('RARE') && styles.active}`}
+        onClick={() => handleClickAttribute('RARE')}
       >
         <div className={styles.grade_rare}>RARE</div>
         <div className={styles.count}>{`${rare}개`}</div>
       </li>
       <li
-        className={`${styles.attributeItem} ${attributeList.includes('super_rare') && styles.active}`}
-        onClick={() => handleClickAttribute('super_rare')}
+        className={`${styles.attributeItem} ${attributeList.includes('SUPER_RARE') && styles.active}`}
+        onClick={() => handleClickAttribute('SUPER_RARE')}
       >
         <div className={styles.grade_super_rare}>SUPER RARE</div>
         <div className={styles.count}>{`${super_rare}개`}</div>
       </li>
       <li
-        className={`${styles.attributeItem} ${attributeList.includes('legendary') && styles.active}`}
-        onClick={() => handleClickAttribute('legendary')}
+        className={`${styles.attributeItem} ${attributeList.includes('LEGENDARY') && styles.active}`}
+        onClick={() => handleClickAttribute('LEGENDARY')}
       >
         <div className={styles.grade_legendary}>LEGENDARY</div>
         <div className={styles.count}>{`${legendary}개`}</div>

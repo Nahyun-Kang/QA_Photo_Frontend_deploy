@@ -4,9 +4,9 @@ import { GenreType, MyGalleryCardType } from '@/app/_lib/types/cardType'
 const getMyCards = async (
   page = 1,
   size = 16,
-  genre: string,
-  grade: string,
-  keyword: string,
+  genre?: string,
+  grade?: string,
+  keyword?: string,
 ) => {
   try {
     const params = {

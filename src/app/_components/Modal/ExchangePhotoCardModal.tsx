@@ -1,16 +1,20 @@
 'use client'
+import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 
 import Title from '@/app/_components/Title'
 import SearchInput from '../SearchInput'
 import Dropdown from '../Dropdown'
 import MyCard from '../Card/MyCard'
-import { CARDS_LIST } from '@/app/(marketPlace)/CARD_LISTS'
 import { GENRE_LIST, GRADE_LIST } from '@/app/_constants/listConstants'
 import { GenreType, MyGalleryCardType } from '@/app/_lib/types/cardType'
 import { BuyerCardType } from '@/app/(marketPlace)/[cardId]/_components/ForBuyer'
 import { QUERY_KEYS } from '@/app/_constants/queryKeys'
 import getMyCards from '@/app/_api/card/getMyCards'
+import gradeExtract, { gradeToType } from '@/app/_util/gradeExtract'
+import getGenreNameFromType, {
+  getGenreTypeFromName,
+} from '@/app/_util/getGenreNameFromType'
 
 import styles from './exchangePhotoCardModal.module.scss'
 import Close from '/public/icons/close.svg'
@@ -26,9 +30,36 @@ export default function ExchangePhotoCardModal({
   onClose,
   onOpen,
 }: ExchangeModalProps) {
+  const [isFilterModalOn, setIsFilterModalOn] = useState(false)
+  const [keyword, setKeyword] = useState<string>('')
+  const [grade, setGrade] = useState<string>('')
+  const [genre, setGenre] = useState<string>('')
+
+  const handleFilterModalOpen = () => {
+    setIsFilterModalOn(true)
+  }
+  const handleFilterModalClose = () => {
+    setIsFilterModalOn(false)
+  }
+
+  const handleSearchClick = (keyword: string) => {
+    setKeyword(keyword)
+  }
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setKeyword(e.target.value)
+  }
+
+  const handleClickGradeItem = (item: string) => {
+    setGrade(gradeToType(item))
+  }
+  const handleClickGenreItem = (item: string) => {
+    setGenre(getGenreTypeFromName(item))
+  }
+
   const { data } = useQuery({
     queryKey: [QUERY_KEYS.myCards],
-    queryFn: () => getMyCards(1),
+    queryFn: () => getMyCards(1, 16),
   })
 
   return (
@@ -51,10 +82,23 @@ export default function ExchangePhotoCardModal({
               <button className={styles.button}>
                 <Filter width={20} height={20} />
               </button>
-              <SearchInput />
+              <SearchInput
+                onClick={handleSearchClick}
+                onChange={handleInputChange}
+              />
               <div className={styles.filters}>
-                <Dropdown attribute="등급" list={GRADE_LIST} />
-                <Dropdown attribute="장르" list={GENRE_LIST} />
+                <Dropdown
+                  attribute="등급"
+                  list={GRADE_LIST}
+                  handleItemClick={handleClickGradeItem}
+                  value={gradeExtract(grade)}
+                />
+                <Dropdown
+                  attribute="장르"
+                  list={GENRE_LIST}
+                  handleItemClick={handleClickGenreItem}
+                  value={getGenreNameFromType(genre as GenreType)}
+                />
               </div>
             </div>
           </div>

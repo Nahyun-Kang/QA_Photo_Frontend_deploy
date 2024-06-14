@@ -202,12 +202,13 @@ export default function RegisterExpectedExchangeInformation({
                   <Controller
                     control={control}
                     name="wishExchageDescription"
-                    render={({ field: { onChange, onBlur } }) => (
+                    render={({ field: { onChange, onBlur, value } }) => (
                       <Input.textarea
                         placeholder={'설명을 입력해 주세요.'}
                         onChange={onChange}
                         onBlur={onBlur}
                         type="text"
+                        value={value}
                       />
                     )}
                   />

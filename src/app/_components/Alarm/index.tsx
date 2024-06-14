@@ -1,12 +1,6 @@
 'use client'
 import { useQuery } from '@tanstack/react-query'
 
-import { GradeType } from '@/app/_lib/types/cardType'
-import { AlarmType } from '@/app/_lib/types/alarmType'
-import { getTimeAgo } from '@/app/_util/getTimeAgo'
-import gradeExtract from '@/app/_util/gradeExtract'
-import ALARM_MOCK from './mock_data'
-
 import styles from './Alarm.module.scss'
 import getNotification from '@/app/_api/notification/getNotifications'
 import { QUERY_KEYS } from '@/app/_constants/queryKeys'
