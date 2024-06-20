@@ -145,7 +145,6 @@ export default function MyCardsCardList() {
       count % cardPerView === 0
         ? count / cardPerView
         : Math.floor(count / cardPerView) + 1
-    console.log(total_page)
     setTotalPageCount(total_page)
   }
 

@@ -53,8 +53,6 @@ export default function EditCardModal({ onClose }: EditCardModalProps) {
   })
   const router = useRouter()
 
-  console.log(data)
-
   const {
     control,
     formState: { errors },
@@ -121,7 +119,6 @@ export default function EditCardModal({ onClose }: EditCardModalProps) {
   }
 
   const onSubmit = async (data: FieldValues) => {
-    console.log(data)
     handleEditButtonClick(data)
     onClose()
   }
