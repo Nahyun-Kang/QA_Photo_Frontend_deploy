@@ -47,13 +47,23 @@ function CardImage({
           )}
         </div>
       )}
-      <Image
+      {/* <Image
         src={imageUrl}
         alt="카드 이미지"
         layout="fill"
         style={{ objectFit: 'cover' }}
         className={`${isSoldOut && styles.image}`}
-      />
+      /> */}
+      <div
+        className={`${isSoldOut && styles.image}`}
+        style={{
+          backgroundImage: `url(${imageUrl})`,
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          width: '100%', // 필요한 크기에 맞게 수정
+          height: '100%', // 필요한 크기에 맞게 수정
+        }}
+      ></div>
     </div>
   )
 }
